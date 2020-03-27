@@ -1,0 +1,54 @@
+body {
+	padding:0;
+	margin:0;
+	
+}
+*,html{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+#page {
+	border:1px solid #000;
+	height: 100vh;
+	width: 40vw;
+	padding:30pt;
+	overflow: auto;
+}
+.perso {
+	font-variant: small-caps
+}
+.didas {
+	font-style: italic;
+	color: #555;
+}
+#add {
+	height: 40px;
+}
+.line {
+	display:block;
+	//border: 1px dashed #ccc;
+	text-align: justify;
+}
+.line::first-letter {
+	padding-left: 15pt;
+}
+.left {
+	height:100vh;
+	width:15%;
+	float:left;
+	padding: 10px;
+	border:1px solid #f00
+}
+.left select, #didasc, #replik, #add{
+	width: 100%;
+}
+#btnOpen,#btnSave, #add_perso, #remove_perso {
+	width:49%;
+}
+#replik {
+	height: 100px;
+}
