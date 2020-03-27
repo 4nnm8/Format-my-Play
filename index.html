@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Format My Play</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+	<div class="left">
+		<input type="button" id="btnOpen" value="Ouvrir fichier" />
+		<input type="button" id="btnSave" value="Sauver fichier" />
+		<br/><br/>
+		Personnages :<br/><br/>
+		<select id="persos" size="9" multiple>
+			<option>Lisbeth</option>
+			<option>Comète</option>
+			<option>Babeth</option>
+			<option>Cet Homme</option>
+			<option>Cette Femme</option>
+			<option>Pelle</option>
+			<option>Balais</option>
+			<option>Émeth</option>
+			<option>Aneth</option>
+		</select>
+	<br/><input type="button" id="add_perso" value="Ajouter perso" />
+	<input type="button" id="remove_perso" value="Retirer perso" />
+	<br/><br/>
+	Didascalie personnage (optionnel)<br/>
+	<input type="text" id="didasc" value="" /><br/><br/>
+	
+	<select id="typeoftxt" >
+		<option>Réplique</option>
+		<option>Didascalie initiale</option>
+		<option>Didascalie interne</option>
+	</select><br/>
+	<textarea id="replik"></textarea>
+	<input type="button" id="add" value="Ajouter réplique" />
+
+	<br/><br/><br/>
+	
+
+	
+		Table des matières :<br/><br/>
+		<select id="acts" size="9" multiple>
+		<option>ACTE I</option>
+		<option>Scène 1</option>
+		<option>Scène 2</option>
+		<option>Scène 3</option>
+		<option>ACTE II</option>
+		<option>Scène 1</option>
+		<option>Scène 2</option>
+		<option>Scène 3</option>
+		<option>Scène 4</option>
+		</select>
+	
+	</div>
+    <div id="page" contenteditable="true">
+	
+	</div>
+
+	
+
+    <script src="format-my-play.js"></script>
+  </body>
+</html>
