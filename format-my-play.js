@@ -1,4 +1,4 @@
-const w = document.getElementById("replik"),
+const 		w = document.getElementById("replik"),
 		  x = document.getElementById("persos"),
 		  y = document.getElementById("page"),
 		  z = document.getElementById("didasc");
@@ -33,21 +33,24 @@ const w = document.getElementById("replik"),
 	document.getElementById("add_perso").addEventListener("click", function(){ 
 	
 		var rep = prompt("Comment s'appelle votre personnage ?"),
-			sel = x,
 			opt = document.createElement('option');
-		opt.appendChild( document.createTextNode(rep) );
-		sel.appendChild(opt);
+		opt.appendChild(document.createTextNode(rep));
+		if (rep) {
+			x.appendChild(opt);x.size = x.size + 1
+		}
+		
 		
 	},false);
 
 	document.getElementById("remove_perso").addEventListener("click", function(){ 
 	
-		x.remove(x.selectedIndex); 
+		x.remove(x.selectedIndex);
+		x.size = x.size - 1
 		
 	},false);
 	
 
-
+	/* AJOUTER REPLIQUE */
 	document.getElementById("add").addEventListener("click",function(){		
 		y.innerHTML = y.innerHTML
 		+ "<div class='line'><span class='perso'>"
@@ -65,9 +68,20 @@ const w = document.getElementById("replik"),
 	
 	},false);
 	
+	/* OUVRIR FICHIER et RECUP DONNEES */
 	document.getElementById('btnOpen').addEventListener("click", function(){
 		openFile(function(txt){
-			document.getElementById('page').innerHTML = txt; 
+			var firstLine = txt.split('\n')[0],
+				char_list = firstLine.split(','),
+				char_lgt = char_list.length;
+			x.size = char_lgt;
+			
+			for (let j = 0 ; j < char_lgt ; j++) {		
+				var opt = document.createElement('option');
+				opt.appendChild(document.createTextNode(char_list[j]));
+				x.appendChild(opt);
+			}
+			document.getElementById('page').innerHTML = txt.split('\n')[1];
 		});
 	},false);
 	
@@ -103,8 +117,18 @@ const w = document.getElementById("replik"),
 		return true;
 	}
 	
+	/* SAUVER FICHIER */
 	function saveFile() {
-        const textToBLOB = new Blob([y.innerHTML], { type: 'text/plain' });
+		
+		var perso_list = [];
+		
+		for (let i = 0 ; i < x.length ; i++) {
+			perso_list.push(x.options[i].text);
+		}
+		
+		var entry = perso_list +"\n"+ y.innerHTML
+		
+        const textToBLOB = new Blob([entry], { type: 'text/plain' });
         const sFileName = 'new_Theatre.txt';
         let newLink = document.createElement("a");
         newLink.download = sFileName;
