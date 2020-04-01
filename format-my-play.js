@@ -79,11 +79,19 @@ const 	input_replique = document.getElementById("replik"),
 	}
 	function insert_act(){
 		var rep = prompt("Quel est le numéro de l'acte ?");
-		field_page.innerHTML = field_page.innerHTML + "<h2 class='act_display'>Acte "+rep+"</h2>"
+		if (/^([0-9]+|[MCDVLXI]+)$/.test(rep)) {
+			field_page.innerHTML = field_page.innerHTML + "<h2 class='act_display'>Acte "+rep+"</h2>"
+		} else {
+			alert("Seuls les caractères suivants sont autorisés :\n0 1 2 3 4 5 6 7 8 9 M D C L X V I\nUtilisez soit des chiffres romains, soit des chiffres arabes.")
+		}
 	}
 	function insert_scene(){
 		var rep = prompt("Quel est le numéro de la scène ?");
-		field_page.innerHTML = field_page.innerHTML + "<h3 class='scene_display'>Scène "+rep+"</h3>"
+		if (/^[0-9]+$/.test(rep)){
+			field_page.innerHTML = field_page.innerHTML + "<h3 class='scene_display'>Scène "+rep+"</h3>"
+		} else {
+			alert("Merci d'entrer uniquement des chiffres arabes (0 - 9).")
+		}
 	}
 	function insert_title(){
 		var t = input_title.value
@@ -197,13 +205,35 @@ const 	input_replique = document.getElementById("replik"),
 		input_date.value = time();
     }
 
-	
+	function openAFile() {
+		openFile(function(txt){
+		var firstLine = txt.split('\n')[0],
+			secondLine = txt.split('\n')[1],
+			char_list = secondLine.split(';'),
+			char_lgt = char_list.length;
+		input_persos.size = char_lgt;
+		
+		for (let j = 0 ; j < char_lgt ; j++) {		
+			var opt = document.createElement('option');
+			opt.appendChild(document.createTextNode(char_list[j]));
+			input_persos.appendChild(opt);
+		}
+		input_date.value = firstLine.split(';')[0];
+		input_title.value = firstLine.split(';')[1];
+		input_author.value = firstLine.split(';')[2];
+		
+		var newnew = txt.split('\n')
+		newnew = newnew.splice(2,newnew.length).join("\n")
+		document.getElementById('page').innerHTML = newnew;
+		
+		});
+	}
 	function openFile(callBack){
 	  var fichier = document.createElement('input');
 	  fichier.setAttribute('type', "file");
 	  fichier.setAttribute('id', "btnOpenFile");
 	  fichier.onchange = function(){
-		  if (fichier.value.match(".fmp$")) {
+		  if (/.fmp$/.test(fichier.value)) {
 		  readText(this,callBack);
 		  document.body.removeChild(this);
 		  } else {
@@ -236,40 +266,15 @@ const 	input_replique = document.getElementById("replik"),
 /*** BOUTONS EVENEMENTS ***************************************/
 	
 document.getElementById("btnNewFile").addEventListener("click", function(){ newFile() },false);
-document.getElementById("btnOpenFile").addEventListener("click", function(){ 
-	openFile(function(txt){
-			var firstLine = txt.split('\n')[0],
-				secondLine = txt.split('\n')[1],
-				char_list = secondLine.split(';'),
-				char_lgt = char_list.length;
-			input_persos.size = char_lgt;
-			
-			for (let j = 0 ; j < char_lgt ; j++) {		
-				var opt = document.createElement('option');
-				opt.appendChild(document.createTextNode(char_list[j]));
-				input_persos.appendChild(opt);
-			}
-			input_date.value = firstLine.split(';')[0];
-			input_title.value = firstLine.split(';')[1];
-			input_author.value = firstLine.split(';')[2];
-			
-			var newnew = txt.split('\n')
-			newnew = newnew.splice(2,newnew.length).join("\n")
-			document.getElementById('page').innerHTML = newnew;
-			
-		});
-},false);
+document.getElementById("btnOpenFile").addEventListener("click", function(){ openAFile() },false);
 document.getElementById("btnSaveFile").addEventListener("click", function(){ saveFile()	},false);
 document.getElementById("btnCloseFile").addEventListener("click", function(){ closeFile() },false);
-
 document.getElementById("btnAddPerso").addEventListener("click", function(){ add_character() },false);
 document.getElementById("btnRemovePerso").addEventListener("click", function(){ remove_character() },false);
 document.getElementById("btnClearPerso").addEventListener("click", function(){ clear_charlist() },false);
-
 document.getElementById("btnInsCharList").addEventListener("click",function(){ insert_charlist() },false);
 document.getElementById("btnInsAct").addEventListener("click",function(){ insert_act() },false);
 document.getElementById("btnInsScene").addEventListener("click",function(){ insert_scene() },false);
 document.getElementById("btnInsTitle").addEventListener("click",function(){ insert_title() },false);
 document.getElementById("btnInsDidas").addEventListener("click",function(){ insert_didas() },false);
-
 document.getElementById("btnAddText").addEventListener("click",function(){ addText() },false);
