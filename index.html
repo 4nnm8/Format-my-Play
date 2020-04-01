@@ -58,21 +58,22 @@
 					--><button id="btnRemovePerso" class="but_perso">[-] Retirer</button><!--
 					--><button id="btnClearPerso" class="but_perso">[x] Tout retirer</button>
 				</div>
-				<p>Didascalie personnage (optionnel) :</p>
-				<input type="text" id="didasc" tabindex="2" value="" />
+
+				<input type="text" id="didasc" tabindex="2" placeholder="Didascalie personnage (optionnel)" />
 			
-				<div class="cont_persos">Texte à insérer
-					
-					<br/>
-					<textarea id="replik" rows="10" tabindex="3"></textarea>
+				<div class="cont_persos">Texte à insérer<br/>
+					<textarea id="replik" rows="10" tabindex="3" placeholder="Votre texte ici"></textarea>
 					<select id="typeoftxt" >
 						<option>Réplique</option>
 						<option>Didascalie initiale</option>
 						<option>Didascalie interne</option>
 					</select>
-					
 				</div>
-			<p><input type="button" id="btnAddText" value="Ajouter le texte" tabindex="4" /></p>
+			<p><button id="btnAddText" tabindex="4">Ajouter le texte<br/>(<kbd>Shift</kbd> + <kbd>Enter</kbd>)</button></p>
+			<!--<p>
+				{<i>votre texte</i>} Didascalie interne<br/>
+				*<i>votre texte</i>* Texte en gras
+			</p>-->
 			</div>
 			
 			<div class="page">
@@ -87,7 +88,8 @@
 				<p>Date du fichier : <input type="text" id="input_date" disabled /></p>
 				<p>Titre : <input type="text" id="input_title" /></p>
 				<p>Auteur·ice : <input type="text" id="input_author" /></p>
-				<!--<p>Table des matières :</p>
+				<br/>
+				<p style="text-align:center">Table des matières</p>
 				<div class="chapters">
 				  <ul id="tdm">
 					<li>
@@ -111,7 +113,7 @@
 					  </ul>
 					</li>
 				  </ul>
-				</div>-->
+				</div>
 			</div>
 		</div>
 

@@ -36,7 +36,8 @@ const 	input_replique = document.getElementById("replik"),
 		return result;
 	}
 	function addText() {
-		if (input_persos.selectedIndex == -1) { alert("Sélectionnez d'abord le personnage qui s'exprime") }
+		if (input_persos.length == 0) { alert("Créez d'abord un personnage puis sélectionnez-le dans la liste") }
+		else if (input_persos.selectedIndex == -1) { alert("Sélectionnez d'abord le personnage qui s'exprime") }
 		else if (input_replique.value == "") { alert("Vous n'avez pas entré de texte à ajouter") }
 		else {
 			field_page.innerHTML = field_page.innerHTML
@@ -278,3 +279,9 @@ document.getElementById("btnInsScene").addEventListener("click",function(){ inse
 document.getElementById("btnInsTitle").addEventListener("click",function(){ insert_title() },false);
 document.getElementById("btnInsDidas").addEventListener("click",function(){ insert_didas() },false);
 document.getElementById("btnAddText").addEventListener("click",function(){ addText() },false);
+document.getElementById("replik").addEventListener("keypress",function(evt){
+	if (evt.keyCode == 13 && evt.shiftKey) {
+		addText()
+	}
+},false)
+

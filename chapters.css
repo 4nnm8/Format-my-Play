@@ -2,36 +2,40 @@
   margin: 20px;
   font-family: Verdana;
   font-size: 14px;
-  color: #AA73D9;
+  color: #000;
+  text-align:left;
 }
-.chapters  [type=checkbox] {
+.chapters label {
+	font-weight:bold
+}
+.chapters [type=checkbox] {
   display: none;
 }
-.chapters  ul {
+.chapters ul {
   padding: 0 0 0 30px;
   display: none;
   list-style: none;
 }
-.chapters  ul:first-child {
+.chapters ul:first-child {
   padding-left: 0;
 }
-.chapters  li {
+.chapters li {
   padding: 0;
 }
-.chapters  li span {
+.chapters li span {
   margin: 2px 0;
   display: list-item;
   list-style: none;
 }
-.chapters  li span::before {
+.chapters li span::before {
   content: "\25B6"; 
-  color: #9578E3; 
+  color: #F3D250; 
   font-weight: bold; 
   display: inline-block; 
   width: 1.2em; 
   margin-left: -1em; 
 }
-.chapters  label {
+.chapters label {
   display: inline-block;
   transition: 0.2s;
   padding-right: 10px;
@@ -40,19 +44,19 @@
   line-height: 20px;
   cursor: pointer;
 }
-.chapters  label::before {
+.chapters label::before {
   display: inline-block;
   margin-right: 5px;
   width: 20px;
   height: 20px;
   text-align: center;
-  background: #9578E3;
-  color: #FFF;
+  background: #F3D250;
+  color: #000;
 }
-.chapters  ul:first-child, .chapters  [type=checkbox]:checked ~ ul {
+.chapters ul:first-child, .chapters  [type=checkbox]:checked ~ ul {
   display: block;
 }
-.chapters  [type=checkbox]:checked ~ label::before {
+.chapters [type=checkbox]:checked ~ label::before {
   content: "-";
 }
 .chapters [type=checkbox]:not(:checked) ~ label::before {
