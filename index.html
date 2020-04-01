@@ -5,76 +5,91 @@
 		<title>Format My Play</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="stylesheet" type="text/css" href="chapters.css" />
+		<link rel="stylesheet" type="text/css" href="mep_inline.css" />
 	</head>
 	<body>
-	
 		<nav role="navigation">
 			<ul>
 				<li><a href="#">Fichier</a>
 					<ul class="dropdown">
-						<li><a href="#" id="btnOpen">Ouvrir</a></li>
-						<li><a href="#" id="btnSave">Enregistrer</a></li>
-						<li><a href="#">Fermer</a></li>
+						<li><a href="#" id="btnNewFile">Nouveau</a></li>
+						<li><a href="#" id="btnOpenFile">Ouvrir</a></li>
+						<li><a href="#" id="btnSaveFile">Enregistrer</a></li>
+						<li><a href="#" id="btnCloseFile">Fermer</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Personnages</a>
+				<li><a href="#">Insertion</a>
 					<ul class="dropdown">
-						<li><a href="#" id="add_perso">Ajouter</a></li>
-						<li><a href="#" id="remove_perso">Retirer</a></li>
-						<li><a href="#">Tout effacer</a></li>
+						<li><a href="#" id="btnInsTitle">Titre de l'ouvrage</a></li>
+						<li><a href="#" id="btnInsAct">Acte</a></li>
+						<li><a href="#" id="btnInsScene">Scène</a></li>
+						<li><a href="#" id="btnInsDidas">Bloc de didascalies</a></li>
+						<li><a href="#" id="btnInsCharList">Liste des personnages de la scène</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Polices</a>
+				
+				<li><a href="#"><strike>Outils</strike></a>
+					<ul class="dropdown">
+						<li><a href="#" id="">Caractères spéciaux</a></li>
+					</ul>
+				</li>
+				<li><a href="#"><strike>Polices</strike></a>
 					<ul class="dropdown">
 						<li><a href="#" id="font_choice">Choix police</a></li>
 						<li><a href="#" id="font_size">Taille police</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Mise en page</a>
+				<li><a href="#"><strike>Mise en page</strike></a>
 					<ul class="dropdown">
-						<li><a href="#">En ligne</a></li>
-						<li><a href="#">Aérée</a></li>
-						
+						<li><a href="#">Théâtre, sur une ligne</a></li>
+						<li><a href="#">Théâtre, sur deux lignes</a></li>
+						<li><a href="#">Script / Scénario</a></li>
 					</ul>
 					
 				</li>
-				<li><a href="#">À propos</a></li>
+				<li><a href="#"><strike>À propos</strike></a></li>
 			</ul>
 		</nav>
 		<div class="container">
 			<div class="left">
-	
-				Personnages :<br/><br/>
-				<select id="persos" size="3" multiple></select>
-				<br/>
-				<br/>
-				Didascalie personnage (optionnel)
-				<br/>
-				<input type="text" id="didasc" value="" />
-				<br/>
-				<br/>
-				<select id="typeoftxt" >
-					<option>Réplique</option>
-					<option>Didascalie initiale</option>
-					<option>Didascalie interne</option>
-				</select>
-				<br/>
-				<textarea id="replik"></textarea>
-				<input type="button" id="add" value="Ajouter réplique" />
+				<div class="cont_persos">Liste des personnages
+					<select id="persos" size="8" tabindex="1" multiple></select>
+					<button id="btnAddPerso" class="but_perso">[+] Ajouter</button><!--
+					--><button id="btnRemovePerso" class="but_perso">[-] Retirer</button><!--
+					--><button id="btnClearPerso" class="but_perso">[x] Tout retirer</button>
+				</div>
+				<p>Didascalie personnage (optionnel) :</p>
+				<input type="text" id="didasc" tabindex="2" value="" />
+			
+				<div class="cont_persos">Texte à insérer
+					
+					<br/>
+					<textarea id="replik" rows="10" tabindex="3"></textarea>
+					<select id="typeoftxt" >
+						<option>Réplique</option>
+						<option>Didascalie initiale</option>
+						<option>Didascalie interne</option>
+					</select>
+					
+				</div>
+			<p><input type="button" id="btnAddText" value="Ajouter le texte" tabindex="4" /></p>
 			</div>
 			
 			<div class="page">
-				<div id="page" contenteditable="true">
+				<div id="page" contenteditable="true" tabindex="5">
+					<div class="line"><span class="perso">Agnès. </span><span class="didas">(didascalie)</span> – <span class="repliq">Le petit chat est mort</span></div>	
 				</div>
 			
 			</div>
 			
 			<div class="right">
-				Table des matières :
-				<br/>
-				<br/>
+				
+				<p>Date du fichier : <input type="text" id="input_date" disabled /></p>
+				<p>Titre : <input type="text" id="input_title" /></p>
+				<p>Auteur·ice : <input type="text" id="input_author" /></p>
+				<!--<p>Table des matières :</p>
 				<div class="chapters">
-				  <ul>
+				  <ul id="tdm">
 					<li>
 					  <input type="checkbox" id="item1"/>
 					  <label for="item1">Acte I</label>
@@ -96,7 +111,7 @@
 					  </ul>
 					</li>
 				  </ul>
-				</div>
+				</div>-->
 			</div>
 		</div>
 

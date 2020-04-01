@@ -1,0 +1,28 @@
+.perso {
+	font-variant: small-caps
+}
+.didas {
+	font-style: italic;
+	color: #555;
+}
+.line {
+	display:block;
+	text-align: justify;
+}
+.line::first-letter {
+	padding-left: 15pt;
+}
+.title_display {
+	text-align: center
+}
+.act_display {
+	text-align: center
+}
+.scene_display {
+	text-align: center
+}
+.char_display {
+	font-variant: small-caps;
+	margin-bottom: 30px;
+	text-align:center
+}

@@ -2,13 +2,13 @@
   margin: 20px;
   font-family: Verdana;
   font-size: 14px;
-  color: #9C27B0;
+  color: #AA73D9;
 }
 .chapters  [type=checkbox] {
   display: none;
 }
 .chapters  ul {
-  padding: 0 0 0 40px;
+  padding: 0 0 0 30px;
   display: none;
   list-style: none;
 }
@@ -21,7 +21,15 @@
 .chapters  li span {
   margin: 2px 0;
   display: list-item;
-  list-style: square;
+  list-style: none;
+}
+.chapters  li span::before {
+  content: "\25B6"; 
+  color: #9578E3; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1.2em; 
+  margin-left: -1em; 
 }
 .chapters  label {
   display: inline-block;
@@ -38,7 +46,7 @@
   width: 20px;
   height: 20px;
   text-align: center;
-  background: #9C27B0;
+  background: #9578E3;
   color: #FFF;
 }
 .chapters  ul:first-child, .chapters  [type=checkbox]:checked ~ ul {
