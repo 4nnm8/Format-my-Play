@@ -35,6 +35,37 @@ const 	input_replique = document.getElementById("replik"),
 		}
 		return result;
 	}
+	function pasteHtmlAtCaret(html) {
+		var sel, range;
+		if (window.getSelection) {
+			// IE9 and non-IE
+			sel = window.getSelection();
+			if (sel.getRangeAt && sel.rangeCount) {
+				range = sel.getRangeAt(0);
+				range.deleteContents();
+
+				var el = document.createElement("div");
+				el.innerHTML = html;
+				var frag = document.createDocumentFragment(), node, lastNode;
+				while ((node = el.firstChild)) {
+					lastNode = frag.appendChild(node);
+				}
+				range.insertNode(frag);
+				
+				// Preserve the selection
+				if (lastNode) {
+					range = range.cloneRange();
+					range.setStartAfter(lastNode);
+					range.collapse(true);
+					sel.removeAllRanges();
+					sel.addRange(range);
+				}
+			}
+		} else if (document.selection && document.selection.type != "Control") {
+			// IE < 9
+			document.selection.createRange().pasteHTML(html);
+		}
+	}
 	function addText() {
 		if (input_persos.length == 0) { alert("Créez d'abord un personnage puis sélectionnez-le dans la liste") }
 		else if (input_persos.selectedIndex == -1) { alert("Sélectionnez d'abord le personnage qui s'exprime") }
@@ -207,6 +238,11 @@ const 	input_replique = document.getElementById("replik"),
     }
 
 	function openAFile() {
+		if (!isItEmpty()) {
+			var r = confirm("Voulez-vous enregistrer votre fichier en cours avant d'en créer un nouveau ?");
+			if (r) { saveFile() }
+			clearAll()
+		}
 		openFile(function(txt){
 		var firstLine = txt.split('\n')[0],
 			secondLine = txt.split('\n')[1],
@@ -279,9 +315,14 @@ document.getElementById("btnInsScene").addEventListener("click",function(){ inse
 document.getElementById("btnInsTitle").addEventListener("click",function(){ insert_title() },false);
 document.getElementById("btnInsDidas").addEventListener("click",function(){ insert_didas() },false);
 document.getElementById("btnAddText").addEventListener("click",function(){ addText() },false);
-document.getElementById("replik").addEventListener("keypress",function(evt){
+input_replique.addEventListener("keypress",function(evt){
 	if (evt.keyCode == 13 && evt.shiftKey) {
 		addText()
 	}
-},false)
-
+},false);
+field_page.addEventListener("keypress",function(evt){
+	var texte = "<div class='line'><span class='perso'>Personnage.</span> – <span class='repliq'>Texte de réplique.</span></div>";
+	if (evt.keyCode == 13 && evt.shiftKey) {
+		pasteHtmlAtCaret(texte)
+	}
+},false);

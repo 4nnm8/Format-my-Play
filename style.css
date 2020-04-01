@@ -124,7 +124,7 @@ nav ul li:hover > ul, nav ul li ul:hover {
 .container {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 35px);
 -moz-box-shadow: inset 0px 5px 10px 0px #656565;
 -webkit-box-shadow: inset 0px 5px 10px 0px #656565;
 -o-box-shadow: inset 0px 5px 10px 0px #656565;
@@ -133,7 +133,7 @@ box-shadow: inset 0px 5px 10px 0px #656565;
 }
 
 .page, .left, .right {
-  height:100vh;
+  height:100%;
   
 }
 .left {
@@ -152,23 +152,20 @@ box-shadow: inset 0px 5px 10px 0px #656565;
   background: rgb(236,236,236);
   background: radial-gradient(circle, rgba(236,236,236,1) 0%, rgba(144,204,244,1) 100%);
   overflow: auto;
-  
 }
 .page::-webkit-scrollbar {
-    width: 15px;
-    background:lightgray;
+  background: #F3D250;
 }
 .page::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,255,1); 
-    border-radius: 15px;
+ background: #90ccf4; /*fond*/
+
 }
 .page::-webkit-scrollbar-thumb {
-    border-radius: 15px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-    background:cyan;
+    background:#F3D250; /*barre*/
 } 
-.page::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.page::-webkit-scrollbar-button {
+	background:#f78888; /*fleches*/
+	color:#000
 }
 #page {
   overflow: auto;
@@ -221,7 +218,7 @@ box-shadow: inset 0px 5px 10px 0px #656565;
     -ms-overflow-style: none;
   background-image: none;
 }
-#persos:-webkit-scrollbar { 
+#persos::-webkit-scrollbar { 
   width: 0;height: 0
 }
 .but_perso{

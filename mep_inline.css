@@ -6,7 +6,6 @@
 	color: #555;
 }
 .line {
-	display:block;
 	text-align: justify;
 }
 .line::first-letter {
@@ -25,4 +24,7 @@
 	font-variant: small-caps;
 	margin-bottom: 30px;
 	text-align:center
+}
+.repliq {
+	font-variant: none;
 }
