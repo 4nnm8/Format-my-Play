@@ -6,68 +6,79 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="stylesheet" type="text/css" href="chapters.css" />
 		<link rel="stylesheet" type="text/css" href="mep_inline.css" />
+		<link rel="stylesheet" type="text/css" href="font_awesome.css" />
 	</head>
 	<body>
-		<nav role="navigation">
-			<ul>
-				<li><a href="#">Fichier</a>
-					<ul class="dropdown">
-						<li><a href="#" id="btnNewFile">Nouveau</a></li>
-						<li><a href="#" id="btnOpenFile">Ouvrir</a></li>
-						<li><a href="#" id="btnSaveFile">Enregistrer</a></li>
-						<li><a href="#" id="btnCloseFile">Fermer</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Insertion</a>
-					<ul class="dropdown">
-						<li><a href="#" id="btnInsTitle">Titre de l'ouvrage</a></li>
-						<li><a href="#" id="btnInsAct">Acte</a></li>
-						<li><a href="#" id="btnInsScene">Scène</a></li>
-						<li><a href="#" id="btnInsDidas">Bloc de didascalies</a></li>
-						<li><a href="#" id="btnInsCharList">Liste des personnages de la scène</a></li>
-					</ul>
-				</li>
-				
-				<li><a href="#"><strike>Outils</strike></a>
-					<ul class="dropdown">
-						<li><a href="#" id="">Caractères spéciaux</a></li>
-					</ul>
-				</li>
-				<li><a href="#"><strike>Polices</strike></a>
-					<ul class="dropdown">
-						<li><a href="#" id="font_choice">Choix police</a></li>
-						<li><a href="#" id="font_size">Taille police</a></li>
-					</ul>
-				</li>
-				<li><a href="#"><strike>Mise en page</strike></a>
-					<ul class="dropdown">
-						<li><a href="#">Théâtre, sur une ligne</a></li>
-						<li><a href="#">Théâtre, sur deux lignes</a></li>
-						<li><a href="#">Script / Scénario</a></li>
-					</ul>
-					
-				</li>
-				<li><a href="#"><strike>À propos</strike></a></li>
-			</ul>
+		<nav>
+			<div class="main"><a href="#">Fichier</a>
+				<div class="drop">
+					<a href="#" id="btnNewFile">Nouveau</a>
+					<a href="#" id="btnOpenFile">Ouvrir</a>
+					<a href="#" id="btnSaveFile">Enregistrer</a>
+					<a href="#" id="btnPrintFile">Imprimer</a>
+					<a href="#" id="btnCloseFile">Fermer</a>					
+				</div>
+			</div><!--
+			--><div class="main"><a href="#">Insertion</a>
+				<div class="drop">
+					<a href="#" id="btnInsTitle">Titre de l'ouvrage</a>
+					<a href="#" id="btnInsAct">Acte</a>
+					<a href="#" id="btnInsScene">Scène</a>
+					<a href="#" id="btnInsDidas">Bloc de didascalies</a>
+					<a href="#" id="btnInsCharList">Liste des personnages de la scène</a>
+				</div>
+			</div><!--
+			--><div class="main"><a href="#">Outils</a>
+				<div class="drop">
+					<a href="#" id="">Caractères spéciaux</a>
+				</div>
+			</div><!--
+			--><div class="main"><a href="#">Polices</a>
+				<div class="drop">
+					<a href="#" id="font_choice">Choix police</a>
+					<a href="#" id="font_size">Taille police</a>
+				</div>
+			</div><!--
+			--><div class="main"><a href="#">Mise en page</a>
+				<div class="drop mep">
+					<a href="#">PERSONNAGE (<i>didascalie</i>) – Texte de réplique.</a>
+					<a href="#"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
+					<a href="#" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>				
+				</div>
+			</div><!--
+			--><div class="main"><a href="#">À propos</a></div>
+
+			<div id="wysiwyg">
+				<button type="button" id="bold" data-action="bold"><i class="fa fa-bold"></i></button>
+				<button type="button" id="italic" data-action="italic"><i class="fa fa-italic"></i></button>
+				<button type="button" id="underline" data-action="underline"><i class="fa fa-underline"></i></button>
+				<button type="button" id="strikethrough" data-action="strikeThrough"><i class="fa fa-strikethrough"></i></button>	    			
+				<button type="button" id="justifyleft" data-action="justifyLeft"><i class="fa fa-align-left"></i></button>
+				<button type="button" id="justifycenter" data-action="justifyCenter"><i class="fa fa-align-center"></i></button>
+				<button type="button" id="justifyright" data-action="justifyRight"><i class="fa fa-align-right"></i></button>
+				<button type="button" id="justifyfull" data-action="formatBlock"><i class="fa fa-align-justify"></i></button>
+				<button type="button" id="indent" data-action="indent"><i class="fa fa-indent"></i></button>
+				<button type="button" id="outdent" data-action="outdent"><i class="fa fa-outdent"></i></button>
+				<button type="button" id="undo" data-action="undo"><i class="fa fa-undo"></i></button>
+				<button type="button" id="redo"><i class="fa fa-undo"></i></button>
+				<button type="button" id="delete" data-action="removeFormat"><i class="fa fa-eraser"></i></button>
+			</div>
 		</nav>
 		<div class="container">
 			<div class="left">
 				<div class="cont_persos">Liste des personnages
-					<select id="persos" size="8" tabindex="1" multiple></select>
+					<select id="persos" size="8" tabindex="1" multiple="true">
+					</select>
 					<button id="btnAddPerso" class="but_perso">[+] Ajouter</button><!--
 					--><button id="btnRemovePerso" class="but_perso">[-] Retirer</button><!--
-					--><button id="btnClearPerso" class="but_perso">[x] Tout retirer</button>
+					--><button id="btnClearPerso" class="but_perso">[x] Vider</button>
 				</div>
 
 				<input type="text" id="didasc" tabindex="2" placeholder="Didascalie personnage (optionnel)" />
 			
 				<div class="cont_persos">Texte à insérer<br/>
 					<textarea id="replik" rows="10" tabindex="3" placeholder="Votre texte ici"></textarea>
-					<select id="typeoftxt" >
-						<option>Réplique</option>
-						<option>Didascalie initiale</option>
-						<option>Didascalie interne</option>
-					</select>
+
 				</div>
 			<p><button id="btnAddText" tabindex="4">Ajouter le texte<br/>(<kbd>Shift</kbd> + <kbd>Enter</kbd>)</button></p>
 			<!--<p>
@@ -76,19 +87,17 @@
 			</p>-->
 			</div>
 			
+		<!--data-action="insertHorizontalRule"-->
 			<div class="page">
-				<div id="page" contenteditable="true" tabindex="5">
-					<div class="line"><span class="perso">Agnès. </span><span class="didas">(didascalie)</span> – <span class="repliq">Le petit chat est mort</span></div>	
-				</div>
-			
+				
+				<div id="page" contenteditable="true" tabindex="5"></div>
 			</div>
-			
 			<div class="right">
 				
 				<p>Date du fichier : <input type="text" id="input_date" disabled /></p>
 				<p>Titre : <input type="text" id="input_title" /></p>
 				<p>Auteur·ice : <input type="text" id="input_author" /></p>
-				<br/>
+				<br/><!--
 				<p style="text-align:center">Table des matières</p>
 				<div class="chapters">
 				  <ul id="tdm">
@@ -113,56 +122,10 @@
 					  </ul>
 					</li>
 				  </ul>
-				</div>
+				</div>-->
 			</div>
 		</div>
 
 		<script src="format-my-play.js"></script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--https://www.likeanswer.com/question/174334
-* musique
-* ecriture
-* graphisme 
-* web
-* théâtre
-* blog
-* agenda
-* contact
-* cv
--->
