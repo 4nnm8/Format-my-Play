@@ -1,11 +1,9 @@
 .perso, .perso-d, .char_display {
   font-variant: small-caps
 }
-.perso::after {
-  content:". – "
-}
-.perso-d::after {
-  content:" – "
+.perso, .perso-d {
+  display:block;
+  text-align:center
 }
 .didas, .didas-f, .didas-b {
   font-style: italic;
@@ -35,4 +33,7 @@
 
 .char_display {
   margin-bottom: 30px;
+}
+.line {
+  margin-bottom: 15pt
 }
