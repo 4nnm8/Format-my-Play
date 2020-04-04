@@ -1,2 +1,0 @@
-Lisbeth,Comète,Babeth,Cet Homme,Cette Femme,Pelle,Balais,Émeth,Aneth
-<div class="line"><span class="perso">Babeth.</span> <span class="didas">(chuchottant)</span> – <span class="repliq">Bla bla bla bla</span><p></p></div>
