@@ -223,10 +223,10 @@ var printFile = function() {
 	+ field_page.innerHTML 
 	+ '</body></html>');
 
-    mywindow.document.close(); 
-    mywindow.focus();
-    mywindow.print();
-    mywindow.close();
+    paper.document.close(); 
+    paper.focus();
+    paper.print();
+    paper.close();
     return true;
 }
 
