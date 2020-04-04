@@ -209,7 +209,7 @@ field_status.addEventListener("click", function() {
 /*** INFO / ALERT [END] ***/
 
 var printFile = function() {
-	previous_target.style.border = "0";
+	if (previous_target) previous_target.style.border = "0";
 	var height = window.innerHeight,
 		width = height*0.7,
 		paper = window.open('_blank', 'PRINT', 'height='+height+',width='+width),
