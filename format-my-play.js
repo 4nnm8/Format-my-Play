@@ -226,7 +226,6 @@ var printFile = function() {
     paper.document.close(); 
     paper.focus();
     paper.print();
-    paper.close();
     return true;
 }
 
