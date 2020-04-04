@@ -5,7 +5,6 @@
 		<title>Format My Play</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="stylesheet" type="text/css" href="mep_inline.css" id="theme" />
-		<link rel="stylesheet" type="text/css" href="font_awesome.css" />
 	</head>
 	<body>
 		<div class="parent">
@@ -28,17 +27,17 @@
 						<a href="#" id="btnInsCharList">Liste des personnages de la scène</a>
 					</div>
 				</div><!--
-				--><div class="main"><a href="#">Outils</a>
+				<div class="main"><a href="#">Outils</a>
 					<div class="drop">
 						<a href="#" id="">Caractères spéciaux</a>
 					</div>
-				</div><!--
-				--><div class="main"><a href="#">Polices</a>
+				</div>
+				<div class="main"><a href="#">Polices</a>
 					<div class="drop">
 						<a href="#" id="font_choice">Choix police</a>
 						<a href="#" id="font_size">Taille police</a>
 					</div>
-				</div><!--
+				</div>
 				--><div class="main"><a href="#">Mise en page</a>
 					<div class="drop mep">
 						<a href="#" id="btnMepInline"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie</i>) – Texte de réplique.</a>
@@ -46,22 +45,24 @@
 						<a href="#" id="btnMepScreenplay" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>				
 					</div>
 				</div><!--
-				--><div class="main"><a href="#">À propos</a></div>
+				<div class="main"><a href="#">À propos</a></div>-->
 
 				<div id="wysiwyg">
-					<button type="button" id="bold" data-action="bold"><i class="fa fa-bold"></i></button>
-					<button type="button" id="italic" data-action="italic"><i class="fa fa-italic"></i></button>
-					<button type="button" id="underline" data-action="underline"><i class="fa fa-underline"></i></button>
-					<button type="button" id="strikethrough" data-action="strikeThrough"><i class="fa fa-strikethrough"></i></button>	    			
-					<button type="button" id="justifyleft" data-action="justifyLeft"><i class="fa fa-align-left"></i></button>
-					<button type="button" id="justifycenter" data-action="justifyCenter"><i class="fa fa-align-center"></i></button>
-					<button type="button" id="justifyright" data-action="justifyRight"><i class="fa fa-align-right"></i></button>
-					<button type="button" id="justifyfull" data-action="formatBlock"><i class="fa fa-align-justify"></i></button>
-					<button type="button" id="indent" data-action="indent"><i class="fa fa-indent"></i></button>
-					<button type="button" id="outdent" data-action="outdent"><i class="fa fa-outdent"></i></button>
-					<button type="button" id="undo" data-action="undo"><i class="fa fa-undo"></i></button>
-					<button type="button" id="redo"><i class="fa fa-undo"></i></button>
-					<button type="button" id="delete" data-action="removeFormat"><i class="fa fa-eraser"></i></button>
+					<button type="button" data-action="bold"><i class="fa fa-bold"></i></button>
+					<button type="button" data-action="italic"><i class="fa fa-italic"></i></button>
+					<button type="button" data-action="underline"><i class="fa fa-underline"></i></button>
+					<button type="button" data-action="strikeThrough"><i class="fa fa-strikethrough"></i></button>	    			
+					<button type="button" data-action="insertHorizontalRule"><i class="fa fa-minus"></i></button>	    			
+					<button type="button" data-action="justifyLeft"><i class="fa fa-align-left"></i></button>
+					<button type="button" data-action="justifyCenter"><i class="fa fa-align-center"></i></button>
+					<button type="button" data-action="justifyRight"><i class="fa fa-align-right"></i></button>
+					<button type="button" data-action="formatBlock"><i class="fa fa-align-justify"></i></button>
+					<button type="button" data-action="indent"><i class="fa fa-indent"></i></button>
+					<button type="button" data-action="outdent"><i class="fa fa-outdent"></i></button>
+					<button type="button" data-action="undo"><i class="fa fa-undo"></i></button>
+					<button type="button" data-action="redo"><i class="fa fa-redo"></i></button>
+					<button type="button" data-action="removeFormat"><i class="fa fa-eraser"></i></button>
+					<button type="button" id="btnFullscreen"><i class="fa fa-expand"></i></button>
 				</div>
 			</nav>
 			<section class="left">
@@ -74,16 +75,16 @@
 				<div class="cont_persos">Liste des personnages
 					<select id="persos" size="8" tabindex="1" multiple="true">
 					</select>
-					<button id="btnAddPerso" class="but_perso">[+] Ajouter</button><!--
-					--><button id="btnRemovePerso" class="but_perso">[-] Retirer</button><!--
-					--><button id="btnClearPerso" class="but_perso">[x] Vider</button>
+					<button id="btnAddPerso" class="but_perso fa fa-plus">&nbsp;AJOUTER</button><!--
+				--><button id="btnRemovePerso" class="but_perso fa fa-minus">&nbsp;RETIRER</button><!--
+				--><button id="btnClearPerso" class="but_perso fa fa-trash">&nbsp;VIDER</button>
 				</div>
 
-				<input type="text" id="didasc" tabindex="2" placeholder="Didascalie personnage (optionnel)" />
+				<input type="text" id="didasc" tabindex="2" placeholder="Didascalie fonctionnelle (optionnelle)" />
 			
 				<div class="cont_persos">Texte à insérer<br/>
 					<textarea id="replik" rows="10" tabindex="3" placeholder="Votre texte ici"></textarea>
-
+					<input type="checkbox" id="didasc_bloc" /> <label for="didasc_bloc">Insérer bloc disacalie</label>
 				</div>
 				<p><button id="btnAddText" tabindex="4">Ajouter le texte<br/>(<kbd>Shift</kbd> + <kbd>Enter</kbd>)</button></p>
 				<!--<p>
