@@ -209,18 +209,24 @@ field_status.addEventListener("click", function() {
 /*** INFO / ALERT [END] ***/
 
 var printFile = function() {
-    var mywindow = window.open('_blank', 'PRINT', 'height=400,width=600');
-    mywindow.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>' 
+	previous_target.style.border = "0";
+	var height = window.innerHeight,
+		width = height*0.7,
+		paper = window.open('_blank', 'PRINT', 'height='+height+',width='+width),
+	    cssfile = elem_theme.href.replace(/.+\/([a-z_]+.css$)/,"$1");
+		
+    paper.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>' 
 	+ input_title 
 	+ '</title><link rel="stylesheet" href="' 
-	+ elem_theme.href 
-	+ '" type="text/css" media="print" /></head><body>' + 
-	field_page.innerHTML + '</body></html>');
+	+ 'https://ann-mb.github.io/Format-my-Play/' + cssfile
+	+ '" type="text/css"  /></head><body style="padding:1.5cm">' 
+	+ field_page.innerHTML 
+	+ '</body></html>');
 
-    /*mywindow.document.close(); 
+    mywindow.document.close(); 
     mywindow.focus();
     mywindow.print();
-    mywindow.close();*/
+    mywindow.close();
     return true;
 }
 
@@ -423,10 +429,10 @@ var setSelection = function() {
   } else if (document.selection && document.selection.createRange) {
     selectionRange = document.selection.createRange();
   }
-  console.log('new position ok')
 }
 
 field_page.addEventListener("click", function(e) {
+		
 	setSelection();
 	var okay = /didas(-[fb])?|line|repliq|perso(-d)?|((title|act|scene|char)_display)/,
 		new_targ = e.target;
@@ -490,7 +496,7 @@ $("#btnNewFile").on("click", newFile);
 $("#btnOpenFile").on("click", openFile);
 $("#btnSaveFile").on("click", saveFile);
 $("#btnCloseFile").on("click", closeFile);
-//$("#btnPrintFile").on("click", printFile);
+$("#btnPrintFile").on("click", printFile);
 $("#btnAddPerso").on("click", character_add);
 $("#btnRemovePerso").on("click", character_remove);
 $("#btnClearPerso").on("click", character_clear);
@@ -506,3 +512,4 @@ $("#btnAddText").on("click", addText);
 $("#btnFullscreen").on("click", goFullScreen);
 window.addEventListener("load", clearAll);
 $("#didasc_bloc").on("click", function(){ if (didasc_bloc.checked) input_replique.select() });
+

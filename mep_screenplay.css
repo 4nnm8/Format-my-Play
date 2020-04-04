@@ -1,4 +1,4 @@
-#page {
+.line, .scene_display, .char_display, .act_display, .title_display, .didas-b {
   font-family: Courier;
 }
 .perso, .perso-d, .scene_display, .didas-b {
