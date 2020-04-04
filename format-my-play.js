@@ -254,25 +254,20 @@ var insertText = function(texte) {
 			
 			if (sel.anchorNode.nodeType == 3) {
 				if (/didas(-[fb])?|line|((title|act|scene|char)_display)/.test(sel.anchorNode.parentNode.className)) {
-					console.log("TEXT NODE (Line) :")
 					newRange = sel.anchorNode.parentNode;
 				}
 				if (/perso(-d)?|repliq/.test(sel.anchorNode.parentNode.className)) {
-					console.log("TEXT NODE (Perso or Repliq). Parent line is :")
 					newRange =  sel.anchorNode.parentNode.parentNode;
 				}
 				if (sel.anchorNode.parentNode.className == "didas") {
-					console.log("TEXT NODE (Didascalie). Parent line is :")
 					newRange =  sel.anchorNode.parentNode.parentNode.parentNode;
 				}
 				range = sel.getRangeAt(0);
 				range.setStartAfter(newRange);
 				range.setEndAfter(newRange); 
 			} else if (sel.anchorNode.nodeType == 1) {
-				console.log("Its an element Node")
 				range = selectionRange;
 			}
-
             sel.removeAllRanges();
             sel.addRange(range);
 			document.execCommand("insertHTML", false, texte);
@@ -284,20 +279,6 @@ var insertText = function(texte) {
     } else {
 		info("Merci de cliquer dans la zone de la page ou vous souhaitez ajouter le texte")
 	}	
-	
-	
-	/*
-		var innerDiv = document.createElement('p')
-		innerDiv.innerHTML = 'cool'
-		var sel = window.getSelection()
-		
-		selElem.parentNode.insertBefore(innerDiv, selElem.nextSibling)
-
-		//set cursor at new position
-		sel.collapse(innerDiv.firstChild, innerDiv.textContent.length);
-		*/
-		
-		
 }
 var addText = function() {
 	function clean() {
@@ -462,11 +443,20 @@ field_page.addEventListener("click", function(e) {
         previous_target = new_targ;
     }
 });
+
+field_page.addEventListener("keydown", function(evt) {
+	if (evt.keyCode == 13 && !evt.shiftKey) {
+
+		document.execCommand("DefaultParagraphSeparator", false, "br");
+    }
+	setSelection();
+}, false);
+
 field_page.addEventListener("keypress", function(evt) {
-    if (evt.keyCode == 13 && evt.shiftKey) {
+	if (evt.shiftKey && 13 == evt.keyCode) {
 		evt.preventDefault();
 		insertText(blank_replique);
-    }
+    } else 
 	setSelection();
 }, false);
 
@@ -477,7 +467,6 @@ input_replique.addEventListener("keypress", function(evt) {
     }
 }, false);
 
-
 window.addEventListener("beforeunload", function(e) {
     if (!isItEmpty()) {
         var a = "Vous vous apprêtez à quitter cette page alors qu'un travail est en cours, voulez-vous le sauvegarder ?";
@@ -485,7 +474,6 @@ window.addEventListener("beforeunload", function(e) {
         return a;
     }
 });
-
 
 const editor = document.getElementById('wysiwyg'),
       buttons = editor.querySelectorAll('button');
@@ -498,12 +486,11 @@ for (let i = 0; i < buttons.length; i++) {
     });
 }
 
-
 $("#btnNewFile").on("click", newFile);
 $("#btnOpenFile").on("click", openFile);
 $("#btnSaveFile").on("click", saveFile);
 $("#btnCloseFile").on("click", closeFile);
-$("#btnPrintFile").on("click", printFile);
+//$("#btnPrintFile").on("click", printFile);
 $("#btnAddPerso").on("click", character_add);
 $("#btnRemovePerso").on("click", character_remove);
 $("#btnClearPerso").on("click", character_clear);
@@ -519,8 +506,3 @@ $("#btnAddText").on("click", addText);
 $("#btnFullscreen").on("click", goFullScreen);
 window.addEventListener("load", clearAll);
 $("#didasc_bloc").on("click", function(){ if (didasc_bloc.checked) input_replique.select() });
-
-
-
-
-
