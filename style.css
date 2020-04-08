@@ -95,6 +95,9 @@ nav a {
   text-transform: none;
   height:auto;
 }
+.drop.mep a * {
+  pointer-events: none;
+}
 .drop a {
   display: block;
   white-space: nowrap;
@@ -138,10 +141,35 @@ nav a {
 #wysiwyg button:hover{
   color: #EB6B56;
 }
-#redo{
-  transform: rotateY(180deg);
+#wysiwyg button::before, .but_perso::before{
+  display:inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
 }
-
+.fa-print:before{ content:"\f02f" }
+.fa-font:before{ content:"\f031" }
+.fa-bold:before{ content:"\f032" }
+.fa-eraser:before{ content:"\f12d" }
+.fa-italic:before{ content:"\f033" }
+.fa-align-left:before{ content:"\f036" }
+.fa-align-center:before{ content:"\f037" }
+.fa-align-right:before{ content:"\f038" }
+.fa-align-justify:before{ content:"\f039" }
+.fa-outdent:before{ content:"\f03b" }
+.fa-indent:before{ content:"\f03c" }
+.fa-arrows:before{ content:"\f047" }
+.fa-strikethrough:before{ content:"\f0cc" }
+.fa-underline:before{ content:"\f0cd" }
+.fa-undo:before, .fa-redo:before{ content:"\f0e2" }
+.fa-redo:before { transform: rotateY(180deg) }
+.fa-expand:before{ content:"\f065" }
+.fa-compress:before{ content:"\f066" }
+.fa-plus:before{ content:"\f067" }
+.fa-minus:before{ content:"\f068" }
+.fa-trash:before { content:"\f1f8" }
 /*********************************** MENU [END] ***********************************/
 
 /****************************** LEFT PANNEL [START] *******************************/
@@ -302,7 +330,7 @@ nav a {
    -moz-hyphens: auto;
 }
 #status {
-  position: fixed; display:none; opacity:0;
+  position: fixed; opacity:0;
   top: 65px; left: calc(50vw + 171px); 
   transform:translateX(-50%);
   min-height: 35px;
@@ -331,37 +359,7 @@ nav a {
 }
 /******************************* PAGE CENTER [END] *******************************/
 
-/************************************* ICONS *************************************/
 
-.fa::before {
-  display:inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale
-}
-.fa-print:before{ content:"\f02f" }
-.fa-font:before{ content:"\f031" }
-.fa-bold:before{ content:"\f032" }
-.fa-eraser:before{ content:"\f12d" }
-.fa-italic:before{ content:"\f033" }
-.fa-align-left:before{ content:"\f036" }
-.fa-align-center:before{ content:"\f037" }
-.fa-align-right:before{ content:"\f038" }
-.fa-align-justify:before{ content:"\f039" }
-.fa-outdent:before{ content:"\f03b" }
-.fa-indent:before{ content:"\f03c" }
-.fa-arrows:before{ content:"\f047" }
-.fa-strikethrough:before{ content:"\f0cc" }
-.fa-underline:before{ content:"\f0cd" }
-.fa-undo:before, .fa-redo:before{ content:"\f0e2" }
-.fa-redo:before { transform: rotateY(180deg) }
-.fa-expand:before{ content:"\f065" }
-.fa-compress:before{ content:"\f066" }
-.fa-plus:before{ content:"\f067" }
-.fa-minus:before{ content:"\f068" }
-.fa-trash:before { content:"\f1f8" }
 
 /************************ TABLE DES MATIÈRES (non utilisé) ************************/
 

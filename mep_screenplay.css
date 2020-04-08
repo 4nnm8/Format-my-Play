@@ -12,12 +12,10 @@
   font-variant: small-caps;
   
 }
-.perso, .perso-d .didas {
+.perso, .perso-d .didas, .perso-d, .didas-b, .didas-b:after {
   display:block;
 }
-.perso-d {
-	display:block;
-}
+
 .perso-d .didas {
 	text-transform: none;
 }
@@ -33,12 +31,8 @@
   font-variant: none;
 }
 
-.didas-b {
-  display: block;
-}
 .didas-b:after {
   content:"\a";
-  display:block;
   white-space: pre
 }
 .line {

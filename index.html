@@ -46,7 +46,7 @@
 				-->
             <div class="main"><a href="#">Mise en page</a>
                 <div class="drop mep">
-                    <a href="#" id="btnMepInline"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie</i>) – Texte de réplique.</a>
+                    <a href="#" id="btnMepInline"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie)</i> – Texte de réplique.</a>
                     <a href="#" id="btnMepClassic"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
                     <a href="#" id="btnMepScreenplay" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
                 </div>
@@ -55,21 +55,21 @@
 				<div class="main"><a href="#">À propos</a></div>-->
 
             <div id="wysiwyg">
-                <button type="button" data-action="bold"><i class="fa fa-bold"></i></button>
-                <button type="button" data-action="italic"><i class="fa fa-italic"></i></button>
-                <button type="button" data-action="underline"><i class="fa fa-underline"></i></button>
-                <button type="button" data-action="strikeThrough"><i class="fa fa-strikethrough"></i></button>
-                <button type="button" data-action="insertHorizontalRule"><i class="fa fa-minus"></i></button>
-                <button type="button" data-action="justifyLeft"><i class="fa fa-align-left"></i></button>
-                <button type="button" data-action="justifyCenter"><i class="fa fa-align-center"></i></button>
-                <button type="button" data-action="justifyRight"><i class="fa fa-align-right"></i></button>
-                <button type="button" data-action="formatBlock"><i class="fa fa-align-justify"></i></button>
-                <button type="button" data-action="indent"><i class="fa fa-indent"></i></button>
-                <button type="button" data-action="outdent"><i class="fa fa-outdent"></i></button>
-                <button type="button" data-action="undo"><i class="fa fa-undo"></i></button>
-                <button type="button" data-action="redo"><i class="fa fa-redo"></i></button>
-                <button type="button" data-action="removeFormat"><i class="fa fa-eraser"></i></button>
-                <button type="button" id="btnFullscreen"><i class="fa fa-expand"></i></button>
+                <button type="button" id="bold" class="fa-bold"></button>
+                <button type="button" id="italic" class="fa-italic"></button>
+                <button type="button" id="underline" class="fa-underline"></button>
+                <button type="button" id="strikeThrough" class="fa-strikethrough"></button>
+                <button type="button" id="insertHorizontalRule" class="fa-minus"></button>
+                <button type="button" id="justifyLeft" class="fa-align-left"></button>
+                <button type="button" id="justifyCenter" class="fa-align-center"></button>
+                <button type="button" id="justifyRight" class="fa-align-right"></button>
+                <button type="button" id="formatBlock" class="fa-align-justify"></button>
+                <button type="button" id="indent" class="fa-indent"></button>
+                <button type="button" id="outdent" class="fa-outdent"></button>
+                <button type="button" id="undo" class="fa-undo"></button>
+                <button type="button" id="redo" class="fa-redo"></button>
+                <button type="button" id="removeFormat" class="fa-eraser"></button>
+                <button type="button" id="btnFullscreen" class="fa-expand"></button>
             </div>
         </nav>
         <section class="left">
@@ -84,13 +84,13 @@
             <div class="cont_persos">Liste des personnages
                 <select id="persos" size="8" tabindex="1" multiple="true">
                 </select>
-                <button id="btnAddPerso" class="but_perso fa fa-plus">&nbsp;AJOUTER</button><!--
+                <button id="btnAddPerso" class="but_perso fa-plus">&nbsp;AJOUTER</button><!--
                
 				
-                --><button id="btnRemovePerso" class="but_perso fa fa-minus">&nbsp;RETIRER</button><!--
+                --><button id="btnRemovePerso" class="but_perso fa-minus">&nbsp;RETIRER</button><!--
                 
 				
-                --><button id="btnClearPerso" class="but_perso fa fa-trash">&nbsp;VIDER</button>
+                --><button id="btnClearPerso" class="but_perso fa-trash">&nbsp;VIDER</button>
             </div>
 
             <input type="text" id="didasc" tabindex="2" placeholder="Didascalie fonctionnelle (optionnelle)" />
@@ -98,8 +98,8 @@
             <div class="cont_persos">Texte à insérer
                 <br/>
                 <textarea id="replik" rows="10" tabindex="3" placeholder="Votre texte ici"></textarea>
-                <input type="checkbox" id="didasc_bloc" />
-                <label for="didasc_bloc">Insérer bloc disacalie</label>
+                <input type="checkbox" id="checkbox_didasc" />
+                <label for="checkbox_didasc">Insérer bloc disacalie</label>
             </div>
             <p>
                 <button id="btnAddText" tabindex="4">Ajouter le texte
