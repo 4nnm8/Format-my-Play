@@ -3,53 +3,53 @@ const input_replique = document.getElementById("replik"),
       input_author = document.getElementById("input_author"),
       input_title = document.getElementById("input_title"),
       input_didascalie = document.getElementById("didasc"),
-	  checkbox_didasc = document.getElementById("checkbox_didasc"),
-	  field_page = document.getElementById("page"),
+      checkbox_didasc = document.getElementById("checkbox_didasc"),
+      field_page = document.getElementById("page"),
       field_tdm = document.getElementById("tdm"),
       field_status = document.getElementById("status"),
-	  field_date = document.getElementById("field_date"),
-	  elem_theme = document.getElementById("theme");
+      field_date = document.getElementById("field_date"),
+      elem_theme = document.getElementById("theme");
 	  
 var selectionRange, current_char = 0,
 
 CMD = function(a,b){
-	document.execCommand(a, false, b)
+  document.execCommand(a, false, b)
 },
 isItEmpty = function() {
-    var one = field_page.textContent.trim(),
-        two = input_persos.length > 0,
-        thr = input_author.value,
-        fou = input_title.value;
-	return (one || two || thr || fou) ? false : true;
+  var one = field_page.textContent.trim(),
+      two = input_persos.length > 0,
+      thr = input_author.value,
+      fou = input_title.value;
+  return (one || two || thr || fou) ? false : true;
 },
 clearAll = function() {
-    field_date.innerHTML = input_title.value = input_author.value = field_page.innerHTML = input_didascalie.value = input_replique.value = "";
-    input_persos.length = 0;
-    input_persos.size = 8;
-	checkbox_didasc.checked = false;
+  field_date.innerHTML = input_title.value = input_author.value = field_page.innerHTML = input_didascalie.value = input_replique.value = "";
+  input_persos.length = 0;
+  input_persos.size = 8;
+  checkbox_didasc.checked = false;
 },
 cleanLineInputs = function() {
-	input_didascalie.value = '';
-	input_replique.value = '';
-	input_persos.selectedIndex = -1;
-	input_persos.focus();
-	checkbox_didasc.checked = false;
+  input_didascalie.value = '';
+  input_replique.value = '';
+  input_persos.selectedIndex = -1;
+  input_persos.focus();
+  checkbox_didasc.checked = false;
 },
 time = function() {
-    var today = new Date(),
-        date = [today.getFullYear(), ('0' + (today.getMonth() + 1)).slice(-2), ('0' + today.getDate()).slice(-2)].join('/'),
-        time = [('0' + today.getHours()).slice(-2), ('0' + today.getMinutes()).slice(-2), ('0' + today.getSeconds()).slice(-2)].join(':')
-    dateTime = date + ' ' + time;
-    return dateTime;
+  var today = new Date(),
+      date = [today.getFullYear(), ('0' + (today.getMonth() + 1)).slice(-2), ('0' + today.getDate()).slice(-2)].join('/'),
+      time = [('0' + today.getHours()).slice(-2), ('0' + today.getMinutes()).slice(-2), ('0' + today.getSeconds()).slice(-2)].join(':')
+  dateTime = date + ' ' + time;
+  return dateTime;
 },
 info = function(texte) {
-    field_status.innerHTML = texte;
-    setTimeout(function() {
-        field_status.style.opacity = 1
-    }, 0);
-	setTimeout(function() {
-        field_status.style.opacity = 0
-    }, 7000);
+  field_status.innerHTML = texte;
+  setTimeout(function() {
+    field_status.style.opacity = 1
+  }, 0);
+  setTimeout(function() {
+    field_status.style.opacity = 0
+  }, 7000);
 },
 goFullScreen = function() {
   var b = document.documentElement;
