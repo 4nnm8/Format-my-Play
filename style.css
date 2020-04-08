@@ -154,6 +154,8 @@ nav a {
 .fa-bold:before{ content:"\f032" }
 .fa-eraser:before{ content:"\f12d" }
 .fa-italic:before{ content:"\f033" }
+.fa-superscript:before{ content:"\f12b" }
+.fa-subscript:before{ content:"\f12c" }
 .fa-align-left:before{ content:"\f036" }
 .fa-align-center:before{ content:"\f037" }
 .fa-align-right:before{ content:"\f038" }
@@ -317,17 +319,19 @@ nav a {
 }
 
 #page {
-  
-  padding: 15vh;
+  padding: 10%;
   background: url(paper2.png);    
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
   font-size: 16pt;
-  min-height: 100vh;
-  margin: 7vh 7vw 30px 7vw;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  hyphens: auto;
-   -moz-hyphens: auto;
+  width: 75%;
+  height: auto;  min-height: 100vh;
+  margin: 10% auto;
+  hyphens: manual;
+  -moz-hyphens: manual;
+  white-space: normal;
+  /*word-break: break-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;*/
 }
 #status {
   position: fixed; opacity:0;

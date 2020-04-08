@@ -1,3 +1,21 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;        
+  }
+  .page {
+    margin: 0;
+    border: 0;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
+}
 .perso, .perso-d, .char_display { font-variant: small-caps }
 .perso, .perso-d { display:block }
 .didas, .didas-f, .didas-b { font-style: italic; color: #555; font-variant: none }

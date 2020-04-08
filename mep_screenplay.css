@@ -1,3 +1,21 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;        
+  }
+  .page {
+    margin: 0;
+    border: 0;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
+}
 .line, .scene_display, .char_display, .act_display, .title_display, .didas-b {
   font-family: Courier;
 }

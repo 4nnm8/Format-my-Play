@@ -1,4 +1,21 @@
-
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;        
+  }
+  .page {
+    margin: 0;
+    border: 0;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
+}
 .perso, .perso-d, .repliq, .didas, .didas-f, .didas-b, .title_display, .act_display, .scene_display, .char_display{
  outline: 0;
 }

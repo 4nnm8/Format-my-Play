@@ -1,23 +1,23 @@
 2020/04/01 09:24:12;L'école des femmes;Molière
-Arnolphe;Agnès;Horace;Alain;Georgette;Chrysalde;Enrique;Oronte;Un notaire
+Arnolphe,Agnès,Horace,Alain,Georgette,Chrysalde,Enrique,Oronte,Un notaire
 <h2 class="act_display">Acte II</h2>
 <h3 class="scene_display">Scène 5</h3>
 <div class="char_display">Arnolphe, Agnès.</div>
 <div class="didas-b">Example de didascalie initiale</div>
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">La promenade est belle.</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Fort belle.</span></div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">Le beau jour!</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Fort beau.</span></div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">Quelle nouvelle?</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Le petit chat est mort.</span></div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">C'est dommage; mais quoi!<br/>Nous sommes tous mortels, et chacun est pour soi.<br/>Lorsque j'étais aux champs, n'a-t-il point fait de pluie?</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Non.</span></div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">Vous ennuyait-il?</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Jamais je ne m'ennuie.</span></div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">Qu'avez-vous fait encor ces neuf ou dix jours-ci?</span></div>	
-<div class="line"><span class="perso">Agnès</span><span class="repliq">Six chemises, je pense, et six coiffes aussi.</span></div>	
-<div class="line"><span class="perso-d">Arnolphe<span class="didas">ayant un peu rêvé</span></span> <span class="repliq">Le monde, chère Agnès, est une étrange chose!<br/>    Voyez la médisance, et comme chacun cause!<br/>    Quelques voisins m'ont dit qu'un jeune homme inconnu<br/>    Etait, en mon absence, à la maison venu;<br/>    Que vous aviez souffert sa vue et ses harangues.<br/>Mais je n'ai point pris foi sur ces méchantes langues,<br/>Et j'ai voulu gager que c'était faussement...</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">La promenade est belle.</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Fort belle.</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">Le beau jour!</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Fort beau.</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">Quelle nouvelle?</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Le petit chat est mort.</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">C'est dommage; mais quoi!<br/>Nous sommes tous mortels, et chacun est pour soi.<br/>Lorsque j'étais aux champs, n'a-t-il point fait de pluie?</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Non.</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">Vous ennuyait-il?</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Jamais je ne m'ennuie.</span></div>	
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">Qu'avez-vous fait encor ces neuf ou dix jours-ci?</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Six chemises, je pense, et six coiffes aussi.</span></div>	
+<div class="line"><span class="perso-d">Arnolphe<span class="didas">ayant un peu rêvé</span></span>  <span class="repliq">Le monde, chère Agnès, est une étrange chose!<br/>    Voyez la médisance, et comme chacun cause!<br/>    Quelques voisins m'ont dit qu'un jeune homme inconnu<br/>    Etait, en mon absence, à la maison venu;<br/>    Que vous aviez souffert sa vue et ses harangues.<br/>Mais je n'ai point pris foi sur ces méchantes langues,<br/>Et j'ai voulu gager que c'était faussement...</span></div>	
 <div class="line"><span class="perso">Agnès</span></span>Mon Dieu! ne gagez pas, vous perdriez vraiment.</div>	
-<div class="line"><span class="perso">Arnolphe</span><span class="repliq">Quoi! c'est la vérité qu'un homme...</span></div>	
-<div class="line"><span class="perso">Agnès</span></span>Chose sûre,<br/>Il n'a presque bougé de chez nous, je vous jure.</div>	
-<div class="line"><span class="perso-d">Arnolphe<span class="didas">bas à part</span></span><span class="repliq">Cet aveu qu'elle fait avec sincérité<br/>Me marque pour le moins son ingénuité.<br/><span class="didas-f">(Haut.)</span><br/>Mais il me semble, Agnès, si ma mémoire est bonne,<br/>Que j'avais défendu que vous vissiez personne.</span></div>
+<div class="line"><span class="perso">Arnolphe</span> <span class="repliq">Quoi! c'est la vérité qu'un homme...</span></div>	
+<div class="line"><span class="perso">Agnès</span> <span class="repliq">Chose sûre,<br/>Il n'a presque bougé de chez nous, je vous jure.</div>	
+<div class="line"><span class="perso-d">Arnolphe<span class="didas">bas à part</span></span> <span class="repliq">Cet aveu qu'elle fait avec sincérité<br/>Me marque pour le moins son ingénuité.<br/><span class="didas-f">(Haut.)</span><br/>Mais il me semble, Agnès, si ma mémoire est bonne,<br/>Que j'avais défendu que vous vissiez personne.</span></div>

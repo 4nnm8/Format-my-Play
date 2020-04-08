@@ -3,53 +3,53 @@ const input_replique = document.getElementById("replik"),
       input_author = document.getElementById("input_author"),
       input_title = document.getElementById("input_title"),
       input_didascalie = document.getElementById("didasc"),
-      checkbox_didasc = document.getElementById("checkbox_didasc"),
-      field_page = document.getElementById("page"),
+	  checkbox_didasc = document.getElementById("checkbox_didasc"),
+	  field_page = document.getElementById("page"),
       field_tdm = document.getElementById("tdm"),
       field_status = document.getElementById("status"),
-      field_date = document.getElementById("field_date"),
-      elem_theme = document.getElementById("theme");
+	  field_date = document.getElementById("field_date"),
+	  elem_theme = document.getElementById("theme");
 	  
 var selectionRange, current_char = 0,
 
 CMD = function(a,b){
-  document.execCommand(a, false, b)
+	document.execCommand(a, false, b)
 },
 isItEmpty = function() {
-  var one = field_page.textContent.trim(),
-      two = input_persos.length > 0,
-      thr = input_author.value,
-      fou = input_title.value;
-  return (one || two || thr || fou) ? false : true;
+    var one = field_page.textContent.trim(),
+        two = input_persos.length > 0,
+        thr = input_author.value,
+        fou = input_title.value;
+	return (one || two || thr || fou) ? false : true;
 },
 clearAll = function() {
-  field_date.innerHTML = input_title.value = input_author.value = field_page.innerHTML = input_didascalie.value = input_replique.value = "";
-  input_persos.length = 0;
-  input_persos.size = 8;
-  checkbox_didasc.checked = false;
+    field_date.innerHTML = input_title.value = input_author.value = field_page.innerHTML = input_didascalie.value = input_replique.value = "";
+    input_persos.length = 0;
+    input_persos.size = 8;
+	checkbox_didasc.checked = false;
 },
 cleanLineInputs = function() {
-  input_didascalie.value = '';
-  input_replique.value = '';
-  input_persos.selectedIndex = -1;
-  input_persos.focus();
-  checkbox_didasc.checked = false;
+	input_didascalie.value = '';
+	input_replique.value = '';
+	input_persos.selectedIndex = -1;
+	input_persos.focus();
+	checkbox_didasc.checked = false;
 },
 time = function() {
-  var today = new Date(),
-      date = [today.getFullYear(), ('0' + (today.getMonth() + 1)).slice(-2), ('0' + today.getDate()).slice(-2)].join('/'),
-      time = [('0' + today.getHours()).slice(-2), ('0' + today.getMinutes()).slice(-2), ('0' + today.getSeconds()).slice(-2)].join(':')
-  dateTime = date + ' ' + time;
-  return dateTime;
+    var today = new Date(),
+        date = [today.getFullYear(), ('0' + (today.getMonth() + 1)).slice(-2), ('0' + today.getDate()).slice(-2)].join('/'),
+        time = [('0' + today.getHours()).slice(-2), ('0' + today.getMinutes()).slice(-2), ('0' + today.getSeconds()).slice(-2)].join(':')
+    dateTime = date + ' ' + time;
+    return dateTime;
 },
 info = function(texte) {
-  field_status.innerHTML = texte;
-  setTimeout(function() {
-    field_status.style.opacity = 1
-  }, 0);
-  setTimeout(function() {
-    field_status.style.opacity = 0
-  }, 7000);
+    field_status.innerHTML = texte;
+    setTimeout(function() {
+        field_status.style.opacity = 1
+    }, 0);
+	setTimeout(function() {
+        field_status.style.opacity = 0
+    }, 7000);
 },
 goFullScreen = function() {
   var b = document.documentElement;
@@ -90,6 +90,7 @@ addLineDirect = function () {
 	var	block1 = document.createElement("div"),
 		block2 = document.createElement("span"),
 		text2 = document.createTextNode("Personnage"),
+		space = document.createTextNode("\u00a0"),
 		block3 = document.createElement("span"),
 		text3 = document.createTextNode("Texte de réplique."),
 		par = caretParent(),
@@ -100,6 +101,7 @@ addLineDirect = function () {
 	window.getSelection().removeAllRanges();
 	window.getSelection().addRange(selectionRange);
 	block1.appendChild(block2); 
+	block1.appendChild(space);
 	block1.appendChild(block3);
 	block1.setAttribute("class", "line"); 
 	block2.setAttribute("class", "perso"); 
@@ -137,7 +139,7 @@ addLine = function() {
 		} else {
 			insertText("<div class='line'><span class='perso'>" +
 				input_persos.options[input_persos.selectedIndex].text +
-				"</span><span class='repliq'>" +
+				"</span> <span class='repliq'>" +
 				input_replique.value.replace(/\r\n|\r|\n/g, "<br />").replace("{", "<span class='didas'>(").replace("}", ")</span>") +
 				"</span></div>");
 			cleanLineInputs();
@@ -164,7 +166,7 @@ character_add = function() {
 		rep = rep.charAt(0).toUpperCase() + rep.slice(1);
 		opt.appendChild(document.createTextNode(rep));
         input_persos.appendChild(opt);
-        if (input_persos.options.length > 8) input_persos.size = input_persos.options.length;
+        input_persos.size = (input_persos.options.length > 8) ? input_persos.options.length : 8;
     }
 },
 character_remove = function() {
@@ -182,7 +184,7 @@ character_remove = function() {
     } else {
         info("Vous n'avez pas sélectionné de personnage à supprimer")
     }
-	if (input_persos.options.length > 8) input_persos.size = input_persos.options.length;
+	input_persos.size = (input_persos.options.length > 8) ? input_persos.options.length : 8;
 },
 character_clear = function() {
     if (input_persos.length == 0) {
@@ -190,6 +192,7 @@ character_clear = function() {
     } else {
         var r = confirm("Voulez-vous vraiment supprimer tous les personnages ?");
         if (r) input_persos.options.length = 0;
+		input_persos.size = 8;
     }
 },
 insert_didas = function() {
@@ -302,20 +305,20 @@ openFile = function() {
 					txt = e.target.result;
 					var firstLine = txt.split('\n')[0],
 						secondLine = txt.split('\n')[1],
-						char_list = secondLine.split(';'),
+						char_list = secondLine.split(','),
 						char_lgt = char_list.length;
-				input_persos.size = char_lgt;
-				for (let j = 0; j < char_lgt; j++) {
-					var opt = document.createElement('option');
-					opt.appendChild(document.createTextNode(char_list[j]));
-					input_persos.appendChild(opt);
-				}
-				field_date.innerHTML = "Date du fichier : " + firstLine.split(';')[0];
-				input_title.value = firstLine.split(';')[1];
-				input_author.value = firstLine.split(';')[2];
-				var newnew = txt.split('\n')
-				newnew = newnew.splice(2, newnew.length).join("\n")
-				document.getElementById('page').innerHTML = newnew;
+					for (let j = 0; j < char_lgt; j++) {
+						var opt = document.createElement('option');
+						opt.appendChild(document.createTextNode(char_list[j]));
+						input_persos.appendChild(opt);
+					}
+					input_persos.size = (input_persos.options.length >= 8) ? char_lgt : 8;
+					field_date.innerHTML = "Date du fichier : " + firstLine.split(';')[0];
+					input_title.value = firstLine.split(';')[1];
+					input_author.value = firstLine.split(';')[2];
+					var newnew = txt.split('\n')
+					newnew = newnew.splice(2, newnew.length).join("\n")
+					document.getElementById('page').innerHTML = newnew;
 				};
 				reader.readAsText(this.files[0]);
 			}
@@ -352,7 +355,7 @@ printFile = function() {
 
 input_persos.addEventListener("change",function(){ current_char = 0 },false);
 
-window.addEventListener("load", clearAll, field_page.focus(), setSelection());
+window.addEventListener("load", /*clearAll,*/ field_page.focus(), setSelection());
 
 window.addEventListener("beforeunload", function(e) {
     if (!isItEmpty()) {
@@ -362,7 +365,11 @@ window.addEventListener("beforeunload", function(e) {
     }
 });
 
-field_page.addEventListener("keyup", setSelection, false);
+field_page.addEventListener("keyup", function() { setSelection(); wordCounter() }, false);
+
+function wordCounter() {
+	console.log(field_page.innerText.match(/[a-zà-öù-ÿœ-]+/gi))
+}
 
 input_replique.addEventListener("keypress", function(e) {
     if (e.keyCode == 13 && e.shiftKey) {
@@ -398,12 +405,9 @@ document.addEventListener("keydown", function(e) {
 	} else if (9 == e.keyCode) {
 		e.preventDefault();
 	}
-	if ("perso" == par.className && 0 < getSelectCharacters().length) {
-	
+	if ("perso" == par.className && 0 < getSelectCharacters().length && selectionRange.startOffset !== selectionRange.endOffset) {
 		if (38 == e.keyCode) e.preventDefault(), whichChar('up');
 		if (40 == e.keyCode) e.preventDefault(), whichChar('down');
-			
-		
 	}
 }, false);
 
@@ -440,7 +444,7 @@ document.addEventListener("click", function(e) {
 		case "justifyLeft" : CMD("justifyLeft"); break;
 		case "justifyCenter" : CMD("justifyCenter"); break;
 		case "justifyRight" : CMD("justifyRight"); break;
-		case "formatBlock" : CMD("formatBlock"); break;
+		case "justifyFull" : CMD("justifyFull"); break;
 		case "indent" : CMD("indent"); break;
 		case "outdent" : CMD("outdent"); break;
 		case "undo" : CMD("undo"); break;

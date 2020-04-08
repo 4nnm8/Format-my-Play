@@ -59,11 +59,13 @@
                 <button type="button" id="italic" class="fa-italic"></button>
                 <button type="button" id="underline" class="fa-underline"></button>
                 <button type="button" id="strikeThrough" class="fa-strikethrough"></button>
+                <button type="button" id="subscript" class="fa-subscript"></button>
+                <button type="button" id="superscript" class="fa-superscript"></button>					
                 <button type="button" id="insertHorizontalRule" class="fa-minus"></button>
                 <button type="button" id="justifyLeft" class="fa-align-left"></button>
                 <button type="button" id="justifyCenter" class="fa-align-center"></button>
                 <button type="button" id="justifyRight" class="fa-align-right"></button>
-                <button type="button" id="formatBlock" class="fa-align-justify"></button>
+                <button type="button" id="justifyFull" class="fa-align-justify"></button>
                 <button type="button" id="indent" class="fa-indent"></button>
                 <button type="button" id="outdent" class="fa-outdent"></button>
                 <button type="button" id="undo" class="fa-undo"></button>
@@ -82,17 +84,7 @@
                 <input type="text" id="input_author" />
             </div>
             <div class="cont_persos">Liste des personnages
-                <select id="persos" size="8" tabindex="1" multiple="true">
-					<option>Arnolphe</option>
-					<option>Agnès</option>
-					<option>Horace</option>
-					<option>Alain</option>
-					<option>Georgette</option>
-					<option>Chrysalde</option>
-					<option>Enrique</option>
-					<option>Oronte</option>
-					<option>Un notaire</option>		
-                </select>
+                <select id="persos" size="8" tabindex="1" multiple="true"></select>
                 <button id="btnAddPerso" class="but_perso fa-plus">&nbsp;AJOUTER</button><!--
                		
                 --><button id="btnRemovePerso" class="but_perso fa-minus">&nbsp;RETIRER</button><!--   
@@ -116,7 +108,7 @@
         </section>
         <section class="page">
             <div id="status">&nbsp;</div>
-            <div id="page" contenteditable="true" tabindex="5"></div>
+            <div id="page" contenteditable="true"></div>
         </section>
 
     </div>
