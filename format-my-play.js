@@ -10,38 +10,8 @@ const input_replique = document.getElementById("replik"),
 	  field_date = document.getElementById("field_date"),
 	  elem_theme = document.getElementById("theme");
 	  
-var selectionRange,
-$ = function(a) {
-    var b = [];
+var selectionRange, current_char = 0,
 
-    function Reach(elements) {
-        if (typeof a == "string") {
-            b.length = elements.length;
-            for (let i = 0; i < b.length; i++) {
-                b[i] = elements[i];
-            }
-        } else {
-            b.push(elements);
-        }
-    }
-    Reach.prototype.on = function(evt, fn) {
-        for (let i = 0; i < b.length; i++) {
-            if (b[i].addEventListener) {
-                b[i].addEventListener(evt, fn, false);
-            } else if (b[i].attachEvent) {
-                b[i].attachEvent('on' + evt, fn);
-            } else {
-                return false;
-            }
-        }
-    };
-	Reach.prototype.className = function(name) {
-        for (let i = 0; i < b.length; i++) {
-            b[i].className = name;
-        }
-    };
-    return (typeof a == "string") ? new Reach(document.querySelectorAll(a)) : new Reach(a);
-},
 CMD = function(a,b){
 	document.execCommand(a, false, b)
 },
@@ -88,13 +58,13 @@ goFullScreen = function() {
 	if (b.mozRequestFullScreen) { b.mozRequestFullScreen() } else 
 	if (b.webkitRequestFullScreen) { b.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT) } else
 	if (b.msRequestFullscreen) { b.msRequestFullscreen() }
-    $("#btnFullscreen").className("fa-compress");
+    document.getElementById("btnFullscreen").className("fa-compress");
   } else {
     if (document.cancelFullScreen) { document.cancelFullScreen() } else 
 	if (document.mozCancelFullScreen) { document.mozCancelFullScreen() } else
 	if (document.webkitCancelFullScreen) { document.webkitCancelFullScreen() } else 
 	if (document.msExitFullscreen) { document.msExitFullscreen() }
-    $("#btnFullscreen").className("fa-expand");
+    document.getElementById("btnFullscreen").className("fa-expand");
   }  
 },
 setSelection = function() {
@@ -147,8 +117,6 @@ insertText = function(texte) {
 	setSelection();
 },
 addLine = function() {
-	
-	
 	if (input_replique.value !== "") {
 		if (checkbox_didasc.checked == true) {
 			insertText("<div class='didas-b'>" + input_replique.value + "</div>");
@@ -382,8 +350,10 @@ printFile = function() {
     return true;
 };
 
+input_persos.addEventListener("change",function(){ current_char = 0 },false);
 
 window.addEventListener("load", clearAll, field_page.focus(), setSelection());
+
 window.addEventListener("beforeunload", function(e) {
     if (!isItEmpty()) {
         var a = "Vous vous apprêtez à quitter cette page alors qu'un travail est en cours, voulez-vous le sauvegarder ?";
@@ -393,9 +363,10 @@ window.addEventListener("beforeunload", function(e) {
 });
 
 field_page.addEventListener("keyup", setSelection, false);
-input_replique.addEventListener("keypress", function(evt) {
-    if (evt.keyCode == 13 && evt.shiftKey) {
-        evt.preventDefault();
+
+input_replique.addEventListener("keypress", function(e) {
+    if (e.keyCode == 13 && e.shiftKey) {
+        e.preventDefault();
 		addLine();
     }
 }, false);
@@ -409,6 +380,14 @@ document.addEventListener("keyup", function(){
 	}
 }, false);
 
+var whichChar = function(dir) {
+	var lgt = getSelectCharacters().length;
+	"up" == dir && (0 == current_char ? current_char = lgt - 1 : current_char--);
+	"down" == dir && (current_char == lgt - 1 ? current_char = 0 : current_char++);
+	caretParent().innerHTML = getSelectCharacters()[current_char].text
+	selectAll(caretParent())
+}
+
 document.addEventListener("keydown", function(e) {
 	var par = caretParent();
 	if (!e.shiftKey && 13 == e.keyCode)	CMD("DefaultParagraphSeparator","br");
@@ -419,13 +398,22 @@ document.addEventListener("keydown", function(e) {
 	} else if (9 == e.keyCode) {
 		e.preventDefault();
 	}
+	if ("perso" == par.className && 0 < getSelectCharacters().length) {
+	
+		if (38 == e.keyCode) e.preventDefault(), whichChar('up');
+		if (40 == e.keyCode) e.preventDefault(), whichChar('down');
+			
+		
+	}
 }, false);
+
+document.getElementById("btnOpenFile").addEventListener("click", openFile, false);
 
 document.addEventListener("click", function(e) {
 	var f = e.target;
 	switch (f.id) {
 		case "btnNewFile" : newFile(); break;
-		case "btnOpenFile" : openFile(); break;
+		//case "btnOpenFile" : openFile(); break;
 		case "btnSaveFile" : saveFile(); break;
 		case "btnCloseFile" : closeFile(); break;
 		case "btnPrintFile" : printFile(); break;
