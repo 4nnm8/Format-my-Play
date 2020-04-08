@@ -349,11 +349,7 @@ window.addEventListener("beforeunload", function(e) {
   }
 });
 
-field_page.addEventListener("keyup", function() { setSelection(); wordCounter() }, false);
-
-function wordCounter() {
-  console.log(field_page.innerText.match(/[a-zà-öù-ÿœ-]+/gi))
-}
+field_page.addEventListener("keyup", setSelection, false);
 
 input_replique.addEventListener("keypress", function(e) {
     if (e.keyCode == 13 && e.shiftKey) {
@@ -401,7 +397,6 @@ document.addEventListener("click", function(e) {
   var f = e.target;
   switch (f.id) {
     case "btnNewFile" : newFile(); break;
-    //case "btnOpenFile" : openFile(); break;
     case "btnSaveFile" : saveFile(); break;
     case "btnCloseFile" : closeFile(); break;
     case "btnPrintFile" : printFile(); break;
@@ -434,7 +429,6 @@ document.addEventListener("click", function(e) {
     case "undo" : CMD("undo"); break;
     case "redo" : CMD("redo"); break;
     case "removeFormat" : CMD("removeFormat"); break;
-    default : console.log(f);
   }
   if (f.closest("#page")) setSelection();
   e.stopPropagation();
