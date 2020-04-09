@@ -6,13 +6,18 @@
   src: url('fonts/lemon.eot');
   src: local('LemonMilk light'), local('LemonMilk-Light'), url('fonts/lemon.eot?#iefix') format('embedded-opentype'), url('fonts/lemon.woff2') format('woff2'), url('fonts/lemon.woff') format('woff'), url('fonts/lemon.ttf') format('truetype');
 }
-@font-face{
-    font-family:'FontAwesome';
-    src:url('fonts/fontawesome-webfont.eot?v=4.5.0');
-    src:url('fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),url('fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),url('fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'),url('fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),url('fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
-    font-weight:normal;
-    font-style:normal
+
+@font-face {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  src: url("fonts/fa-solid-900.eot");
+  src: url("fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("fonts/fa-solid-900.woff2") format("woff2"), url("fonts/fa-solid-900.woff") format("woff"), url("fonts/fa-solid-900.ttf") format("truetype"), url("fonts/fa-solid-900.svg#fontawesome") format("svg"); 
 }
+
+.cont_persos, .but_persos, .main a, .drop a, .right, nav a {font-family: lemonmilk_lightregular  }
+body, kbd, #replik, input { font-family: sans-serif }
+#page, #persos {  font-family: serif;}
+#checkbox_didasc + label:before, #checkbox_didasc:checked + label:before, #field_date, #status::before {font-family: 'FontAwesome' }
 *,html{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -28,9 +33,8 @@ html, body, .parent {
 body {
   padding:0;
   margin:0;
-  overflow:hidden;
-  background: #ededed;
-  background: radial-gradient(circle, #ededed 0%, #90ccf4 100%);
+  overflow: hidden;
+  background: #90ccf4;
 }
 .parent {
   display: grid;
@@ -45,19 +49,18 @@ section .left { grid-area: 2 / 1 / 3 / 2 }
 section .page  { grid-area: 2 / 2 / 3 / 3 }
 
 kbd {
-    display: inline-block;
-    margin: 0 .1em;
-    padding: .1em .6em;
-    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
-    font-size: 11px;
-    line-height: 1.4;
-    color: #242729;
-    text-shadow: 0 1px 0 #fff;
-    background-color: #e1e3e5;
-    border: 1px solid #adb3b8;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #fff inset;
-    white-space: nowrap;
+  display: inline-block;
+  margin: 0 .1em;
+  padding: .1em .6em;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #242729;
+  text-shadow: 0 1px 0 #fff;
+  background-color: #e1e3e5;
+  border: 1px solid #adb3b8;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #fff inset;
+  white-space: nowrap;
 }
 
 /********************************** MENU [START] **********************************/
@@ -71,7 +74,7 @@ nav a {
   text-decoration: none;
   font-size: 20px;
   text-transform: uppercase;
-  font-family: lemonmilk_lightregular;
+
   letter-spacing: 1px;
 }
 .main {
@@ -87,7 +90,7 @@ nav a {
   background-color: #333;
   position:absolute;
   top: 35px;
-  margin-left: -10px;
+
   cursor: pointer;
 }
 .drop.mep a {
@@ -141,13 +144,14 @@ nav a {
 #wysiwyg button:hover{
   color: #EB6B56;
 }
-#wysiwyg button::before, .but_perso::before{
-  display:inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
+#wysiwyg button::before, .but_persos::before, .main i, .cont_persos i {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  font-style: normal;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale
+  -moz-osx-font-smoothing: grayscale;
+  
 }
 .fa-print:before{ content:"\f02f" }
 .fa-font:before{ content:"\f031" }
@@ -165,22 +169,38 @@ nav a {
 .fa-arrows:before{ content:"\f047" }
 .fa-strikethrough:before{ content:"\f0cc" }
 .fa-underline:before{ content:"\f0cd" }
-.fa-undo:before, .fa-redo:before{ content:"\f0e2" }
-.fa-redo:before { transform: rotateY(180deg) }
-.fa-expand:before{ content:"\f065" }
-.fa-compress:before{ content:"\f066" }
-.fa-plus:before{ content:"\f067" }
-.fa-minus:before{ content:"\f068" }
-.fa-trash:before { content:"\f1f8" }
+.fa-undo:before{ content:"\f0e2" }
+.fa-redo:before{ content:"\f01e" }
+.fa-expand:before{ content:"\f31e" }
+.fa-compress:before{ content:"\f78c" }
+.fa-plus:before{ content:"\f234" } 
+.fa-minus:before{ content:"\f503" }
+.fa-hr:before{ content:"\f068" } 
+.fa-trash:before { content:"\f506" }
+.fa-question-circle:before { content:"\f059" } 
+.fa-file:before { content:"\f15c" }
+.fa-stream:before { content:"\f550" }
+.fa-insert:before { content:"\f2f6" }
+.fa-paragraph:before { content:"\f1dd" }
+.fa-new:before { content:"\f15b" } 
+.fa-open:before { content:"\f07c" } 
+.fa-save:before { content:"\f0c7" }
+.fa-print:before { content:"\f02f" }
+.fa-close:before { content:"\f00d" }
+.fa-tdm:before { content:"\f0e8" }
+.fa-persos:before { content:"\f0c0" }
+.fa-pencil:before { content:"\f5ad" }
+#field_date:before { content:"\f073"}
+
 /*********************************** MENU [END] ***********************************/
 
 /****************************** LEFT PANNEL [START] *******************************/
 
 .left {
-  padding: 10px 15px 0 15px ;
-  background-color: #F3D250;
+  padding: 30px 15px 0 15px ;
+  background: #F3D250;
   text-align:center;
-  font-family: lemonmilk_lightregular;
+  background: linear-gradient(to right, #f3d250 0%, #FFE26E 100%);    
 }
 #input_title, #input_author {
   border: 0;
@@ -191,14 +211,16 @@ nav a {
   margin-right:5px;
   margin-bottom: 8px;
 }
-#input_title:focus, #input_author:focus {
-  border: 1px dashed #800;
+#input_title:focus, #input_author:focus, #didasc:focus, #replik:focus {
+  border: 1px dashed #080;
   background-color: rgba(255,255,255,0.9);
 }
 #field_date {
   display: block;
-  padding-bottom:30px;
+
   color: #666;
+  text-align:center;
+  visibility:hidden;
   font-size: 1em;
 }
 .left .right {
@@ -212,12 +234,10 @@ nav a {
   box-shadow:0 0 5px #999 inset;
   text-align: center;
   padding-top: 4px;
-  font-family: lemonmilk_lightregular;
   letter-spacing: 2px;
-  margin-top:10px
+  margin-top:20px
 }
 .cont_persos label {
-  font-family: sans-serif;
   font-size: 15px;
 }
 #persos {
@@ -225,7 +245,6 @@ nav a {
   background-color: transparent;
   padding: 5px;
   font-variant: small-caps;
-  font-family:sans-serif;
   font-size: 18px;
   overflow:hidden;
   scrollbar-width: none;
@@ -235,17 +254,18 @@ nav a {
 #persos::-webkit-scrollbar { 
   width: 0;height: 0
 }
-.but_perso {
+.but_persos {
   margin:0;
   width:33.3%;
   border:0;
   cursor:pointer;
   padding:3px;
   background-color: transparent;
-  font-family: sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
   border-top: 1px dotted #888;
 }
-.but_perso:hover, .but_perso:focus {
+.but_persos:hover, .but_persos:focus {
   background-color: #5da2d5
 }
 #btnAddPerso{ border-width: 1px 0px 1px 1px; border-radius:0 0 0 5px;}
@@ -278,24 +298,30 @@ nav a {
 	margin-top:1px;
 	margin-left:1px;
 }
-.left select, #didasc, #replik, #add{
+.left select, #replik, #add{
   width: 100%;
 }
 #didasc {
-  border: 1px solid #777;
-  border-radius:5px;
-  background-color: rgba(255,255,255,0.8);
-  box-shadow:0 0 5px #999 inset;
+  border:0;
+  border-bottom: 1px solid rgb(119,119,119,0.7);
+  background-color: rgb(255,255,255,0.7);
   padding: 4px 5px 4px 8px;
-  margin-top:10px;
-
+  margin-top: 10px;
+  width: 97%;
+  font-style: italic;
 }
 #replik,#typeoftxt {
   background-color:transparent;
   border:0;
 }
 #replik {
-	padding: 8px 8px 0 8px;
+  padding: 8px 8px 0 8px;
+  resize: none;width: 97%;
+  background-color: rgb(255,255,255,0.7);
+}
+#replik:focus {
+  background-color: rgb(255,255,255,0.7);
+  
 }
 
 /******************************* LEFT PANNEL [END] *******************************/
@@ -304,6 +330,7 @@ nav a {
 .page {
   position: relative;
   overflow: auto;
+  background: radial-gradient(circle, #ededed 0%, #90ccf4 100%);
 }
 .page::-webkit-scrollbar {
   background: #F3D250;
@@ -319,6 +346,7 @@ nav a {
 }
 
 #page {
+
   padding: 10%;
   background: url(paper2.png);    
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
@@ -342,7 +370,6 @@ nav a {
   border: 1px solid rgba(255,255,255,0.5);
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),0 2px 2px rgba(0,0,0,0.15),0 4px 4px rgba(0,0,0,0.15),0 8px 8px rgba(0,0,0,0.15);
   color: #fff;
-  font-family: sans-serif;
   font-size: 18px;
   text-align: center;  
   padding-top: 10px;
@@ -361,6 +388,29 @@ nav a {
   width:20px;
   height:20px;	
 }
+#status::before {
+  content:"\f0eb";
+  color: #67B2E4;
+  display:block;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  left: -45px;
+  text-shadow: #fff 0 0 10px , #fff 0 0 10px ,  #F3D250 0 0 30px;
+  font-size: 25px;
+	
+}
+
+#checkbox_didasc { display:none; }
+#checkbox_didasc + label { letter-spacing: 1px;}
+#checkbox_didasc + label:before {
+  display: inline-block;
+  cursor:pointer;
+  font-size: 18px;
+}
+#checkbox_didasc + label:before { content: "\f204";letter-spacing: 3px;color:#c00}
+#checkbox_didasc:checked + label:before { content: "\f205"; color:green;}
+
 /******************************* PAGE CENTER [END] *******************************/
 
 
@@ -369,7 +419,6 @@ nav a {
 
 .chapters {
   margin: 20px;
-  font-family: Verdana;
   font-size: 14px;
   color: #000;
   text-align:left;

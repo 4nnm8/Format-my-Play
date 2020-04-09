@@ -57,13 +57,13 @@ goFullScreen = function() {
     if (b.mozRequestFullScreen) { b.mozRequestFullScreen() } else 
     if (b.webkitRequestFullScreen) { b.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT) } else
     if (b.msRequestFullscreen) { b.msRequestFullscreen() }
-    document.getElementById("btnFullscreen").className("fa-compress");
+    document.getElementById("btnFullscreen").className = "fa-compress";
   } else {
     if (document.cancelFullScreen) { document.cancelFullScreen() } else 
     if (document.mozCancelFullScreen) { document.mozCancelFullScreen() } else
     if (document.webkitCancelFullScreen) { document.webkitCancelFullScreen() } else 
     if (document.msExitFullscreen) { document.msExitFullscreen() }
-    document.getElementById("btnFullscreen").className("fa-expand");
+    document.getElementById("btnFullscreen").className = "fa-expand";
   }  
 },
 setSelection = function() {
@@ -148,8 +148,8 @@ addLine = function() {
   }
 },
 getSelectCharacters = function() {
-  var result = [], options = input_persos && input_persos.options;
-  for (let i = 0, iLen = options.length ; i < iLen; i++) {
+  var result = [], options = input_persos && input_persos.options, l = options.length;
+  for (let i = 0 ; i < l; i++) {
     if (options[i].selected) result.push(options[i]);
   }
   return result;
@@ -158,11 +158,11 @@ character_add = function() {
   var rep = prompt("Comment s'appelle votre personnage ?"),
       opt = document.createElement('option');
   if (rep) {
-  rep = rep.toLocaleLowerCase("fr-FR");
-  rep = rep.charAt(0).toUpperCase() + rep.slice(1);
-  opt.appendChild(document.createTextNode(rep));
-  input_persos.appendChild(opt);
-  input_persos.size = (input_persos.options.length > 8) ? input_persos.options.length : 8;
+    rep = rep.toLocaleLowerCase("fr-FR");
+    rep = rep.charAt(0).toUpperCase() + rep.slice(1);
+    opt.appendChild(document.createTextNode(rep));
+    input_persos.appendChild(opt);
+    input_persos.size = (input_persos.options.length > 8) ? input_persos.options.length : 8;
   }
 },
 character_remove = function() {
@@ -201,26 +201,30 @@ insert_charlist = function() {
     info("Vous n'avez pas sélectionné de personnage dans la liste de gauche")
   } else {
     var chars = getSelectCharacters(), lst = [];
-      for (let i = 0; i < chars.length; i++) {
-        lst.push(" " + chars[i].text)
-      }
+    for (let i = 0; i < chars.length; i++) {
+      lst.push(" " + chars[i].text)
+    }
     insertText("<div class='char_display'>" + lst + "</div>");
   }
 },
 insert_act = function() {
-  var rep = prompt("Quel est le numéro de l'acte ?");
-  if (/^([0-9]+|[MCDVLXI]+)$/.test(rep)) {
-    insertText("<h2 class='act_display'>Acte " + rep + "</h2>");
-  } else if (rep) {
-    info("Seuls les caractères suivants sont autorisés :<br/><br/>0 1 2 3 4 5 6 7 8 9 M D C L X V I")
+  var rep = prompt("Entrez le numéro de l'acte (caratères de 0 à 9 et M D C L X V I), ou un texte libre.");
+  if (rep) {
+	if (/^([0-9]+|[MCDVLXI]+)$/.test(rep)) {
+      insertText("<h2 class='act_display'>Acte " + rep + "</h2>");
+	} else {
+      insertText("<h2 class='act_display'>" + rep + "</h2>");
+	}
   }
 },
 insert_scene = function() {
-  var rep = prompt("Quel est le numéro de la scène ?");
-  if (/^[0-9]+$/.test(rep)) {
-    insertText("<h3 class='scene_display'>Scène " + rep + "</h3>");
-  } else if (rep) {
-    info("Merci d'entrer uniquement des chiffres arabes (0 - 9)")
+  var rep = prompt("Entrez le numéro de la scène (caractères 0 - 9), ou un texte libre.");
+  if (rep) {
+	if (/^[0-9]+$/.test(rep)) {
+      insertText("<h3 class='scene_display'>Scène " + rep + "</h3>");
+	} else {
+      insertText("<h3 class='scene_display'>" + rep + "</h3>");
+	}
   }
 },
 insert_title = function() {
@@ -237,13 +241,13 @@ insert_title = function() {
 closeFile = function() {
   if (!isItEmpty()) {
     var r = confirm("Voulez-vous enregistrer votre fichier en cours avant de le fermer ?");
-    if (r) saveFile(), clearAll();
+    if (r) saveFile(); clearAll();
   }
 },
 newFile = function() {
   if (!isItEmpty()) {
       var r = confirm("Voulez-vous enregistrer votre fichier en cours avant d'en créer un nouveau ?");
-      if (r) saveFile(), clearAll();
+      if (r) saveFile(); clearAll();
     }
 },
 saveFile = function() {
@@ -349,7 +353,11 @@ window.addEventListener("beforeunload", function(e) {
   }
 });
 
-field_page.addEventListener("keyup", setSelection, false);
+field_page.addEventListener("keyup", function() { setSelection(); wordCounter() }, false);
+
+function wordCounter() {
+  console.log(field_page.innerText.match(/[a-zà-öù-ÿœ-]+/gi))
+}
 
 input_replique.addEventListener("keypress", function(e) {
     if (e.keyCode == 13 && e.shiftKey) {
@@ -382,7 +390,7 @@ document.addEventListener("keydown", function(e) {
   if (9 == e.keyCode && par.className == "perso") {
     e.preventDefault();
     selectAll(par.nextElementSibling);
-  } else if (9 == e.keyCode) {
+  } else if (9 == e.keyCode && !par.closest("#page")) { /* CHECK THIS */
     e.preventDefault();
   }
   if ("perso" == par.className && 0 < getSelectCharacters().length && selectionRange.startOffset !== selectionRange.endOffset) {
@@ -397,6 +405,7 @@ document.addEventListener("click", function(e) {
   var f = e.target;
   switch (f.id) {
     case "btnNewFile" : newFile(); break;
+    //case "btnOpenFile" : openFile(); break;
     case "btnSaveFile" : saveFile(); break;
     case "btnCloseFile" : closeFile(); break;
     case "btnPrintFile" : printFile(); break;
@@ -429,6 +438,7 @@ document.addEventListener("click", function(e) {
     case "undo" : CMD("undo"); break;
     case "redo" : CMD("redo"); break;
     case "removeFormat" : CMD("removeFormat"); break;
+    default : console.log(f);
   }
   if (f.closest("#page")) setSelection();
   e.stopPropagation();

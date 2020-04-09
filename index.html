@@ -11,18 +11,16 @@
 <body>
     <div class="parent">
         <nav>
-            <div class="main"><a href="#">Fichier</a>
+            <div class="main"><a href="#"><i class="fa-file"></i> Fichier</a>
                 <div class="drop">
-                    <a href="#" id="btnNewFile">Nouveau</a>
-                    <a href="#" id="btnOpenFile">Ouvrir</a>
-                    <a href="#" id="btnSaveFile">Enregistrer</a>
-                    <a href="#" id="btnPrintFile">Imprimer</a>
-                    <a href="#" id="btnCloseFile">Fermer</a>
+                    <a href="#" id="btnNewFile"><i class="fa-new"></i> Nouveau</a>
+                    <a href="#" id="btnOpenFile"><i class="fa-open"></i> Ouvrir</a>
+                    <a href="#" id="btnSaveFile"><i class="fa-save"></i> Enregistrer</a>
+                    <a href="#" id="btnPrintFile"><i class="fa-print"></i> Imprimer</a>
+                    <a href="#" id="btnCloseFile"><i class="fa-close"></i> Fermer</a>
                 </div>
-            </div>
-            <!--
-				-->
-            <div class="main"><a href="#">Insertion</a>
+            </div><!--
+            --><div class="main"><a href="#"><i class="fa-insert"></i> Insertion</a>
                 <div class="drop">
                     <a href="#" id="btnInsTitle">Titre de l'ouvrage</a>
                     <a href="#" id="btnInsAct">Acte</a>
@@ -30,8 +28,8 @@
                     <a href="#" id="btnInsDidas">Bloc de didascalies</a>
                     <a href="#" id="btnInsCharList">Liste des personnages de la scène</a>
                 </div>
-            </div>
-            <!--
+            </div><!--
+            
 				<div class="main"><a href="#">Outils</a>
 					<div class="drop">
 						<a href="#" id="">Caractères spéciaux</a>
@@ -43,16 +41,20 @@
 						<a href="#" id="font_size">Taille police</a>
 					</div>
 				</div>
-				-->
-            <div class="main"><a href="#">Mise en page</a>
+				
+            --><div class="main"> <a href="#"><i class="fa-stream"></i> Mise en page</a>
                 <div class="drop mep">
                     <a href="#" id="btnMepInline"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie)</i> – Texte de réplique.</a>
                     <a href="#" id="btnMepClassic"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
                     <a href="#" id="btnMepScreenplay" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
                 </div>
+            </div><!--
+            --><div class="main"><a href="#"><i class="fa-question-circle"></i> AIDE</a>
+                <div class="drop">
+                    <a href="#" id="apropos">À propos</a>
+                    <a href="help.html" target="_blank">Aide</a>
+                </div>
             </div>
-            <!--
-				<div class="main"><a href="#">À propos</a></div>-->
 
             <div id="wysiwyg">
                 <button type="button" id="bold" class="fa-bold"></button>
@@ -61,7 +63,7 @@
                 <button type="button" id="strikeThrough" class="fa-strikethrough"></button>
                 <button type="button" id="subscript" class="fa-subscript"></button>
                 <button type="button" id="superscript" class="fa-superscript"></button>					
-                <button type="button" id="insertHorizontalRule" class="fa-minus"></button>
+                <button type="button" id="insertHorizontalRule" class="fa-hr"></button>
                 <button type="button" id="justifyLeft" class="fa-align-left"></button>
                 <button type="button" id="justifyCenter" class="fa-align-center"></button>
                 <button type="button" id="justifyRight" class="fa-align-right"></button>
@@ -75,34 +77,29 @@
             </div>
         </nav>
         <section class="left">
-            <span id="field_date"></span>
-
             <div class="right">
-                Titre :
-                <input type="text" id="input_title" />
-                <br/> Auteur·ice :
-                <input type="text" id="input_author" />
+                Titre : <input type="text" id="input_title" /><br/>
+                Auteur·ice : <input type="text" id="input_author" /><br/>
+				<div id="field_date"></div>
             </div>
-            <div class="cont_persos">Liste des personnages
+            <div class="cont_persos"><i class="fa-persos"></i> Liste des personnages
                 <select id="persos" size="8" tabindex="1" multiple="true"></select>
-                <button id="btnAddPerso" class="but_perso fa-plus">&nbsp;AJOUTER</button><!--
+                <button id="btnAddPerso" class="but_persos fa-plus">&nbsp;AJOUTER</button><!--
                		
-                --><button id="btnRemovePerso" class="but_perso fa-minus">&nbsp;RETIRER</button><!--   
+                --><button id="btnRemovePerso" class="but_persos fa-minus">&nbsp;RETIRER</button><!--   
 				
-                --><button id="btnClearPerso" class="but_perso fa-trash">&nbsp;VIDER</button>
+                --><button id="btnClearPerso" class="but_persos fa-trash">&nbsp;VIDER</button>
             </div>
 
-            <input type="text" id="didasc" tabindex="2" placeholder="Didascalie fonctionnelle (optionnelle)" />
-
-            <div class="cont_persos">Texte à insérer
+            <div class="cont_persos"><i class="fa-pencil"></i>  Texte à insérer
                 <br/>
-                <textarea id="replik" rows="10" tabindex="3" placeholder="Votre texte ici"></textarea>
-                <input type="checkbox" id="checkbox_didasc" />
-                <label for="checkbox_didasc">Insérer bloc disacalie</label>
+				<input type="text" id="didasc" tabindex="2" placeholder="Didascalie fonctionnelle (optionnelle)" />
+                <textarea id="replik" rows="10" tabindex="3" placeholder="Texte de réplique"></textarea>
+               <input type="checkbox" id="checkbox_didasc" />
+                <label for="checkbox_didasc"> Insérer bloc disacalie</label>
             </div>
             <p>
-                <button id="btnAddText" tabindex="4">Ajouter le texte
-                    <br/>(<kbd>Shift</kbd> + <kbd>Enter</kbd>)</button>
+                <button id="btnAddText" tabindex="4">Ajouter le texte<br/><kbd>Shift</kbd> + <kbd>Enter</kbd></button>
             </p>
 
         </section>
