@@ -1,0 +1,29 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;        
+  }
+  .page {
+    margin: 0;
+    border: 0;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
+}
+.perso, .perso-d, .char_display { font-variant: small-caps }
+.perso, .perso-d { display:block }
+.didas, .didas-f, .didas-b { font-style: italic; color: #555; font-variant: none }
+.didas::before { content:", " }
+.didas-b, .didas-b:after { display: block }
+.didas-b:after { content:"\a"; white-space: pre }
+.line { text-align: justify }
+.line::first-letter { padding-left: 15pt }
+.title_display, .act_display, .scene_display, .char_display, .perso, .perso-d { text-align: center }
+.char_display { margin-bottom: 30px }
+.line { margin-bottom: 15pt }
