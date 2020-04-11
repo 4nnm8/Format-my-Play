@@ -1,4 +1,4 @@
-@page {
+/*@page {
   size: A4;
   margin: 0;
 }
@@ -15,45 +15,70 @@
     background: #fff;
     page-break-after: always;
   }
-}
-.perso, .perso-d, .repliq, .didas, .didas-f, .didas-b, .title_display, .act_display, .scene_display, .char_display{
- outline: 0;
+}*/
+
+#page {
+  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+  font-size: 16pt;
+  width: 75%;
+  padding: 10%
 }
 
-.perso, .perso-d, .char_display {
-  font-variant: small-caps
+/* general */
+
+.perso,
+.perso-d, 
+.char_list { font-variant: small-caps }
+
+.title_display, 
+.act_display, 
+.scene_display, 
+.char_list, 
+.perso { text-align: center }
+
+.didas { margin-bottom: 20pt}
+
+/* specific */
+
+.title_display {
+
+}
+.act_display {
+	
+}
+.scene_display {
+	
+}
+.char_list {
+  margin-bottom: 32pt;
+}
+
+.didas { 
+  font-style: italic;
+  color: #555;
+  font-variant: none
+}
+.line {
+  text-align:left; /* justify ? */
+  line-height: 18pt;
+  
+}
+.line::first-letter {
+  padding-left: 20pt;
 }
 .perso::after {
   content:". – "
 }
-.perso-d::after {
-  content:" – "
+.perso-d + .didas:before {
+  content:",\00a0";
 }
-.didas, .didas-f, .didas-b {
-  font-style: italic;
-  color: #555;
-  font-variant: none;
+.perso-d + .didas:after {
+  content:" – ";
+  color: #000;
 }
-.didas::before {
-  content:", "
-}
-.didas-b, .didas-b:after  {
-  display: block;
-}
-.didas-b:after {
-  content:"\a";
-  white-space: pre
-}
-.perso, .repliq {
-	display: inline
-}
-.line::first-letter {
-	padding-left: 15pt;
-}
-.title_display, .act_display, .scene_display, .char_display {
-  text-align: center
-}
+.repliq {
 
-.char_display {
-  margin-bottom: 30px;
+}
+.repliq .didas {
+  margin:0
 }

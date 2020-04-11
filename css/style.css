@@ -4,14 +4,14 @@
   font-family: lemonmilk_lightregular;
   font-weight: normal;
   font-style: normal;
-  src: url('fonts/lemon.eot');
-  src: local('LemonMilk light'), local('LemonMilk-Light'), url('fonts/lemon.eot?#iefix') format('embedded-opentype'), url('fonts/lemon.woff2') format('woff2'), url('fonts/lemon.woff') format('woff'), url('fonts/lemon.ttf') format('truetype');
+  src: url('../fonts/lemon.eot');
+  src: local('LemonMilk light'), local('LemonMilk-Light'), url('../fonts/lemon.eot?#iefix') format('embedded-opentype'), url('../fonts/lemon.woff2') format('woff2'), url('../fonts/lemon.woff') format('woff'), url('../fonts/lemon.ttf') format('truetype');
 }
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;
-  src: url("fonts/fa-solid-900.eot");
-  src: url("fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("fonts/fa-solid-900.woff2") format("woff2"), url("fonts/fa-solid-900.woff") format("woff"), url("fonts/fa-solid-900.ttf") format("truetype"), url("fonts/fa-solid-900.svg#fontawesome") format("svg"); 
+  src: url("../fonts/fa-solid-900.eot");
+  src: url("../fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.woff") format("woff"), url("../fonts/fa-solid-900.ttf") format("truetype"), url("../fonts/fa-solid-900.svg#fontawesome") format("svg"); 
 }
 [hidden] {
     display: none;
@@ -86,12 +86,11 @@ input::-moz-focus-inner {
 }
 #btnAddText, .cont_persos, .but_persos, .main a, .drop a, .top, nav a {font-family: lemonmilk_lightregular  }
 
-body, input, #replik, #persos { font-family: sans-serif }
+body, input, #replik, #persos, #field_date { font-family: sans-serif }
 
+#checkbox_didasc + label:before, #checkbox_didasc:checked + label:before, #field_date:before, #status::before {font-family: 'FontAwesome' }
 
-#checkbox_didasc + label:before, #checkbox_didasc:checked + label:before, #field_date, #status::before {font-family: 'FontAwesome' }
-
-#field_date, #persos, .but_persos, #btnAddText, kbd, #didasc + label, #didasc, #replik {
+#persos, .but_persos, #btnAddText, kbd, #didasc + label, #didasc, #replik {
   font-size: 1.6rem;
 }
 
@@ -166,7 +165,7 @@ nav a {
   display: block;
   white-space: nowrap;
   height: 35px;
-  padding: 8spx 10px 5px 30px;
+  padding: 8px 10px 5px 30px;
   border-bottom: 1px solid #777
 }
 .main:after {
@@ -205,7 +204,7 @@ nav a {
   color: #efefef;
 }
 #wysiwyg button:hover{
-  color: #EB6B56;
+  color: #90ccf4;
 }
 #wysiwyg button::before, .but_persos::before, .main i, .cont_persos i {
   display: inline-block;
@@ -253,7 +252,8 @@ nav a {
 .fa-tdm:before { content:"\f0e8" }
 .fa-persos:before { content:"\f0c0" }
 .fa-pencil:before { content:"\f5ad" }
-#field_date:before { content:"\f073"}
+.fa-pdf:before { content:"\f1c1" }
+#field_date:before { content:"\f073\00000a"}
 
 /*********************************** MENU [END] ***********************************/
 
@@ -281,9 +281,9 @@ nav a {
 #field_date {
   display: block;
   color: #666;
-  text-align:center;
-  visibility:hidden;
-
+  font-size: 1.5rem;
+  text-align: center;
+  visibility: hidden;
 }
 .left .top {
   text-align: right
@@ -432,12 +432,8 @@ select[multiple] {
 }
 
 #page {
-  font-family: serif;
-  padding: 10%;
-  background: url(paper2.png);    
+  background: #fff url(../paper.png);    
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-  font-size: 16pt;
-  width: 75%;
   height: auto;  min-height: 100vh;
   margin: 10% auto;
   hyphens: manual;
@@ -575,4 +571,13 @@ select[multiple] {
 }
 .chapters [type=checkbox]:not(:checked) ~ label::before {
   content: "+";
+}
+
+
+
+
+
+
+#btnPDFFile, #btnPrintFile {
+  color:#F9B146
 }

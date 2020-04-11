@@ -1,4 +1,4 @@
-@page {
+/*@page {
   size: A4;
   margin: 0;
 }
@@ -15,15 +15,64 @@
     background: #fff;
     page-break-after: always;
   }
+}*/
+
+#page {
+  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+  font-size: 16pt;
+  width: 70%;
+  padding: 10% 15% 10% 15%;
 }
-.perso, .perso-d, .char_display { font-variant: small-caps }
-.perso, .perso-d { display:block }
-.didas, .didas-f, .didas-b { font-style: italic; color: #555; font-variant: none }
-.didas::before { content:", " }
-.didas-b, .didas-b:after { display: block }
-.didas-b:after { content:"\a"; white-space: pre }
-.line { text-align: justify }
-.line::first-letter { padding-left: 15pt }
-.title_display, .act_display, .scene_display, .char_display, .perso, .perso-d { text-align: center }
-.char_display { margin-bottom: 30px }
-.line { margin-bottom: 15pt }
+
+/* general */
+
+.perso, 
+.perso-d,
+.char_list { font-variant: small-caps }
+
+.title_display, 
+.act_display, 
+.scene_display, 
+.char_list, 
+.perso,
+.perso-d { text-align: center }
+
+.line, .didas { margin-bottom: 20pt}
+
+/* specific */
+
+.title_display {
+
+}
+.act_display {
+	
+}
+.scene_display {
+	
+}
+.char_list {
+  margin-bottom: 32pt;
+}
+
+.didas { 
+  font-style: italic;
+  color: #555;
+  font-variant: none
+}
+.line {
+  text-align: center;
+}
+
+.perso + .didas:before, .perso-d + .didas:before {
+  content:",\00a0";
+}
+
+.repliq {
+  display: block; 
+  text-align:left; /* justify ? */
+  white-space: pre;
+}
+
+.repliq .didas {
+  margin:0
+}

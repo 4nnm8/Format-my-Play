@@ -1,4 +1,4 @@
-@page {
+/*@page {
   size: A4;
   margin: 0;
 }
@@ -15,48 +15,93 @@
     background: #fff;
     page-break-after: always;
   }
-}
-.line, .scene_display, .char_display, .act_display, .title_display, .didas-b {
-  font-family: Courier;
-}
-.perso, .perso-d, .scene_display, .didas-b {
-  text-transform: uppercase;
-}
-.perso, .perso-d .didas, .repliq, .perso-d {
-  text-align:center
-}
- 
-.perso, .char_display {
-  font-variant: small-caps;
-  
-}
-.perso, .perso-d .didas, .perso-d, .didas-b, .didas-b:after {
-  display:block;
+}*/
+
+#page {
+  font-family: "Courier Prime", "Courier", "Courier Final Draft", "Courier New";
+  font-size: 14pt;
+  width: 80%;
+  padding: 10%
 }
 
-.perso-d .didas {
-	text-transform: none;
+/* general */
+
+.title_display, 
+.act_display, 
+.scene_display, 
+.perso, 
+.perso-d,
+.char_list,
+.didas { text-transform: uppercase }
+
+.line, .didas { margin-bottom: 20pt}
+
+.title_display, .scene_display, .act_display {
+  font-weight: inherit;
+  font-size: inherit;
+  margin: inherit;
+  margin: 12pt 0 12pt 0;
 }
 
-.perso-d .didas::before {
-  content:"("
+/* specific */
+
+.title_display {
+  text-decoration: underline;
+  font-size: inherit;
+  text-align: center;
 }
-.perso-d .didas::after {
-  content:")"
+.act_display {
+	
 }
-.didas, .didas-f, .didas-b {
-  color: #555;
-  font-variant: none;
+.scene_display {
+	
+}
+.char_list {
+  margin-bottom: 32pt;
 }
 
-.didas-b:after {
-  content:"\a";
-  white-space: pre
+.didas { 
+
 }
 .line {
-  margin-bottom: 15pt
+  width: 75%;
+  margin-top: 0;
+  margin-bottom: 18pt;
+  margin-left: 17%;
+  margin-right: 17%;
+  clear: both;
+}
+.perso, .perso-d {
+  margin-right: 1in;
+  margin-left: 25%;
 }
 
-.char_display {
-  margin-bottom: 30px;
+.perso, .perso + .didas, .perso-d, .repliq {
+  display:block;
 }
+.perso-d + .didas {
+  margin-left: 20%;
+}
+.perso-d + .didas::before {
+  content:"("
+}
+.perso-d + .didas::after {
+  content:")"
+}
+
+.repliq {
+  max-width: 70%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 15%;
+  white-space: pre-wrap;
+  orphans: 2;
+  widows: 2;
+}
+
+.repliq .didas {
+  margin:0
+}
+
+
+
