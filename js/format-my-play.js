@@ -92,18 +92,18 @@ addLineDirect = function () {
   var block1 = document.createElement("div"),
       block2 = document.createElement("span"),
       text2 = document.createTextNode("Personnage"),
-      space = document.createTextNode("\u00a0"),
+    //  space = document.createTextNode("\u00a0"),
       block3 = document.createElement("span"),
       text3 = document.createTextNode("Texte de réplique."),
       par = caretParent(),
-      r1 = par.closest(".line, .didas-f, .didas-b, .title_display, .act_display, .scene_display, .char_display");
+      r1 = par.closest(".line, .didas, .title_display, .act_display, .scene_display, .char_list");
   block2.appendChild(text2); 
   block3.appendChild(text3);
   if (r1) selectionRange.setStartAfter(r1), selectionRange.setEndAfter(r1); 
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(selectionRange);
   block1.appendChild(block2); 
-  block1.appendChild(space);
+  //block1.appendChild(space);
   block1.appendChild(block3);
   block1.setAttribute("class", "line"); 
   block2.setAttribute("class", "perso"); 
@@ -123,7 +123,7 @@ insertText = function(texte) {
 addLine = function() {
   if (input_replique.value !== "") {
     if (checkbox_didasc.checked == true) {
-      insertText("<div class='didas-b'>" + input_replique.value + "</div>");
+      insertText("<div class='didas'>" + input_replique.value + "</div>");
       cleanLineInputs();
     } else if (input_persos.length == 0) {
       info("Créez d'abord un personnage puis sélectionnez-le dans la liste")
@@ -132,16 +132,16 @@ addLine = function() {
     } else if (input_didascalie.value) {
       insertText("<div class='line'><span class='perso-d'>" +
       input_persos.options[input_persos.selectedIndex].text 
-        + "<span class='didas'>"
+        + "</span><span class='didas'>"
         + input_didascalie.value +
-        + "</span></span> <span class='repliq'>"
+        + "</span></span><span class='repliq'>"
         + input_replique.value.replace(/\r\n|\r|\n/g, "<br />").replace("{", "<span class='didas'>(").replace("}", ")</span>")
         + "</span></div>");
       cleanLineInputs();  
     } else {
       insertText("<div class='line'><span class='perso'>"
         + input_persos.options[input_persos.selectedIndex].text
-        + "</span> <span class='repliq'>"
+        + "</span><span class='repliq'>"
         + input_replique.value.replace(/\r\n|\r|\n/g, "<br />").replace("{", "<span class='didas'>(").replace("}", ")</span>")
         + "</span></div>");
       cleanLineInputs();
@@ -193,11 +193,21 @@ character_clear = function() {
   }
 },
 insert_didas = function() {
-  checkbox_didasc.checked = true;
-  input_didascalie.style.visibility = "hidden";
-  input_replique.placeholder = "Texte de didascalie";
-  input_replique.select();
-  info("Prêt. Tapez votre texte dans le menu de gauche et validez.")
+  if (checkbox_didasc.checked) {
+    checkbox_didasc.checked = true;
+    input_didascalie.style.visibility = "hidden";
+    input_replique.placeholder = "Texte de didascalie";
+    input_replique.select();
+    info("Prêt. Tapez votre texte dans le menu de gauche et validez.")
+  } else {
+	checkbox_didasc.checked = false;
+	input_didascalie.style.visibility = "visible";
+	input_replique.placeholder = "Texte de réplique";
+  }
+},
+insert_didas_menu = function() {
+  insertText("<div class='didas-b'>Entrez votre bloc de didascalie</div>");
+  selectAll(caretParent())
 },
 insert_charlist = function() {
   if (input_persos.length == 0) {
@@ -255,6 +265,9 @@ newFile = function() {
       if (r) saveFile(); clearAllInputs();
     }
 },
+fileName = function() {
+	return (input_title.value !== "") ? (input_title.value.replace(/[\/:"~*?<>|]+/g, '').replace(/\s/g, "_")) : "Sans_titre" + '_' + time().replace(/([0-9]{4})\/([0-9]{2})\/([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})/g, "$1-$2-$3_$4h$5") + '.fmp';
+}
 saveFile = function() {
   if (isItEmpty()) {
     info("Rien à enregistrer !");
@@ -266,9 +279,8 @@ saveFile = function() {
   }
   var entry = time() + ";" + input_title.value + ";" + input_author.value + "\n" + perso_list + "\n" + field_page.innerHTML,
       textToBLOB = new Blob([entry], { type: 'text/plain' }),
-      sFileName = ((input_title.value !== "") ? (input_title.value.replace(/[\/:"~*?<>|]+/g, '').replace(/\s/g, "_")) : "Sans_titre") + '_' + time().replace(/([0-9]{4})\/([0-9]{2})\/([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})/g, "$1-$2-$3_$4h$5") + '.fmp',
-  newLink = document.createElement("a");
-  newLink.download = sFileName;
+      newLink = document.createElement("a");
+  newLink.download = fileName();
   if (window.webkitURL != null) {
     newLink.href = window.webkitURL.createObjectURL(textToBLOB);
   } else {
@@ -277,7 +289,8 @@ saveFile = function() {
     document.body.appendChild(newLink);
   }
   newLink.click();
-  field_date.innerHTML = "Date du fichier : "+time();
+  field_date.innerText = "Date du fichier : " + time();
+  field_date.style.visibility = "visible";
 },
 openFile = function() {
   if (!isItEmpty()) {
@@ -306,7 +319,8 @@ openFile = function() {
             input_persos.appendChild(opt);
           }
           input_persos.size = (input_persos.options.length >= 8) ? char_lgt : 8;
-          field_date.innerHTML = "Date du fichier : " + firstLine.split(';')[0];
+          field_date.innerText = "Date du fichier : " + firstLine.split(';')[0];
+		  field_date.style.visibility = "visible";
           input_title.value = firstLine.split(';')[1];
           input_author.value = firstLine.split(';')[2];
           var newnew = txt.split('\n')
@@ -334,7 +348,7 @@ printFile = function() {
       paper = window.open('_blank', 'PRINT', 'height='+height+',width='+width),
       cssfile = elem_theme.href.replace(/.+\/([a-z_]+.css$)/,"$1");
   paper.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>' 
-    + input_title 
+    + input_title.value
     + '</title><link rel="stylesheet" href="' 
     + 'https://ann-mb.github.io/Format-my-Play/css/' + cssfile
     + '" type="text/css" /></head><body style="padding:1.5cm">' 
@@ -345,6 +359,20 @@ printFile = function() {
   paper.print();
   return true;
 };
+var doc = new jsPDF();
+
+function saveDiv() {
+	var cssfile = elem_theme.href.replace(/.+\/([a-z_]+.css$)/,"$1");
+	console.log(cssfile);
+  doc.fromHTML('<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>' 
+    + input_title 
+    + '</title><link rel="stylesheet" href="' 
+    + 'https://ann-mb.github.io/Format-my-Play/css/' + cssfile
+    + '" type="text/css" /></head><body style="padding:1.5cm">' 
+    + field_page.innerHTML 
+    + '</body></html>');
+  doc.save(fileName());
+}
 
 input_persos.addEventListener("change",function(){ current_char = 0 },false);
 
@@ -361,22 +389,40 @@ window.addEventListener("beforeunload", function(e) {
 field_page.addEventListener("keyup", function() { setSelection(); wordCounter() }, false);
 
 function wordCounter() {
-  console.log(field_page.innerText.match(/[a-zà-öù-ÿœ-]+/gi))
+  var num = field_page.innerText.match(/[a-zà-öù-ÿœ-]+/gi);
+  if (num) document.getElementById("counter").innerText = "Compteur de mots : " + num.length
 }
 
 input_replique.addEventListener("keypress", function(e) {
     if (e.keyCode == 13 && e.shiftKey) {
         e.preventDefault();
-    addLine();
+		addLine();
     }
 }, false);
 
 document.addEventListener("keyup", function(){
-  var par = caretParent();
-  if (par.className == "perso" && /\([a-z]+\)$/.test(par.innerHTML)) {
+  var par = caretParent(),
+      reg = /\s\(([a-zà-öù-ÿœ\s',.:!?-]+)\)$/gi
+  if (par.className == "perso" && reg.test(par.innerHTML)) {
     par.className = "perso-d";
-    par.innerHTML = par.innerHTML.replace(/ \(/,"<span class='didas'>").replace(/\)/,"</span>");
-    selectAll(par.nextElementSibling)
+	
+	var cont = par.innerHTML.match(reg)[0].replace(reg,"$1");
+	
+	par.innerHTML = par.innerHTML.replace(reg,"")
+
+	var ladida = document.createElement("span"),
+	
+        texte = document.createTextNode(cont);
+		
+	ladida.appendChild(texte);
+	
+	ladida.setAttribute("class", "didas"); 
+	
+    par.parentNode.insertBefore(ladida, par.parentNode.getElementsByClassName("repliq")[0]);
+	
+    selectAll(ladida);    
+	
+	console.log(texte)
   }
 }, false);
 
@@ -414,6 +460,7 @@ document.addEventListener("click", function(e) {
     case "btnSaveFile" : saveFile(); break;
     case "btnCloseFile" : closeFile(); break;
     case "btnPrintFile" : printFile(); break;
+	case "btnPDFFile" : saveDiv(); break;
     case "btnAddPerso" : character_add(); break;
     case "btnRemovePerso" : character_remove(); break;
     case "btnClearPerso" : character_clear(); break;
@@ -421,13 +468,13 @@ document.addEventListener("click", function(e) {
     case "btnInsAct" : insert_act(); break;
     case "btnInsScene" : insert_scene(); break;
     case "btnInsTitle" : insert_title(); break;
-    case "btnInsDidas" : insert_didas(); break;
+    case "btnInsDidas" : insert_didas_menu(); break;
     case "btnMepInline" : elem_theme.href = "css/mep_inline.css"; break;
     case "btnMepClassic" : elem_theme.href = "css/mep_classic.css"; break;
     case "btnMepScreenplay" : elem_theme.href = "css/mep_screenplay.css"; break;
     case "btnAddText" : addLine(); break;
     case "btnFullscreen" : goFullScreen(); break;
-    case "checkbox_didasc" : if (checkbox_didasc.checked) insert_didas(); break;
+    case "checkbox_didasc" : insert_didas(); break;
     case "status" : field_status.style.opacity = 0; break;
     case "bold" : CMD("bold"); break;
     case "italic" : CMD("italic"); break;
@@ -448,3 +495,56 @@ document.addEventListener("click", function(e) {
   if (f.closest("#page")) setSelection();
   e.stopPropagation();
 },false);
+
+(function(){
+
+  var addEvent = function (el, type, fn) {
+    if (el.addEventListener)
+      el.addEventListener(type, fn, false);
+		else
+			el.attachEvent('on'+type, fn);
+  };
+  
+  var extend = function(obj,ext){
+    for(var key in ext)
+      if(ext.hasOwnProperty(key))
+        obj[key] = ext[key];
+    return obj;
+  };
+
+  window.fitText = function (el, kompressor, options) {
+
+    var settings = extend({
+      'minFontSize' : -1/0,
+      'maxFontSize' : 1/0
+    },options);
+
+    var fit = function (el) {
+      var compressor = kompressor || 1;
+
+      var resizer = function () {
+        el.style.fontSize = Math.max(Math.min(el.clientWidth / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)) + 'px';
+      };
+
+      // Call once to set.
+      resizer();
+
+      // Bind events
+      // If you have any js library which support Events, replace this part
+      // and remove addEvent function (or use original jQuery version)
+      addEvent(window, 'resize', resizer);
+      addEvent(window, 'orientationchange', resizer);
+    };
+
+    if (el.length)
+      for(var i=0; i<el.length; i++)
+        fit(el[i]);
+    else
+      fit(el);
+
+    // return set of elements
+    return el;
+  };
+})();
+
+//fitText(document.getElementById('page'), 6)
