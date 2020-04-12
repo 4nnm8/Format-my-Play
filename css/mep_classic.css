@@ -30,9 +30,9 @@
 .perso-d,
 .char_list { font-variant: small-caps }
 
-.title_display, 
-.act_display, 
-.scene_display, 
+.display_title, 
+.display_act, 
+.display_scene, 
 .char_list, 
 .perso,
 .perso-d { text-align: center }
@@ -41,13 +41,13 @@
 
 /* specific */
 
-.title_display {
+.display_title {
 
 }
-.act_display {
+.display_act {
 	
 }
-.scene_display {
+.display_scene {
 	
 }
 .char_list {

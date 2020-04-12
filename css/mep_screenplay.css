@@ -26,9 +26,9 @@
 
 /* general */
 
-.title_display, 
-.act_display, 
-.scene_display, 
+.display_title, 
+.display_act, 
+.display_scene, 
 .perso, 
 .perso-d,
 .char_list,
@@ -36,7 +36,7 @@
 
 .line, .didas { margin-bottom: 20pt}
 
-.title_display, .scene_display, .act_display {
+.display_title, .display_scene, .display_act {
   font-weight: inherit;
   font-size: inherit;
   margin: inherit;
@@ -45,15 +45,15 @@
 
 /* specific */
 
-.title_display {
+.display_title {
   text-decoration: underline;
   font-size: inherit;
   text-align: center;
 }
-.act_display {
+.display_act {
 	
 }
-.scene_display {
+.display_scene {
 	
 }
 .char_list {

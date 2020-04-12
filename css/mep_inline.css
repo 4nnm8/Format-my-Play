@@ -30,9 +30,9 @@
 .perso-d, 
 .char_list { font-variant: small-caps }
 
-.title_display, 
-.act_display, 
-.scene_display, 
+.display_title, 
+.display_act, 
+.display_scene, 
 .char_list, 
 .perso { text-align: center }
 
@@ -40,13 +40,13 @@
 
 /* specific */
 
-.title_display {
+.display_title {
 
 }
-.act_display {
+.display_act {
 	
 }
-.scene_display {
+.display_scene {
 	
 }
 .char_list {
@@ -67,17 +67,14 @@
   padding-left: 20pt;
 }
 .perso::after {
-  content:". – "
+  content:".  "
 }
 .perso-d + .didas:before {
   content:",\00a0";
 }
-.perso-d + .didas:after {
-  content:" – ";
-  color: #000;
-}
-.repliq {
 
+.repliq:before {
+  content:" – "
 }
 .repliq .didas {
   margin:0
