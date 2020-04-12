@@ -1,8 +1,8 @@
 2020/04/01 09:24:12;L'école des femmes;Molière
 Arnolphe,Agnès,Horace,Alain,Georgette,Chrysalde,Enrique,Oronte,Un notaire
-<h1 class="title_display">L'école des femmes</h1>
-<h2 class="act_display">Acte II</h2>
-<h3 class="scene_display">Scène 5</h3>
+<h1 class="display_title">L'école des femmes</h1>
+<h2 class="display_act">Acte II</h2>
+<h3 class="display_scene">Scène 5</h3>
 <div class="char_list">Arnolphe, Agnès.</div>
 <div class="didas">Exemple de didascalie initiale</div>
 <div class="line"><span class="perso">Arnolphe</span><span class="repliq">La promenade est belle.</span></div>	
