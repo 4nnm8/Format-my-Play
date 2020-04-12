@@ -1,28 +1,37 @@
-/*@page {
-  size: A4;
-  margin: 0;
+@charset "utf-8"
+
+@page {
+  size: A4 portrait;
+  margin: 119mm 119mm 132mm 3.67mm; /*  margin: 350mm 280mm 370mm 420mm; */
 }
+
 @media print {
   html, body {
     width: 210mm;
-    height: 297mm;        
+    height: 297mm;       
   }
-  .page {
+
+  #page {
     margin: 0;
     border: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+	box-shadow:0;
     width: initial;
     min-height: initial;
     background: #fff;
     page-break-after: always;
   }
-}*/
-
-#page {
-  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
-  font-size: 16pt;
-  width: 75%;
-  padding: 10%
 }
+@media screen {
+  #page {
+    font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+    font-size: 16pt;
+    width: 75%;
+    padding: 10%
+  }
+}
+
 
 /* general */
 
