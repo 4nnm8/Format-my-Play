@@ -428,7 +428,14 @@ dragElement = function(elmnt) {
     document.removeEventListener("mouseup", closeDragElement, false);
     document.removeEventListener("mousemove", elementDrag, false);
   }
-};
+},
+selectClickedChar = function(f) {
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  var range = document.createRange();
+  range.selectNodeContents(f);
+  selection.addRange(range);
+}
 
 window.addEventListener("load", clearAllInputs, fieldPage.focus(), setSelection());
 
@@ -489,7 +496,8 @@ document.addEventListener("keydown", function(e) {
   } else if (9 == e.keyCode && !par.closest("#page")) { /* CHECK THIS */
     e.preventDefault();
   }
-  if ("perso" == par.className && 0 < getSelectCharacters().length && SELECTIONRANGE.startOffset !== SELECTIONRANGE.endOffset) {
+
+  if (/perso(-d)?/.test(par.className) && 0 < getSelectCharacters().length && SELECTIONRANGE.startOffset !== SELECTIONRANGE.endOffset) {
     if (38 == e.keyCode) e.preventDefault(), whichChar("up");
     if (40 == e.keyCode) e.preventDefault(), whichChar("down");
   }
@@ -540,6 +548,7 @@ document.addEventListener("click", function(e) {
     default : void(0);
   }
   if (f.closest(".draggable.dos")) command("insertHTML",f.innerText), fieldPage.focus();
+  if (/perso(-d)?/.test(f.className)) selectClickedChar(f);
   if (f.closest("#page")) setSelection();
   e.stopPropagation();
 },false);
@@ -548,38 +557,11 @@ document.addEventListener("click", function(e) {
 dragElement(document.getElementsByClassName("draggable")[0]);
 dragElement(document.getElementsByClassName("draggable")[1]);
 
-
-var TREE,
-createTree = function() {
-    TREE = document.createTreeWalker(fieldPage, NodeFilter.SHOW_TEXT, {
-    acceptNode: function(node) {
-      if (!node.parentNode.nodeName.match(/SCRIPT|STYLE|TEXTAREA|INPUT/i) && 0 < node.nodeValue.trim().length) return NodeFilter.FILTER_ACCEPT;
-    }
-  }, false);
-}, toCSS = function(a) {
-
-    var sheets = document.styleSheets, o = [];
-    a.matches = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.msMatchesSelector || a.oMatchesSelector;
-    for (var i in sheets) {
-        var rules = sheets[i].rules || sheets[i].cssRules;
-        for (var r in rules) {
-            if (a.matches(rules[r].selectorText)) {
-                o.push(rules[r].cssText);
-            }
-        }
-    }
-    return o;
-}
-
-
 function go() {
-	createTree();
-	for (; TREE.nextNode();) {
-      setTimeout((function(currentNode) {
-       
-	    console.log(toCSS(currentNode.parentNode))
-	   
-      }(TREE.currentNode)), 0);
-    }
+  computedStyleToInlineStyle(fieldPage, {
+    recursive: true,
+    properties: ["font-size", "text-decoration","font-variant", "text-align", "margin", "margin-bottom", "font-style", "color", "text-align", "line-height", "padding-left", "content", "display", "white-space"]
+  });
 }
+
 
