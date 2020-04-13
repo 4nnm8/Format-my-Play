@@ -348,13 +348,9 @@ printFile = function() {
       width = height*0.7,
       paper = window.open("_blank", "PRINT", "height="+height+",width="+width),
       cssFile = elemStyle.href.replace(/.+\/([a-z_]+.css$)/,"$1");
-  paper.document.write("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" 
-    + inputTitle.value
-    + "</title><link rel=\"stylesheet\" href=\"" 
-    + "https://ann-mb.github.io/Format-my-Play/css/" + cssFile
-    + "\" type=\"text/css\" /></head><body>"
-    + fieldPage.innerHTML 
-    + "</body></html>");
+  /*https://ann-mb.github.io/Format-my-Play/*/
+  paper.document.write("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + inputTitle.value + 
+  "</title><link rel=\"stylesheet\" href=\"css/" + cssFile + "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");
   paper.document.close(); 
   paper.focus();
   paper.print();
@@ -363,13 +359,9 @@ printFile = function() {
 saveDiv = function() {
   var doc = new jsPDF(),
 	  cssFile = elemStyle.href.replace(/.+\/([a-z_]+.css$)/,"$1");
-  doc.fromHTML("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>"
-    + inputTitle 
-    + "</title><link rel=\"stylesheet\" href=\""
-    + "https://ann-mb.github.io/Format-my-Play/css/" + cssFile
-    + "\" type=\"text/css\" /></head><body>" 
-    + fieldPage.innerHTML 
-    + "</body></html>");
+  doc.addHTML("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + 
+  inputTitle + "</title><link rel=\"stylesheet\" href=\"css/" + cssFile +
+  "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");
   doc.save(fileName()+".pdf");
 },
 wordCounter = function() {
@@ -555,3 +547,39 @@ document.addEventListener("click", function(e) {
 
 dragElement(document.getElementsByClassName("draggable")[0]);
 dragElement(document.getElementsByClassName("draggable")[1]);
+
+
+var TREE,
+createTree = function() {
+    TREE = document.createTreeWalker(fieldPage, NodeFilter.SHOW_TEXT, {
+    acceptNode: function(node) {
+      if (!node.parentNode.nodeName.match(/SCRIPT|STYLE|TEXTAREA|INPUT/i) && 0 < node.nodeValue.trim().length) return NodeFilter.FILTER_ACCEPT;
+    }
+  }, false);
+}, toCSS = function(a) {
+
+    var sheets = document.styleSheets, o = [];
+    a.matches = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.msMatchesSelector || a.oMatchesSelector;
+    for (var i in sheets) {
+        var rules = sheets[i].rules || sheets[i].cssRules;
+        for (var r in rules) {
+            if (a.matches(rules[r].selectorText)) {
+                o.push(rules[r].cssText);
+            }
+        }
+    }
+    return o;
+}
+
+
+function go() {
+	createTree();
+	for (; TREE.nextNode();) {
+      setTimeout((function(currentNode) {
+       
+	    console.log(toCSS(currentNode))
+	   
+      }(TREE.currentNode)), 0);
+    }
+}
+
