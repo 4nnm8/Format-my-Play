@@ -3,7 +3,7 @@ Arnolphe,Agnès,Horace,Alain,Georgette,Chrysalde,Enrique,Oronte,Un notaire
 <h1 class="display_title">L'école des femmes</h1>
 <h2 class="display_act">Acte II</h2>
 <h3 class="display_scene">Scène 5</h3>
-<div class="char_list">Arnolphe, Agnès.</div>
+<div class="display_char">Arnolphe, Agnès.</div>
 <div class="didas">Exemple de didascalie initiale</div>
 <div class="line"><span class="perso">Arnolphe</span><span class="repliq">La promenade est belle.</span></div>	
 <div class="line"><span class="perso">Agnès</span><span class="repliq">Fort belle.</span></div>	
