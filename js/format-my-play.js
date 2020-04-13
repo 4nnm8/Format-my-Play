@@ -577,7 +577,7 @@ function go() {
 	for (; TREE.nextNode();) {
       setTimeout((function(currentNode) {
        
-	    console.log(toCSS(currentNode))
+	    console.log(toCSS(currentNode.parentNode))
 	   
       }(TREE.currentNode)), 0);
     }
