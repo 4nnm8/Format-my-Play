@@ -477,7 +477,7 @@ select[multiple] {
   word-wrap: break-word;
   overflow-wrap: break-word;*/
 }
-#page.frames .line, #page.frames .char_list, #page.frames .display_title, #page.frames .display_act, #page.frames .display_scene, #page.frames .didas  {
+#page.frames .line, #page.frames .display_char, #page.frames .display_title, #page.frames .display_act, #page.frames .display_scene, #page.frames .didas  {
   border:1px solid #f88;
 }
 #page.frames .line .perso, #page.frames .line .perso-d  {
@@ -499,7 +499,7 @@ select[multiple] {
 #field_infos {
   position: fixed; opacity:0;
   top: 65px; left: calc(50vw + 171px); 
-  transform:translateX(-50%);
+  transform: translateX(-50%);
   min-height: 35px;
   background-color: #67B2E4;
   border: 1px solid rgba(255,255,255,0.5);
@@ -561,4 +561,23 @@ select[multiple] {
 
 #btnFilePDF, #btnFilePrint {
   color:#F9B146
+}
+
+
+
+button[data-descr]:hover::after {
+  content: attr(data-descr);
+  position: absolute;
+  right: 65px;
+  top: inherit;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1;
+  background-color: #67B2E4;
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15),0 2px 2px rgba(0,0,0,0.15),0 4px 4px rgba(0,0,0,0.15),0 8px 8px rgba(0,0,0,0.15);
+  color: #fff;
+  font-size: 16px;
 }

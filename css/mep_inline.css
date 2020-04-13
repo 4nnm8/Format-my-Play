@@ -70,11 +70,11 @@
 .line {
   text-align:left; /* justify ? */
   line-height: 18pt;
-  
 }
 .line::first-letter {
   padding-left: 20pt;
 }
+
 .perso::after {
   content:".  "
 }
@@ -88,3 +88,4 @@
 .repliq .didas {
   margin:0
 }
+
