@@ -36,12 +36,12 @@
 
 .perso, 
 .perso-d,
-.char_list { font-variant: small-caps }
+.display_char { font-variant: small-caps }
 
 .display_title, 
 .display_act, 
 .display_scene, 
-.char_list, 
+.display_char, 
 .perso,
 .perso-d { text-align: center }
 
@@ -58,7 +58,7 @@
 .display_scene {
 	
 }
-.char_list {
+.display_char {
   margin-bottom: 32pt;
 }
 

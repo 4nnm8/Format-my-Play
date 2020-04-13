@@ -39,7 +39,7 @@
 .display_scene, 
 .perso, 
 .perso-d,
-.char_list,
+.display_char,
 .didas { text-transform: uppercase }
 
 .line, .didas { margin-bottom: 20pt}
@@ -64,7 +64,7 @@
 .display_scene {
 	
 }
-.char_list {
+.display_char {
   margin-bottom: 32pt;
 }
 
