@@ -6,6 +6,7 @@
     <title>Format My Play</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/mep_inline.css" id="theme" />
+	
 
   </head>
   <body>
@@ -35,9 +36,9 @@
 		--><div class="main">
           <a href="#"><i class="fa-stream"></i> Mise en page</a>
           <div class="drop mep">
-            <a href="#" id="btnMepInline" title="Une ligne"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie)</i> – Texte de réplique.</a>
-            <a href="#" id="btnMepClassic" title="Deux lignes"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
-            <a href="#" id="btnMepScreenplay" title="Screenplay (à l'américaine)" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
+            <a href="#" id="btnMepInline" data-descr="Une ligne"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie)</i> – Texte de réplique.</a>
+            <a href="#" id="btnMepClassic" data-descr="Deux lignes"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
+            <a href="#" id="btnMepScreenplay" data-descr="Screenplay (à l'américaine)" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
           </div>
         </div><!--
 		--><div class="main">
@@ -90,51 +91,52 @@
     </div>
 	<div class="draggable uno">
 		<div class="draggableheader"></div>
-	    <button type="button" id="btnUndo" class="fa-undo" title="Défaire"></button><!--
-	    --><button type="button" id="btnRedo" class="fa-redo" title="Refaire"></button><br/>
-	    <button type="button" id="btnBold" class="fa-bold" title="Gras"></button><!--
-	    --><button type="button" id="btnItalic" class="fa-italic" title="Italique"></button><br/>
-	    <button type="button" id="btnUnderline" class="fa-underline" title="Souligner"></button><!--
-	    --><button type="button" id="btnStrike" class="fa-strikethrough" title="Barer"></button><br/>
-	   <button type="button" id="btnSubscript" class="fa-subscript" title="Indice"></button><!--
-	    --><button type="button" id="btnSuperscript" class="fa-superscript" title="Exposant"></button><br/>				
-	    <button type="button" id="btnRemoveFormat" class="fa-eraser" title="Supprimer formatage"></button><!--
-	    --><button type="button" id="btnHR" class="fa-hr" title="Ligne horizontale"></button><br/>
-	    <button type="button" id="btnAlignRight" class="fa-align-right" title="Aligner paragraphe à droite"></button><!--
-	    --><button type="button" id="btnAlignLeft" class="fa-align-left" title="Aligner paragraphe à gauche"></button><br/>
-	    <button type="button" id="btnAlignCenter" class="fa-align-center" title="Centrer le paragraphe"></button><!--
-	    --><button type="button" id="btnAlignJustify" class="fa-align-justify" title="Justifier le paragraphe"></button><br/>
-	    <button type="button" id="btnIndent" class="fa-indent" title="Indenter"></button><!--
-	    --><button type="button" id="btnOutdent" class="fa-outdent" title="Désindenter"></button>
+	    <button type="button" id="btnUndo" class="fa-undo" data-descr="Annuler action"></button><!--
+	    --><button type="button" id="btnRedo" class="fa-redo" data-descr="Rétablir action"></button><br/>
+	    <button type="button" id="btnBold" class="fa-bold" data-descr="Gras"></button><!--
+	    --><button type="button" id="btnItalic" class="fa-italic" data-descr="Italique"></button><br/>
+	    <button type="button" id="btnUnderline" class="fa-underline" data-descr="Souligner"></button><!--
+	    --><button type="button" id="btnStrike" class="fa-strikethrough" data-descr="Barer"></button><br/>
+	   <button type="button" id="btnSubscript" class="fa-subscript" data-descr="Indice"></button><!--
+	    --><button type="button" id="btnSuperscript" class="fa-superscript" data-descr="Exposant"></button><br/>				
+	    <button type="button" id="btnRemoveFormat" class="fa-eraser" data-descr="Supprimer formatage"></button><!--
+	    --><button type="button" id="btnHR" class="fa-hr" data-descr="Ligne horizontale"></button><br/>
+	    <button type="button" id="btnAlignRight" class="fa-align-right" data-descr="Aligner paragraphe à droite"></button><!--
+	    --><button type="button" id="btnAlignLeft" class="fa-align-left" data-descr="Aligner paragraphe à gauche"></button><br/>
+	    <button type="button" id="btnAlignCenter" class="fa-align-center" data-descr="Centrer le paragraphe"></button><!--
+	    --><button type="button" id="btnAlignJustify" class="fa-align-justify" data-descr="Justifier le paragraphe"></button><br/>
+	    <button type="button" id="btnIndent" class="fa-indent" data-descr="Indenter"></button><!--
+	    --><button type="button" id="btnOutdent" class="fa-outdent" data-descr="Désindenter"></button>
 	</div>  
 	<div class="draggable dos">
         <div class="draggableheader"></div>
-	    <button type="button" title="Tiret demi-quadratin">&ndash;</button><!--
-	    --><button type="button" title="Tiret quadratin">&mdash;</button><br/>
-	    <button type="button" title="Point d'ironie">&#11822;</button><!--
-	    --><button type="button" title="Point exclarogatif">&#8253;</button><br/>
-	    <button type="button" title="Guillemet ouvrant">&laquo;</button><!--
-	    --><button type="button" title="Guillemet fermant">&raquo;</button><br/>
-	    <button type="button" title="Double guillemet-apostrophe culbuté">&ldquo;</button><!--
-	    --><button type="button" title="Double guillemet-apostrophe">&rdquo;</button><br/>
-	    <button type="button" title="Double guillemet-virgule inférieur">&bdquo;</button><!--
-	    --><button type="button" title="Guillemet-apostrophe culbuté">&lsquo;</button><br/>
-	    <button type="button" title="Guillemet-apostrophe">&rsquo;</button><!--
-	    --><button type="button" title="Guillemet-virgule inférieur">&sbquo;</button><br/>
-	    <button type="button" title="Point médian">&middot;</button><!--
-	    --><button type="button" title="Points de suspension">&hellip;</button><br/>
-		<button type="button" title="a-e entrelacés minuscule">&aelig;</button><!--
-	    --><button type="button" title="o-e entrelacés minuscule">&oelig;</button><br/>
-		<button type="button" title="A-E entrelacés majuscule">&AElig;</button><!--
-	    --><button type="button" title="O-E entrelacés majuscule">&OElig;</button><br/>	
-		<button type="button" title="E accent aigu majuscule">&Eacute;</button><!--
-	    --><button type="button" title="E accent grave majuscule">&Egrave;</button><br/>	
-		<button type="button" title="A accent grave majuscule">&Agrave;</button><!--
-		--><button type="button" title="C cédille majuscule">&Ccedil;</button>
+	    <button type="button" data-descr="Tiret demi-quadratin">&ndash;</button><!--
+	    --><button type="button" data-descr="Tiret quadratin">&mdash;</button><br/>
+	    <button type="button" data-descr="Point d'ironie">&#11822;</button><!--
+	    --><button type="button" data-descr="Point exclarogatif">&#8253;</button><br/>
+	    <button type="button" data-descr="Guillemet ouvrant">&laquo;</button><!--
+	    --><button type="button" data-descr="Guillemet fermant">&raquo;</button><br/>
+	    <button type="button" data-descr="Double guillemet-apostrophe culbuté">&ldquo;</button><!--
+	    --><button type="button" data-descr="Double guillemet-apostrophe">&rdquo;</button><br/>
+	    <button type="button" data-descr="Double guillemet-virgule inférieur">&bdquo;</button><!--
+	    --><button type="button" data-descr="Guillemet-apostrophe culbuté">&lsquo;</button><br/>
+	    <button type="button" data-descr="Guillemet-apostrophe">&rsquo;</button><!--
+	    --><button type="button" data-descr="Guillemet-virgule inférieur">&sbquo;</button><br/>
+	    <button type="button" data-descr="Point médian">&middot;</button><!--
+	    --><button type="button" data-descr="Points de suspension">&hellip;</button><br/>
+		<button type="button" data-descr="a-e entrelacés minuscule">&aelig;</button><!--
+	    --><button type="button" data-descr="o-e entrelacés minuscule">&oelig;</button><br/>
+		<button type="button" data-descr="A-E entrelacés majuscule">&AElig;</button><!--
+	    --><button type="button" data-descr="O-E entrelacés majuscule">&OElig;</button><br/>	
+		<button type="button" data-descr="E accent aigu majuscule">&Eacute;</button><!--
+	    --><button type="button" data-descr="E accent grave majuscule">&Egrave;</button><br/>	
+		<button type="button" data-descr="A accent grave majuscule">&Agrave;</button><!--
+		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button>
 		 
 	</div>
     <script src="js/jspdf.min.js"></script>
+	<script src="js/inline-style.js"></script>
     <script src="js/format-my-play.js"></script>
-	
+
   </body>
 </html>
