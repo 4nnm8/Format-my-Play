@@ -6,8 +6,6 @@
     <title>Format My Play</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/mep_inline.css" id="theme" />
-	
-
   </head>
   <body>
     <div id="container" class="container">
@@ -18,8 +16,8 @@
             <a href="#" id="btnFileNew"><i class="fa-new"></i> Nouveau</a>
             <a href="#" id="btnFileOpen"><i class="fa-open"></i> Ouvrir</a>
             <a href="#" id="btnFileSave"><i class="fa-save"></i> Enregistrer</a>
-            <a href="#" id="btnFilePDF"><i class="fa-pdf"></i> Exporter en PDF</a>
-            <a href="#" id="btnFilePrint"><i class="fa-print"></i> Imprimer</a>
+            <!--<a href="#" id="btnFilePDF"><i class="fa-pdf"></i> Exporter en PDF</a>-->
+            <a href="#" id="btnFilePrint" data-descr="&#9888; Expérimental"><i class="fa-print"></i> Imprimer</a>
             <a href="#" id="btnFileClose"><i class="fa-close"></i> Fermer</a>
           </div>
         </div><!--
@@ -36,8 +34,8 @@
 		--><div class="main">
           <a href="#"><i class="fa-stream"></i> Mise en page</a>
           <div class="drop mep">
-            <a href="#" id="btnMepInline" data-descr="Une ligne"><span style="font-variant:small-caps">Personnage.</span> (<i>didascalie)</i> – Texte de réplique.</a>
-            <a href="#" id="btnMepClassic" data-descr="Deux lignes"><span style="display:block;text-align:center">PERSONNAGE, <i>didascalie</i></span>Texte de réplique.</a>
+            <a href="#" id="btnMepInline" data-descr="Une ligne"><span style="font-variant-caps:small-caps">Personnage</span><span style="font-style:italic">, didascalie</span> – Texte de réplique.</a>
+            <a href="#" id="btnMepClassic" data-descr="Deux lignes"><span style="display:block;text-align:center">PERSONNAGE, <span style="font-style:italic">didascalie</span></span>Texte de réplique.</a>
             <a href="#" id="btnMepScreenplay" data-descr="Screenplay (à l'américaine)" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
           </div>
         </div><!--
@@ -64,7 +62,7 @@
           <span id="field_date"></span>
 		  <div id="wordCounter"></div>
         </div>
-        <div class="cont_persos">
+        <div class="cont_persos" data-descr="CTRL + Click pour sélectionner et désélectionner plusieurs personnages à la fois">
           <i class="fa-persos"></i> <span>Liste des personnages</span>
           <select id="persos" size="8" tabindex="1" multiple="true"></select>
           <button id="btnCharAdd" class="but_persos fa-plus">&nbsp;Ajouter</button><!--
@@ -80,7 +78,7 @@
         </div>
         <br/>
         <button id="btnAddText" tabindex="4">
-          Ajouter le texte<!--<br/><kbd>Shift</kbd> + <kbd>Enter</kbd>-->
+          Ajouter le texte
         </button>
         <br/><br/>
       </section>
@@ -104,9 +102,7 @@
 	    <button type="button" id="btnAlignRight" class="fa-align-right" data-descr="Aligner paragraphe à droite"></button><!--
 	    --><button type="button" id="btnAlignLeft" class="fa-align-left" data-descr="Aligner paragraphe à gauche"></button><br/>
 	    <button type="button" id="btnAlignCenter" class="fa-align-center" data-descr="Centrer le paragraphe"></button><!--
-	    --><button type="button" id="btnAlignJustify" class="fa-align-justify" data-descr="Justifier le paragraphe"></button><br/>
-	    <button type="button" id="btnIndent" class="fa-indent" data-descr="Indenter"></button><!--
-	    --><button type="button" id="btnOutdent" class="fa-outdent" data-descr="Désindenter"></button>
+	    --><button type="button" id="btnAlignJustify" class="fa-align-justify" data-descr="Justifier le paragraphe"></button>
 	</div>  
 	<div class="draggable dos">
         <div class="draggableheader"></div>
@@ -134,9 +130,6 @@
 		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button>
 		 
 	</div>
-    <script src="js/jspdf.min.js"></script>
-	<script src="js/inline-style.js"></script>
     <script src="js/format-my-play.js"></script>
-
   </body>
 </html>
