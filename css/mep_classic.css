@@ -36,7 +36,7 @@
 
 .perso, 
 .perso-d,
-.display_char { font-variant: small-caps }
+.display_char { font-variant-caps: small-caps }
 
 .display_title, 
 .display_act, 
@@ -65,7 +65,7 @@
 .didas { 
   font-style: italic;
   color: #555;
-  font-variant: none
+  font-variant-caps: none
 }
 .line {
   text-align: center;
