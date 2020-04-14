@@ -10,7 +10,7 @@ const inputReplique = document.getElementById("replik"),
       fieldDate = document.getElementById("field_date"),
       elemStyle = document.getElementById("theme");
 
-var SELECTIONRANGE, CURRENTCHARACTER = 0, SHOWFRAMES = false, SHOWCHARMAP = false;
+var SELECTIONRANGE, CURRENTCHARACTER = 0, SHOWFRAMES = false, SHOWCHARMAP = false, SCALE = 1;
 
 const command = function(a,b){
   document.execCommand(a, false, b)
@@ -344,25 +344,33 @@ openFile = function() {
   file.click();
 },
 printFile = function() {
+  if (!fieldPage.textContent.trim()) {
+    info("Document vide : rien à imprimer.");
+    return false
+  }
   var height = window.innerHeight,
       width = height*0.7,
       paper = window.open("_blank", "PRINT", "height="+height+",width="+width),
       cssFile = elemStyle.href.replace(/.+\/([a-z_]+.css$)/,"$1");
-  /*https://ann-mb.github.io/Format-my-Play/*/
+
   paper.document.write("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + inputTitle.value + 
-  "</title><link rel=\"stylesheet\" href=\"css/" + cssFile + "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");
-  paper.document.close(); 
+  "</title><link rel=\"stylesheet\" href=\"https://ann-mb.github.io/Format-my-Play/css/" + cssFile + "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");
+  setTimeout(function() {
+  //paper.document.close(); 
   paper.focus();
   paper.print();
+  },3000)
   return true;
 },
 saveDiv = function() {
-  var doc = new jsPDF(),
-	  cssFile = elemStyle.href.replace(/.+\/([a-z_]+.css$)/,"$1");
+	
+	
+
+	  /*cssFile = elemStyle.href.replace(/.+\/([a-z_]+.css$)/,"$1");
   doc.addHTML("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + 
   inputTitle + "</title><link rel=\"stylesheet\" href=\"css/" + cssFile +
-  "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");
-  doc.save(fileName()+".pdf");
+  "\" type=\"text/css\" /></head><body>" + fieldPage.innerHTML + "</body></html>");*/
+
 },
 wordCounter = function() {
   var num = fieldPage.innerText.match(/[a-zà-öù-ÿœ-]+/gi);
@@ -404,7 +412,6 @@ dragElement = function(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
-    // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.addEventListener("mouseup", closeDragElement);
@@ -414,12 +421,10 @@ dragElement = function(elmnt) {
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
-
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
   }
@@ -435,7 +440,62 @@ selectClickedChar = function(f) {
   var range = document.createRange();
   range.selectNodeContents(f);
   selection.addRange(range);
+},
+toInlineCSS = function(element) {
+  var _context, _context2, each = Array.prototype.forEach;
+  if (!element) {
+    throw new Error("No element specified.");
+  }
+  (_context = element.children, each).call(_context, function (child) {
+	toInlineCSS(child);
+  });
+  var computedStyle = getComputedStyle(element);
+  (_context2 = computedStyle, each).call(_context2, function (property) {
+    element.style[property] = computedStyle.getPropertyValue(property);
+  });
+  //element.className=""
+},
+getHTMLOfSelection = function() {
+  var range;
+  if (document.selection && document.selection.createRange) {
+    range = document.selection.createRange();
+    return range.htmlText;
+  } else if (window.getSelection) {
+    var selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      range = selection.getRangeAt(0);
+      var clonedSelection = range.cloneContents();
+      var div = document.createElement('div');
+      div.appendChild(clonedSelection);
+      return div.innerHTML;
+    }
+    else {
+      return '';
+    }
+  }
+  else {
+    return '';
+  }
 }
+document.addEventListener('copy', function(e){
+  
+  toInlineCSS(fieldPage, {
+    recursive: true,
+    properties: ["font-size", "text-decoration", "font-variant-caps", "text-align", "margin", "margin-bottom", "font-style", "color", "text-align", "line-height", "padding-left", "content", "display", "white-space"]
+  });
+ 
+  e.preventDefault();
+  e.clipboardData.setData("text/plain", getHTMLOfSelection());
+  e.clipboardData.setData("text/html", getHTMLOfSelection());
+  
+  
+  var a = fieldPage.querySelectorAll("*"); 
+  
+  for (var i = 0 ; i < a.length ; i++) {
+     a[i].removeAttribute("style");
+  }
+  fieldPage.setAttribute("style", "");
+});
 
 window.addEventListener("load", clearAllInputs, fieldPage.focus(), setSelection());
 
@@ -465,24 +525,14 @@ document.addEventListener("keyup", function(){
       reg = /\s\(([a-zà-öù-ÿœ\s',.:!?-]+)\)$/gi
   if (par.className == "perso" && reg.test(par.innerHTML)) {
     par.className = "perso-d";
-	
 	var cont = par.innerHTML.match(reg)[0].replace(reg,"$1");
-	
-	par.innerHTML = par.innerHTML.replace(reg,"")
-
+	par.innerHTML = par.innerHTML.replace(reg,"");
 	var ladida = document.createElement("span"),
-	
         texte = document.createTextNode(cont);
-		
 	ladida.appendChild(texte);
-	
 	ladida.setAttribute("class", "didas"); 
-	
     par.parentNode.insertBefore(ladida, par.parentNode.getElementsByClassName("repliq")[0]);
-	
     selectAll(ladida.nextSibling);    
-	
-	console.log(texte)
   }
 }, false);
 
@@ -496,10 +546,44 @@ document.addEventListener("keydown", function(e) {
   } else if (9 == e.keyCode && !par.closest("#page")) { /* CHECK THIS */
     e.preventDefault();
   }
-
   if (/perso(-d)?/.test(par.className) && 0 < getSelectCharacters().length && SELECTIONRANGE.startOffset !== SELECTIONRANGE.endOffset) {
     if (38 == e.keyCode) e.preventDefault(), whichChar("up");
     if (40 == e.keyCode) e.preventDefault(), whichChar("down");
+  }
+  
+  if (e.ctrlKey) {
+	switch(e.keyCode) {
+      case 54: case 109: e.preventDefault(); 
+        if (SCALE - 0.2 <= 0) {
+          console.log("Trop petit!")
+		} else {
+          SCALE = SCALE - 0.1; 
+          fieldPage.style.transform = "scale("+ SCALE +")";
+        }; break;
+      case 61: case 107: e.preventDefault(); 
+        let availableWitdh = document.getElementsByClassName("right")[0].clientWidth,
+            fieldPageWidth = fieldPage.offsetWidth;
+        if ((fieldPageWidth*(SCALE + 0.1)) > availableWitdh) {
+          console.log("Ca dépasse!")
+        } else {
+          SCALE = SCALE + 0.1; 
+          fieldPage.style.transform = "scale("+ SCALE +")";
+        }; break;
+        case 96: case 48: e.preventDefault();
+          SCALE = 1; fieldPage.style.transform =  "scale(1)";
+          break;
+		case 78: e.preventDefault(); newFile();break;
+		case 79: e.preventDefault(); openFile();break;
+		case 80: e.preventDefault(); printFile();break;
+		case 83: e.preventDefault(); saveFile();break;
+		case 66: case 71: e.preventDefault(); command("bold");break;
+		case 73: e.preventDefault(); command("italic");break;
+		case 85: e.preventDefault(); command("underline");break;
+		case 76: e.preventDefault(); command("justifyLeft");break;
+		case 69: e.preventDefault(); command("justifyCenter");break;
+		case 82: e.preventDefault(); command("justifyRight");break;
+		case 74: e.preventDefault(); command("justifyFull");break;
+    }
   }
 }, false);
 
@@ -557,11 +641,5 @@ document.addEventListener("click", function(e) {
 dragElement(document.getElementsByClassName("draggable")[0]);
 dragElement(document.getElementsByClassName("draggable")[1]);
 
-function go() {
-  computedStyleToInlineStyle(fieldPage, {
-    recursive: true,
-    properties: ["font-size", "text-decoration","font-variant", "text-align", "margin", "margin-bottom", "font-style", "color", "text-align", "line-height", "padding-left", "content", "display", "white-space"]
-  });
-}
 
 
