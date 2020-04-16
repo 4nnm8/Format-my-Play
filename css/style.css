@@ -14,7 +14,7 @@
   src: url("../fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.woff") format("woff"), url("../fonts/fa-solid-900.ttf") format("truetype"), url("../fonts/fa-solid-900.svg#fontawesome") format("svg"); 
 }
 [hidden] {
-    display: none;
+  display: none;
 }
 html, body, div, span, p,
 a, kbd, label, nav, 
@@ -58,31 +58,28 @@ button,
 input,
 select,
 textarea {
-    margin: 0;
-    vertical-align: baseline; 
-    *vertical-align: middle; 
+  margin: 0;
+  vertical-align: baseline; 
+  *vertical-align: middle; 
 }
 button, input {
-    line-height: normal;
+  line-height: normal;
 }
 button, select {
-    text-transform: none;
+  text-transform: none;
 }
-
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
-
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
-
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
 #btnAddText, .cont_persos, .but_persos, nav { font-family: lemonmilk_lightregular }
 
@@ -93,7 +90,6 @@ body, input, #replik, #persos, #field_date { font-family: sans-serif }
 #persos, .but_persos, #btnAddText, kbd, #didasc + label, #didasc, #replik {
   font-size: 1.6rem;
 }
-
 
 .container {
   display: grid;
@@ -196,8 +192,14 @@ nav a {
   border-radius: 5px;
 }
 .draggable.uno  {top:80px;}
-.draggable.dos  {top:350px;visibility:hidden;}
-.draggableheader {cursor:move;height:13px;background:#77c;border-radius: 5px 5px 0 0; margin-top: -2px}
+.draggable.dos  {top:350px; visibility:hidden;}
+.draggableheader { 
+  cursor: move;
+  height: 13px;
+  background: #77c;
+  border-radius: 5px 5px 0 0;
+  margin-top: -2px
+}
 
 .draggable button, #btnFullscreen  {
   font-size: 18px;
@@ -448,27 +450,17 @@ select[multiple] {
   margin-top:5px
 }
 
-
 /******************************* LEFT PANNEL [END] *******************************/
 
-/****************************** PAGE CENTER [START] ******************************/
 .right {
   position: relative;
   overflow: auto;
   background: radial-gradient(circle, #ededed 0%, #90ccf4 100%);
 }
-.right::-webkit-scrollbar {
-  background: #F3D250;
-}
-.right::-webkit-scrollbar-track {
-  background: #90ccf4; /*fond*/
-}
-.right::-webkit-scrollbar-thumb {
-  background:#F3D250; /*barre*/
-} 
-.right::-webkit-scrollbar-button {
-  background:#f78888; /*fleches*/
-}
+.right::-webkit-scrollbar { background: #F3D250 }
+.right::-webkit-scrollbar-track { background: #90ccf4 }
+.right::-webkit-scrollbar-thumb { background:#F3D250 } 
+.right::-webkit-scrollbar-button { background:#f78888 }
 
 #page {
   background: #fff url(../paper.png); 
@@ -740,7 +732,8 @@ a[data-descr]:hover::after {
 .inline_layout .line::first-letter { padding-left: 20pt }
 .classic_layout .repliq {
   text-align: left;
-  white-space: pre
+  white-space: pre;
+  padding-left: 80pt;
 }
 
 .screenplay_layout .title, 
@@ -780,9 +773,10 @@ a[data-descr]:hover::after {
     height: 297mm;       
   }
 
-  #page {
+  body {
     margin: 0;
     border: 0;
+	padding: 10%;
 	overflow: hidden;
 	box-sizing: border-box;
 	box-shadow:0;
