@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>Format My Play</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/mep_inline.css" id="theme" />
   </head>
   <body>
     <div id="container" class="container">
@@ -44,6 +43,7 @@
           <div class="drop">
             <a href="#" id="btnShowCharmap">Caractères spéciaux</a>
             <a href="#" id="btnShowFrames">Délimitation zones de texte</a>
+			<!--<a href="#" id="btnShowLinenum">Lignes numérotées</a>-->
           </div>
         </div><!--
         --><div class="main">
@@ -84,7 +84,7 @@
       </section>
       <section class="right">
         <div id="field_infos">&nbsp;</div>
-        <div id="page" contenteditable="true"></div>
+        <div id="page" contenteditable="true" class="classic_layout"></div>
       </section>
     </div>
 	<div class="draggable uno">
@@ -127,9 +127,14 @@
 		<button type="button" data-descr="E accent aigu majuscule">&Eacute;</button><!--
 	    --><button type="button" data-descr="E accent grave majuscule">&Egrave;</button><br/>	
 		<button type="button" data-descr="A accent grave majuscule">&Agrave;</button><!--
-		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button>
+		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button><br/>
+		<button type="button" data-descr="Triple astérisme">&#8258;</button><!--
+		--><button type="button" data-descr="Puce">&bull;</button>
 		 
 	</div>
+
     <script src="js/format-my-play.js"></script>
+	
+	
   </body>
 </html>
