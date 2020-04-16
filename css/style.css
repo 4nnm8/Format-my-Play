@@ -195,9 +195,9 @@ nav a {
   left: calc(100vw - 100px);
   border-radius: 5px;
 }
-.draggable.uno  {top:70px;}
+.draggable.uno  {top:80px;}
 .draggable.dos  {top:350px;visibility:hidden;}
-.draggableheader {cursor:move;height:13px;background:#555;border-radius: 5px 5px 0 0 }
+.draggableheader {cursor:move;height:13px;background:#77c;border-radius: 5px 5px 0 0; margin-top: -2px}
 
 .draggable button, #btnFullscreen  {
   font-size: 18px;
@@ -242,7 +242,7 @@ nav a {
 .fa-print:before{ content:"\f02f" }
 .fa-font:before{ content:"\f031" }
 .fa-bold:before{ content:"\f032" }
-.fa-eraser:before{ content:"\f12d" }
+.fa-eraser:before{ content:"\f87d" }
 .fa-italic:before{ content:"\f033" }
 .fa-superscript:before{ content:"\f12b" }
 .fa-subscript:before{ content:"\f12c" }
@@ -402,13 +402,16 @@ select[multiple] {
     6px 6px 0 0 #d98e20;
   cursor:pointer;
 }
-#btnAddText:hover{
+#btnAddText:hover, #btnAddText:focus{
   box-shadow:inset 0 -3px 0 0 rgba(0,0,0,.2),
     1px 1px 0 0 #d98e20,
     2px 2px 0 0 #d98e20,
     3px 3px 0 0 #d98e20;
 	margin-top:1px;
 	margin-left:1px;
+}
+#btnAddText:focus{
+  border: 1px dotted #000
 }
 .left select, #replik, #add {
   width: 100%;
@@ -473,15 +476,31 @@ select[multiple] {
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
   height: auto;  min-height: 100vh;
   margin: 10% auto;
+  white-space: normal;
+  overflow: hidden;
+  transform-origin: 50% 0%;
+  word-break: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   hyphens: manual;
   -moz-hyphens: manual;
-  white-space: normal;
-  transform-origin: 50% 0%;
-  /*word-break: break-all;
-  word-wrap: break-word;
-  overflow-wrap: break-word;*/
-
+  /*counter-reset: line;*/
 }
+
+/*
+#page .line:nth-of-type(5n + 2):before {
+  content: counter(line);
+  position: absolute;
+  top:inherit; left:0;
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  padding: 0 .5em;
+  margin-right: .5em;
+  color: #888
+}
+#page .line  {
+	counter-increment: line 1;
+}*/
 /*
 #page:before, #page:after {
   content: "";
@@ -505,26 +524,8 @@ select[multiple] {
   transform: rotate(1.4deg);
   z-index: 2
 }
-*/
+*/	
 
-#page.frames .line, #page.frames .display_char, #page.frames .display_title, #page.frames .display_act, #page.frames .display_scene, #page.frames .didas  {
-  border:1px solid #f88;
-}
-#page.frames .line .perso, #page.frames .line .perso-d  {
-  background-color: rgb(255,255,0,0.2);
-}
-#page.frames .line .didas {
-  background-color: rgb(255,0,255,0.2);
-}
-#page.frames .repliq {
-  background-color: rgb(0,255,0,0.2);
-}
-[contenteditable][placeholder]:empty:before {
-  content: attr(placeholder);
-  position: absolute;
-  color: gray;
-  background-color: transparent;
-}
 
 #field_infos {
   position: fixed; opacity:0;
@@ -543,6 +544,7 @@ select[multiple] {
   padding-right:50px;
   transition: opacity .5s ease;
   cursor: pointer;
+  z-index: 9999;
 }
 #field_infos::after {
   content:"\2715";
@@ -620,4 +622,173 @@ a[data-descr]:hover::after {
   top: 0; left: 312px;
   max-width: 250px;
   font-family: sans-serif;
+}
+[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
+  background-color: transparent;
+}
+/********************************************************/
+/************************ LAYOUTS ***********************/
+/********************************************************/
+#page.frames .line, #page.frames .charlist, #page.frames .title, #page.frames .act, #page.frames .scene, #page.frames > .didas-bl  {
+  border:1px solid #f88;
+}
+#page.frames .perso {
+  background-color: rgb(255,255,0,0.4);
+}
+#page.frames .line .didas {
+  background-color: rgb(255,0,255,0.25);
+}
+#page.frames .repliq {
+  background-color: rgb(0,255,0,0.15);
+}
+
+.line span:not([class]) {
+  display: none;
+}
+.classic_layout {
+  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+  font-size: 16pt;
+  width: 75%;
+  padding: 10%
+}
+.inline_layout {
+  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+  font-size: 16pt;
+  width: 75%;
+  padding: 10%
+}
+.screenplay_layout {
+  font-family: "Courier Prime", "Courier", "Courier Final Draft", "Courier New";
+  font-size: 14pt;
+  width: 80%;
+  padding: 10%
+}
+.classic_layout .title, 
+.classic_layout .act, 
+.classic_layout .scene, 
+.classic_layout .charlist, 
+.classic_layout .line,
+.inline_layout .title, 
+.inline_layout .act, 
+.inline_layout .scene, 
+.inline_layout .charlist,
+.screenplay_layout .title { 
+  text-align: center 
+}
+
+.inline_layout .perso, 
+.inline_layout .charlist,
+.classic_layout .charlist {
+  font-variant: small-caps;
+}
+.inline_layout .line:first-letter,
+.classic_layout .line .perso,
+.screenplay_layout .perso,
+.screenplay_layout .didas,
+.screenplay_layout .title, 
+.screenplay_layout .act, 
+.screenplay_layout .scene, 
+.screenplay_layout .perso, 
+.screenplay_layout .charlist,
+.screenplay_layout .didas {
+  text-transform: uppercase;
+}
+.inline_layout .didas, 
+.classic_layout .didas,
+.inline_layout .didas-bl, 
+.classic_layout .didas-bl {
+  font-style: italic;
+  color: #333;
+}
+.classic_layout .line, 
+.classic_layout .didas-bl,
+.inline_layout .didas-bl,
+.screenplay_layout .line,
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act,
+.charlist { 
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.classic_layout .didas span:first-child,
+.inline_layout .didas span:first-child,
+.inline_layout .didas + span + span,
+.inline_layout .perso + span:not([class]),
+.inline_layout .perso + span:not([class]) + span,
+.screenplay_layout .line .didas span:nth-last-child(-n+2) {
+  display: inline;
+  user-select:text;
+}
+.charlist,
+.classic_layout .line, 
+.classic_layout .didas-bl,
+.classic_layout .repliq,
+.inline_layout .didas-bl,
+.screenplay_layout .line,
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act,
+.screenplay_layout .didas, 
+.screenplay_layout .repliq {
+  display: block
+}
+.inline_layout .line { line-height: 1.1em }
+.inline_layout .line::first-letter { padding-left: 20pt }
+.classic_layout .repliq {
+  text-align: left;
+  white-space: pre
+}
+
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act {
+  font-weight: inherit;
+  font-size: inherit;
+}
+.screenplay_layout .title { text-decoration: underline }
+.screenplay_layout .line {
+  width: 75%;
+  margin-left: 17%;
+  margin-right: 17%;
+  clear: both;
+}
+.screenplay_layout .perso {
+  margin-right: 1in;
+  margin-left: 25%;
+}
+.screenplay_layout .perso + .didas {
+  margin-left: 20%
+}
+.screenplay_layout .repliq {
+  max-width: 70%;
+  margin-left: 15%;
+  white-space: pre-wrap
+}
+
+@page {
+  size: A4 portrait;
+  margin: 119mm 119mm 132mm 3.67mm; /*  margin: 350mm 280mm 370mm 420mm; */
+}
+
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;       
+  }
+
+  #page {
+    margin: 0;
+    border: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+	box-shadow:0;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
 }
