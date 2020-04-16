@@ -13,6 +13,8 @@ var SELECTIONRANGE, CURRENTCHARACTER = 0, SHOWFRAMES = false, SHOWCHARMAP = fals
 
 const command = function(a,b){
   document.execCommand(a, false, b)
+  var par = caretParent();
+  
 },
 isItEmpty = function() {
   var a = fieldPage.textContent.trim(),
@@ -79,13 +81,7 @@ wordCounter = function() {
   var num = fieldPage.innerText.match(/[a-zà-öù-ÿœ-]+/gi);
   if (num) document.getElementById("wordCounter").innerText = "Compteur de mots : " + num.length
 }, 
-whichChar = function(dir) {
-  var lgt = getSelectCharacters().length;
-  "up" == dir && (0 == CURRENTCHARACTER ? CURRENTCHARACTER = lgt - 1 : CURRENTCHARACTER--);
-  "down" == dir && (CURRENTCHARACTER == lgt - 1 ? CURRENTCHARACTER = 0 : CURRENTCHARACTER++);
-  caretParent().innerHTML = getSelectCharacters()[CURRENTCHARACTER].text
-  selectAll(caretParent())
-},
+
 switchFrames = function() {
   if (!SHOWFRAMES) { 
     fieldPage.classList.add("frames");
@@ -100,11 +96,11 @@ switchFrames = function() {
 switchCharmap = function() {
   if (!SHOWCHARMAP) { 
     document.getElementsByClassName("draggable")[1].style.visibility = "visible";
-	document.getElementById("btnShowCharmap").innerText = "Cacher les caractères spéciaux";
+	document.getElementById("btnShowCharmap").innerText = "Cacher menu caractères spéciaux";
 	SHOWCHARMAP = true;
   } else {
     document.getElementsByClassName("draggable")[1].style.visibility = "hidden";
-	document.getElementById("btnShowCharmap").innerText = "Caractères spéciaux";
+	document.getElementById("btnShowCharmap").innerText = "Menu caractères spéciaux";
 	SHOWCHARMAP = false;	  
   }
 },
@@ -123,12 +119,29 @@ selectAll = function(a) {
   sel.removeAllRanges();
   sel.addRange(range);
 },
+whichChar = function(dir) {
+  var lgt = getSelectCharacters().length;
+  "up" == dir && (0 == CURRENTCHARACTER ? CURRENTCHARACTER = lgt - 1 : CURRENTCHARACTER--);
+  "down" == dir && (CURRENTCHARACTER == lgt - 1 ? CURRENTCHARACTER = 0 : CURRENTCHARACTER++);
+  caretParent().innerHTML = getSelectCharacters()[CURRENTCHARACTER].text
+  selectAll(caretParent())
+},
 addLineDirect = function () {
   var line = document.createElement("div"),
       par = caretParent(),
-	  r1 = par.closest(".line, .didas, .title, .act, .scene, .charlist");
+	  r1 = par.closest(".line, .didas, .title, .act, .scene, .charlist"),
+	  cLength = getSelectCharacters().length,
+	  charac;
+	  
+  if (cLength == 0) {
+	charac = "Personnage"  
+  } else if (cLength == 2) {
+	0 == CURRENTCHARACTER ? (charac=getSelectCharacters()[0].text, CURRENTCHARACTER=1) : (charac=getSelectCharacters()[1].text, CURRENTCHARACTER=0);
+  } else {
+	charac = getSelectCharacters()[CURRENTCHARACTER].text
+  }
   line.setAttribute("class", "line"); 
-  line.innerHTML = "<span class=\"perso\">Personnage</span><span>.</span><span> – </span><span class=\"repliq\">Texte de réplique</span>"
+  line.innerHTML = "<span class=\"perso\">"+ charac +"</span><span>.</span><span> – </span><span class=\"repliq\">Texte de réplique</span>"
   if (r1) SELECTIONRANGE.setStartAfter(r1), SELECTIONRANGE.setEndAfter(r1); 
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(SELECTIONRANGE);
@@ -231,7 +244,7 @@ insertDidasMenu = function() {
   inputReplique.select();
 },
 insertDidasDirect = function() {
-  insertText("<div class=\"didas\">Entrez votre bloc de didascalie</div>");
+  insertText("<div class=\"didas-bl\">Entrez votre bloc de didascalie</div>");
   selectAll(caretParent())
 },
 insertCharlist = function() {
@@ -303,7 +316,7 @@ saveFile = function() {
   for (let i = 0; i < inputPersos.length; i++) {
     charList.push(inputPersos.options[i].text);
   }
-  var entry = time() + "|" + inputTitle.value + "|" + inputAuthor.value + LAYOUT + "\n" + charList + "\n" + fieldPage.innerHTML,
+  var entry = time() + "|" + inputTitle.value + "|" + inputAuthor.value  + "|" + LAYOUT + "\n" + charList + "\n" + fieldPage.innerHTML,
       textToBLOB = new Blob([entry], { type: "text/plain" }),
       newLink = document.createElement("a");
   newLink.download = fileName()+".fmp";
@@ -429,7 +442,16 @@ window.addEventListener("beforeunload", function(e) {
   }
 });
 
-inputPersos.addEventListener("change", function(){ CURRENTCHARACTER = 0 },false);
+inputPersos.addEventListener("change", function(){ 
+
+  CURRENTCHARACTER = 0;
+  if (getSelectCharacters().length == 1) {
+	document.getElementById("character").value = getSelectCharacters()[0].text;
+  } else {
+	document.getElementById("character").value = "";
+  }
+
+},false);
 
 fieldPage.addEventListener("keyup", function() { setSelection(); wordCounter() }, false);
 
@@ -616,3 +638,11 @@ document.addEventListener("click", function(e) {
 
 dragElement(document.getElementsByClassName("draggable")[0]);
 dragElement(document.getElementsByClassName("draggable")[1]);
+
+/*
+par.innerHTML = par.innerHTML.replace(/\u0020([\u2013\u2014])\u0020/gm,"\u00a0$1\u00a0")
+                               .replace(/\u0020([?;!:\u2e2e\u203d\u00bb])/gm,"\u00a0$1")
+                               .replace(/\u00ab\u0020/gm,"\u00ab\u00a0")
+                               .replace(/\u00ab([a-zà-öù-ÿœ])/gmi,"\u00ab\u00a0$1")
+                               .replace(/([a-zà-öù-ÿœ.,!?])\u00bb/gmi,"$1\u00a0\u00bb");
+							   */
