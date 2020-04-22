@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+/* I know, my CSS file is a mess right now */
+
 @font-face {
   font-family: lemonmilk_lightregular;
   font-weight: normal;
@@ -85,7 +87,13 @@ input::-moz-focus-inner {
 
 body, input, #replik, #persos, #field_date { font-family: sans-serif }
 
-#input_check_didas + label:before, #input_check_didas:checked + label:before, #field_date:before, #field_infos::before {font-family: 'FontAwesome' }
+#input_check_didas + label:before, #input_check_didas:checked + label:before, #field_date:before, #field_infos::before, .draggable button::before, .but_persos::before, .main i, .cont_persos i, #btnFullscreen, #btnZoomIn, #btnZoomOut  {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 #persos, .but_persos, #btnAddText, kbd, #didasc + label, #didasc, #replik {
   font-size: 1.6rem;
@@ -100,9 +108,8 @@ body, input, #replik, #persos, #field_date { font-family: sans-serif }
 }
 
 nav { grid-area: 1 / 1 / 2 / 4 }
-section { display: block }
-section .left { grid-area: 2 / 1 / 3 / 2 }
-section .right  { grid-area: 2 / 2 / 3 / 3 }
+.left { display: block; grid-area: 2 / 1 / 3 / 2 }
+.right  { display: block; grid-area: 2 / 2 / 3 / 3 }
 
 kbd {
   display: inline-block;
@@ -124,10 +131,10 @@ nav {
   display: block;
   background: #333;
   box-shadow: -4px 2px 3px 0px rgba(0,0,0,0.5);
-  z-index:5;
+  z-index:1000;
 }
 nav a {
-  color: #eee;
+	
   text-decoration: none;
   font-size: 20px;
   text-transform: uppercase;
@@ -138,8 +145,14 @@ nav a {
   height: 100%;
   width: auto;
   display: inline-block;
-  padding: 7px 10px 0 10px;
+  padding: 0px 10px 0 10px;
   cursor: pointer;
+}
+.main a {
+  display:inline-block;
+  height:100%;
+  color: #efefef;
+  padding-top:7px;
 }
 .drop {
   display:none;
@@ -201,7 +214,7 @@ nav a {
   margin-top: -2px
 }
 
-.draggable button, #btnFullscreen  {
+.draggable button, #btnFullscreen, #btnZoomIn, #btnZoomOut {
   font-size: 18px;
   width: 30px;
   height: 30px;
@@ -214,9 +227,7 @@ nav a {
   border-bottom: 1px solid #aaa;
   padding: 4px
 }
-.draggable button:nth-child(n) {
 
-}
 .draggable button:nth-of-type(odd) {
   border-right: 1px solid #aaa
 }
@@ -227,20 +238,25 @@ nav a {
   color: #555;
   background-color: #efefef;
 }
-.draggable button::before, .but_persos::before, .main i, .cont_persos i, #btnFullscreen {
+.draggable button::before, .but_persos::before, .main i, .cont_persos i, #btnFullscreen, #btnZoomIn, #btnZoomOut {
   display: inline-block;
-  font-family: 'FontAwesome';
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+#btnFullscreen, #btnZoomIn, #btnZoomOut  {
+  position: absolute;
+  border:0;
+  top: 2px;
 }
 #btnFullscreen {
-  position: absolute;
   right:4px;
-  border:0;
-  top: 2px
 }
+#btnZoomIn {
+  right:34px;	
+}
+#btnZoomOut {
+  right:64px;	
+}
+.fa-zoomin:before{ content:"\f010" }
+.fa-zoomout:before{ content:"\f00e" }
 .fa-print:before{ content:"\f02f" }
 .fa-font:before{ content:"\f031" }
 .fa-bold:before{ content:"\f032" }
@@ -268,7 +284,7 @@ nav a {
 .fa-question-circle:before { content:"\f059" } 
 .fa-file:before { content:"\f15c" }
 .fa-stream:before { content:"\f550" }
-.fa-insert:before { content:"\f2f6" }
+.fa-insert:before { content:"\f56f" }
 .fa-paragraph:before { content:"\f1dd" }
 .fa-new:before { content:"\f15b" } 
 .fa-open:before { content:"\f07c" } 
@@ -280,6 +296,9 @@ nav a {
 .fa-pencil:before { content:"\f5ad" }
 .fa-pdf:before { content:"\f1c1" }
 .fa-affichage:before { content:"\f302" }
+.fa-copy:before { content:"\f0c5" }
+.fa-define:before { content:"\f02b" }
+
 #field_date:before { content:"\f073\00000a"}
 
 /*********************************** MENU [END] ***********************************/
@@ -342,8 +361,8 @@ nav a {
   padding: 5px;
   font-variant-caps: small-caps;
   overflow:hidden;
+  -ms-overflow-style: none;
   scrollbar-width: none;
-    -ms-overflow-style: none;
   background-image: none;
 }
 #persos::-webkit-scrollbar { 
@@ -461,13 +480,15 @@ select[multiple] {
 .right::-webkit-scrollbar-track { background: #90ccf4 }
 .right::-webkit-scrollbar-thumb { background:#F3D250 } 
 .right::-webkit-scrollbar-button { background:#f78888 }
-
 #page {
-  background: #fff url(../paper.png); 
+  background: #fff url(../paper.png);   
   position: relative;  
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-  height: auto;  min-height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
+  width: 80%; min-height: 100vh;
   margin: 10% auto;
+  padding: 10%;
+  margin-left: 10%;
   white-space: normal;
   overflow: hidden;
   transform-origin: 50% 0%;
@@ -476,48 +497,21 @@ select[multiple] {
   overflow-wrap: break-word;
   hyphens: manual;
   -moz-hyphens: manual;
-  /*counter-reset: line;*/
+  counter-reset: line;
+  text-overflow: ellipsis;
 }
 
-/*
-#page .line:nth-of-type(5n + 2):before {
+.count .line, .count .line br {
+  counter-increment: line 1;
+}
+
+.count .line:before  {
   content: counter(line);
   position: absolute;
-  top:inherit; left:0;
+  top: inherit; left:5%;
   display: inline-block;
-  border-right: 1px solid #ddd;
-  padding: 0 .5em;
-  margin-right: .5em;
-  color: #888
+  color: #888;
 }
-#page .line  {
-	counter-increment: line 1;
-}*/
-/*
-#page:before, #page:after {
-  content: "";
-  height: 100vh;
-  position: absolute;
-  width: 100%;
-}
-#page:before {
-  background: #fafafa;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
-  left: -5px;
-  top: 4px;
-  transform: rotate(-2.5deg);
-  z-index: 1;
-}
-#page:after {
-  background: #f6f6f6;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
-  right: -3px;
-  top: 1px;
-  transform: rotate(1.4deg);
-  z-index: 2
-}
-*/	
-
 
 #field_infos {
   position: fixed; opacity:0;
@@ -536,7 +530,8 @@ select[multiple] {
   padding-right:50px;
   transition: opacity .5s ease;
   cursor: pointer;
-  z-index: 9999;
+  pointer-events:none;
+  z-index: 500;
 }
 #field_infos::after {
   content:"\2715";
@@ -589,7 +584,6 @@ select[multiple] {
   content: attr(data-descr);
   position: absolute;
   width: auto;
- 
   border-radius: 4px;
   padding: 8px;
   z-index: 9999;
@@ -612,8 +606,10 @@ a[data-descr]:hover::after {
 }
 .cont_persos[data-descr]:hover::after {
   top: 0; left: 312px;
-  max-width: 250px;
+  overflow:hidden;
   font-family: sans-serif;
+  white-space: pre;
+  word-wrap: break-word;
 }
 [contenteditable][placeholder]:empty:before {
   content: attr(placeholder);
@@ -640,22 +636,24 @@ a[data-descr]:hover::after {
 .line span:not([class]) {
   display: none;
 }
+body .classic_layout, body .inline_layout, body .screenplay_layout {
+  overflow: auto;
+  margin: initial;
+  padding: initial;
+}
 .classic_layout {
   font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
   font-size: 16pt;
-  width: 75%;
   padding: 10%
 }
 .inline_layout {
   font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
   font-size: 16pt;
-  width: 75%;
   padding: 10%
 }
 .screenplay_layout {
   font-family: "Courier Prime", "Courier", "Courier Final Draft", "Courier New";
   font-size: 14pt;
-  width: 80%;
   padding: 10%
 }
 .classic_layout .title, 
@@ -703,8 +701,7 @@ a[data-descr]:hover::after {
 .screenplay_layout .scene, 
 .screenplay_layout .act,
 .charlist { 
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: 1em 0 1em 0;
 }
 .classic_layout .didas span:first-child,
 .inline_layout .didas span:first-child,
@@ -726,14 +723,14 @@ a[data-descr]:hover::after {
 .screenplay_layout .act,
 .screenplay_layout .didas, 
 .screenplay_layout .repliq {
-  display: block
+  display: block;
 }
 .inline_layout .line { line-height: 1.1em }
-.inline_layout .line::first-letter { padding-left: 20pt }
+.inline_layout .line { text-indent: 20pt }
 .classic_layout .repliq {
   text-align: left;
-  white-space: pre;
-  padding-left: 80pt;
+  white-space: pre-wrap;
+  padding: 0 0 0 80pt;
 }
 
 .screenplay_layout .title, 
@@ -750,15 +747,14 @@ a[data-descr]:hover::after {
   clear: both;
 }
 .screenplay_layout .perso {
-  margin-right: 1in;
-  margin-left: 25%;
+  margin: 0 1in 0 25%;
 }
 .screenplay_layout .perso + .didas {
-  margin-left: 20%
+  margin: 0 0 0 20%
 }
 .screenplay_layout .repliq {
   max-width: 70%;
-  margin-left: 15%;
+  margin: 0 0 0 15%;
   white-space: pre-wrap
 }
 
@@ -779,7 +775,7 @@ a[data-descr]:hover::after {
 	padding: 10%;
 	overflow: hidden;
 	box-sizing: border-box;
-	box-shadow:0;
+	box-shadow:unset;
     width: initial;
     min-height: initial;
     background: #fff;
