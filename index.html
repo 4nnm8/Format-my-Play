@@ -15,8 +15,8 @@
             <a href="#" id="btnFileNew"><i class="fa-new"></i> Nouveau</a>
             <a href="#" id="btnFileOpen"><i class="fa-open"></i> Ouvrir</a>
             <a href="#" id="btnFileSave"><i class="fa-save"></i> Enregistrer</a>
-            <!--<a href="#" id="btnFilePDF"><i class="fa-pdf"></i> Exporter en PDF</a>-->
-            <a href="#" id="btnFilePrint" data-descr="&#9888; Expérimental"><i class="fa-print"></i> Imprimer</a>
+			<!--<a href="#" id="btnFilePDF"><i class="fa-pdf"></i> Exporter en PDF</a>-->
+            <!--<a href="#" id="btnFilePrint" data-descr="&#9888; Expérimental"><i class="fa-print"></i> Imprimer</a>-->
             <a href="#" id="btnFileClose"><i class="fa-close"></i> Fermer</a>
           </div>
         </div><!--
@@ -30,6 +30,20 @@
             <a href="#" id="btnInsCharlist">Liste des personnages de la scène</a>
           </div>
         </div><!--
+        <div class="main">
+          <a href="#" data-descr="&#9888; Expérimental"><i class="fa-define"></i> Définir sélection</a>
+          <div class="drop">
+            <a href="#" id="btnDefTitle">Titre de l'ouvrage</a>
+            <a href="#" id="btnDefAct">Acte</a>
+            <a href="#" id="btnDefScene">Scène</a>
+            <a href="#" id="btnDefDidasBl">Bloc de didascalies</a>
+            <a href="#" id="btnDefCharlist">Liste des personnages de la scène</a>
+			<a href="#" id="btnDefLine">Ligne (personnage + réplique)</a>
+			<a href="#" id="btnDefPerso">Personnage</a>
+			<a href="#" id="btnDefDidasInt">Didascalie intra réplique</a>
+			<a href="#" id="btnDefRépliq">Réplique</a>
+          </div>
+        </div>
 		--><div class="main">
           <a href="#"><i class="fa-stream"></i> Mise en page</a>
           <div class="drop mep">
@@ -43,7 +57,7 @@
           <div class="drop">
             <a href="#" id="btnShowCharmap">Caractères spéciaux</a>
             <a href="#" id="btnShowFrames">Délimitation zones de texte</a>
-			<!--<a href="#" id="btnShowLinenum">Lignes numérotées</a>-->
+			<a href="#" id="btnShowLinenum" data-descr="&#9888; Expérimental">Répliques numérotées</a>
           </div>
         </div><!--
         --><div class="main">
@@ -53,18 +67,20 @@
             <a href="help.html" target="_blank">Aide</a>
           </div>
         </div>
+		<button type="button" id="btnZoomOut" class="fa-zoomin"></button>
+		<button type="button" id="btnZoomIn" class="fa-zoomout"></button>
 		<button type="button" id="btnFullscreen" class="fa-expand"></button>
       </nav>
-      <section class="left">
+      <div class="left">
         <div class="cont_persos">
           <span>Titre </span> <input type="text" id="input_title" placeholder="Titre de l'œuvre" /><br/>
 		  <span>Plume </span> <input type="text" id="input_author" placeholder="Autrice / Auteur" /><br/>
           <span id="field_date"></span>
 		  <div id="wordCounter"></div>
         </div>
-        <div class="cont_persos" data-descr="CTRL + Click pour sélectionner et désélectionner plusieurs personnages à la fois">
+        <div class="cont_persos" data-descr="[Ctrl] + Clic&#10;&#10132; (dé)sélectionner les personnages&#10;Double-clic&#10;&#10132; modifier le nom du personnage">
           <i class="fa-persos"></i> <span>Liste des personnages</span>
-          <select id="persos" size="8" tabindex="1" multiple="true"></select>
+          <select id="persos" size="8" tabindex="1" multiple></select>
           <button id="btnCharAdd" class="but_persos fa-plus">&nbsp;Ajouter</button><!--
           --><button id="btnCharRemove" class="but_persos fa-minus">&nbsp;Retirer</button><!--   
           --><button id="btnCharClear" class="but_persos fa-trash">&nbsp;Vider</button>
@@ -81,11 +97,11 @@
           Ajouter le texte
         </button>
         <br/><br/>
-      </section>
-      <section class="right">
+      </div>
+      <div class="right">
         <div id="field_infos">&nbsp;</div>
-        <div id="page" contenteditable="true" class="classic_layout"></div>
-      </section>
+          <div id="page" contenteditable="true" class="classic_layout"></div>
+      </div>
     </div>
 	<div class="draggable uno">
 		<div class="draggableheader"></div>
@@ -130,11 +146,9 @@
 		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button><br/>
 		<button type="button" data-descr="Triple astérisme">&#8258;</button><!--
 		--><button type="button" data-descr="Puce">&bull;</button>
-		 
 	</div>
-
     <script src="js/format-my-play.js"></script>
-	
-	
   </body>
 </html>
+
+<!-- liste  des persos : choix inline ou list  -->
