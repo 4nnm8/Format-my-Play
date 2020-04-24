@@ -5,23 +5,25 @@
     <meta charset="utf-8">
     <title>Format My Play</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/layouts.css" />
   </head>
   <body>
     <div id="container" class="container">
       <nav>
         <div class="main">
-          <a href="#"><i class="fa-file"></i> Fichier</a>
+          <a href="#"><span class="fa fa-file"></span> Fichier</a>
           <div class="drop">
-            <a href="#" id="btnFileNew"><i class="fa-new"></i> Nouveau</a>
-            <a href="#" id="btnFileOpen"><i class="fa-open"></i> Ouvrir</a>
-            <a href="#" id="btnFileSave"><i class="fa-save"></i> Enregistrer</a>
-			<!--<a href="#" id="btnFilePDF"><i class="fa-pdf"></i> Exporter en PDF</a>-->
-            <!--<a href="#" id="btnFilePrint" data-descr="&#9888; Expérimental"><i class="fa-print"></i> Imprimer</a>-->
-            <a href="#" id="btnFileClose"><i class="fa-close"></i> Fermer</a>
+            <a href="#" id="btnFileNew"><span class="fa fa-new"></span> Nouveau</a>
+            <a href="#" id="btnFileOpen"><span class="fa fa-open"></span> Ouvrir</a>
+            <a href="#" id="btnFileSave"><span class="fa fa-save"></span> Enregistrer</a>
+			 <a href="#" id="btnFileCopy"><span class="fa fa-copy"></span> Exporter vers presse-papier</a>
+            <!--<a href="#" id="btnFilePDF"><span class="fa fa-pdf"></span> Exporter en PDF</a>-->
+            <a href="#" id="btnFilePrint" data-descr="&#9888; Expérimental"><span class="fa fa-print"></span> Imprimer</a>
+            <a href="#" id="btnFileClose"><span class="fa fa-close"></span> Fermer</a>
           </div>
-        </div><!--
-        --><div class="main">
-          <a href="#"><i class="fa-insert"></i> Insertion</a>
+        </div>
+        <div class="main">
+          <a href="#"><span class="fa fa-insert"></span> Insertion</a>
           <div class="drop">
             <a href="#" id="btnInsTitle">Titre de l'ouvrage</a>
             <a href="#" id="btnInsAct">Acte</a>
@@ -29,126 +31,156 @@
             <a href="#" id="btnInsDidas">Bloc de didascalies</a>
             <a href="#" id="btnInsCharlist">Liste des personnages de la scène</a>
           </div>
-        </div><!--
-        <div class="main">
-          <a href="#" data-descr="&#9888; Expérimental"><i class="fa-define"></i> Définir sélection</a>
-          <div class="drop">
-            <a href="#" id="btnDefTitle">Titre de l'ouvrage</a>
-            <a href="#" id="btnDefAct">Acte</a>
-            <a href="#" id="btnDefScene">Scène</a>
-            <a href="#" id="btnDefDidasBl">Bloc de didascalies</a>
-            <a href="#" id="btnDefCharlist">Liste des personnages de la scène</a>
-			<a href="#" id="btnDefLine">Ligne (personnage + réplique)</a>
-			<a href="#" id="btnDefPerso">Personnage</a>
-			<a href="#" id="btnDefDidasInt">Didascalie intra réplique</a>
-			<a href="#" id="btnDefRépliq">Réplique</a>
-          </div>
         </div>
-		--><div class="main">
-          <a href="#"><i class="fa-stream"></i> Mise en page</a>
+        <!--
+          <div class="main">
+            <a href="#" data-descr="&#9888; Expérimental"><span class="fa fa-define"></span> Définir sélection</a>
+            <div class="drop">
+              <a href="#" id="btnDefTitle">Titre de l'ouvrage</a>
+              <a href="#" id="btnDefAct">Acte</a>
+              <a href="#" id="btnDefScene">Scène</a>
+              <a href="#" id="btnDefDidasBl">Bloc de didascalies</a>
+              <a href="#" id="btnDefCharlist">Liste des personnages de la scène</a>
+          <a href="#" id="btnDefLine">Ligne (personnage + réplique)</a>
+          <a href="#" id="btnDefPerso">Personnage</a>
+          <a href="#" id="btnDefDidasInt">Didascalie intra réplique</a>
+          <a href="#" id="btnDefRépliq">Réplique</a>
+            </div>
+          </div>
+          -->
+        <div class="main">
+          <a href="#"><span class="fa fa-stream"></span> Mise en page</a>
           <div class="drop mep">
             <a href="#" id="btnMepInline" data-descr="Une ligne"><span style="font-variant-caps:small-caps">Personnage</span><span style="font-style:italic">, didascalie</span> – Texte de réplique.</a>
             <a href="#" id="btnMepClassic" data-descr="Deux lignes"><span style="display:block;text-align:center">PERSONNAGE, <span style="font-style:italic">didascalie</span></span>Texte de réplique.</a>
             <a href="#" id="btnMepScreenplay" data-descr="Screenplay (à l'américaine)" style="font-family:Courier"><span style="display:block;text-align:center">PERSONNAGE<br/>(didascalie)</span>Texte de réplique.</a>
           </div>
-        </div><!--
-		--><div class="main">
-          <a href="#"><i class="fa-affichage"></i> Affichage</a>
+        </div>
+        <div class="main">
+          <a href="#"><span class="fa fa-affichage"></span> Affichage</a>
           <div class="drop">
             <a href="#" id="btnShowCharmap">Caractères spéciaux</a>
             <a href="#" id="btnShowFrames">Délimitation zones de texte</a>
-			<a href="#" id="btnShowLinenum" data-descr="&#9888; Expérimental">Répliques numérotées</a>
+            <a href="#" id="btnShowLinenum" data-descr="&#9888; Expérimental">Répliques numérotées</a>
           </div>
         </div><!--
-        --><div class="main">
-          <a href="#"><i class="fa-question-circle"></i> Aide</a>
+        <div class="main">
+          <a href="#"><span class="fa fa-book"></span> Sommaire</a>
+          <div class="drop">
+            <ul>
+              <li class="acts">
+                <input type="checkbox" id="item1"/>
+                <label for="item1">Acte I</label>
+                <ul class="scenes">
+                  <li><span>Scène 1</span></li>
+                  <li><span>Scène 2</span></li>
+                  <li><span>Scène 3</span></li>
+                </ul>
+              </li>
+              <li class="acts">
+                <input type="checkbox" id="item2"/>
+                <label for="item2">Acte II</label>
+                <ul>
+                  <li><span>Scène 1</span></li>
+                  <li><span>Scène 2</span></li>
+                  <li><span>Scène 3</span></li>
+                  <li><span>Scène 4</span></li>
+                  <li><span>Scène 5</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>-->
+        <div class="main">
+          <a href="#"><span class="fa fa-question-circle"></span> Aide</a>
           <div class="drop">
             <a href="https://github.com/ANN-MB/Format-my-Play" target="_blank">À propos</a>
             <a href="help.html" target="_blank">Aide</a>
           </div>
         </div>
-		<button type="button" id="btnZoomOut" class="fa-zoomin"></button>
-		<button type="button" id="btnZoomIn" class="fa-zoomout"></button>
-		<button type="button" id="btnFullscreen" class="fa-expand"></button>
+		<div class="last">
+          <button type="button" id="btnZoomOut"><span class="fa fa-zoomin"></span></button>
+          <button type="button" id="btnZoomIn"><span class="fa fa-zoomout"></span></button>
+          <button type="button" id="btnFullscreen"><span class="fa fa-expand"></span></button>
+        </div>
       </nav>
       <div class="left">
-        <div class="cont_persos">
+        <div>
           <span>Titre </span> <input type="text" id="input_title" placeholder="Titre de l'œuvre" /><br/>
-		  <span>Plume </span> <input type="text" id="input_author" placeholder="Autrice / Auteur" /><br/>
-          <span id="field_date"></span>
-		  <div id="wordCounter"></div>
+          <span>Plume </span> <input type="text" id="input_author" placeholder="Autrice / Auteur" /><br/>
+          <div id="field_date"></div>
+          <!--<div id="wordCounter"></div>-->
         </div>
-        <div class="cont_persos" data-descr="[Ctrl] + Clic&#10;&#10132; (dé)sélectionner les personnages&#10;Double-clic&#10;&#10132; modifier le nom du personnage">
-          <i class="fa-persos"></i> <span>Liste des personnages</span>
+        <div data-descr="[Ctrl] + Clic&#10;&#10132; (dé)sélectionner les personnages&#10;Double-clic&#10;&#10132; modifier le nom du personnage">
+          <span class="fa fa-persos"></span> <span>Liste des personnages</span>
           <select id="persos" size="8" tabindex="1" multiple></select>
-          <button id="btnCharAdd" class="but_persos fa-plus">&nbsp;Ajouter</button><!--
-          --><button id="btnCharRemove" class="but_persos fa-minus">&nbsp;Retirer</button><!--   
-          --><button id="btnCharClear" class="but_persos fa-trash">&nbsp;Vider</button>
+          <button id="btnCharAdd" class="btnPersos"><span class="fa fa-plus"></span>&nbsp;Ajouter</button><!--
+          --><button id="btnCharRemove" class="btnPersos"><span class="fa fa-minus"></span>&nbsp;Retirer</button><!--   
+          --><button id="btnCharClear" class="btnPersos"><span class="fa fa-trash"></span>&nbsp;Vider</button>
         </div>
-        <div class="cont_persos"><i class="fa-pencil"></i> <span>Texte à insérer</span>
+        <div><span class="fa fa-pencil"></span> <span>Texte à insérer</span>
           <br/>
           <input type="text" id="didasc" tabindex="2" placeholder="Didascalie fonctionnelle (optionnelle)" />
           <textarea id="replik" rows="8" tabindex="3" placeholder="Texte de réplique"></textarea>
-          <input type="checkbox" id="input_check_didas" />
-          <label for="input_check_didas"> Insérer un bloc de disacalie</label>
+          <input type="checkbox" id="input_chkdidas" />
+          <label for="input_chkdidas" id="input_chkdidas_lab"> Insérer un bloc de disacalie</label>
         </div>
         <br/>
         <button id="btnAddText" tabindex="4">
-          Ajouter le texte
+        Ajouter le texte
         </button>
         <br/><br/>
       </div>
       <div class="right">
         <div id="field_infos">&nbsp;</div>
-          <div id="page" contenteditable="true" class="classic_layout"></div>
+        <div id="page" contenteditable="true" class="classic_layout"></div>
       </div>
     </div>
-	<div class="draggable uno">
-		<div class="draggableheader"></div>
-	    <button type="button" id="btnUndo" class="fa-undo" data-descr="Annuler action"></button><!--
-	    --><button type="button" id="btnRedo" class="fa-redo" data-descr="Rétablir action"></button><br/>
-	    <button type="button" id="btnBold" class="fa-bold" data-descr="Gras"></button><!--
-	    --><button type="button" id="btnItalic" class="fa-italic" data-descr="Italique"></button><br/>
-	    <button type="button" id="btnUnderline" class="fa-underline" data-descr="Souligner"></button><!--
-	    --><button type="button" id="btnStrike" class="fa-strikethrough" data-descr="Barer"></button><br/>
-	   <button type="button" id="btnSubscript" class="fa-subscript" data-descr="Indice"></button><!--
-	    --><button type="button" id="btnSuperscript" class="fa-superscript" data-descr="Exposant"></button><br/>				
-	    <button type="button" id="btnRemoveFormat" class="fa-eraser" data-descr="Supprimer formatage"></button><!--
-	    --><button type="button" id="btnHR" class="fa-hr" data-descr="Ligne horizontale"></button><br/>
-	    <button type="button" id="btnAlignRight" class="fa-align-right" data-descr="Aligner paragraphe à droite"></button><!--
-	    --><button type="button" id="btnAlignLeft" class="fa-align-left" data-descr="Aligner paragraphe à gauche"></button><br/>
-	    <button type="button" id="btnAlignCenter" class="fa-align-center" data-descr="Centrer le paragraphe"></button><!--
-	    --><button type="button" id="btnAlignJustify" class="fa-align-justify" data-descr="Justifier le paragraphe"></button>
-	</div>  
-	<div class="draggable dos">
-        <div class="draggableheader"></div>
-	    <button type="button" data-descr="Tiret demi-quadratin">&ndash;</button><!--
-	    --><button type="button" data-descr="Tiret quadratin">&mdash;</button><br/>
-	    <button type="button" data-descr="Point d'ironie">&#11822;</button><!--
-	    --><button type="button" data-descr="Point exclarogatif">&#8253;</button><br/>
-	    <button type="button" data-descr="Guillemet ouvrant">&laquo;</button><!--
-	    --><button type="button" data-descr="Guillemet fermant">&raquo;</button><br/>
-	    <button type="button" data-descr="Double guillemet-apostrophe culbuté">&ldquo;</button><!--
-	    --><button type="button" data-descr="Double guillemet-apostrophe">&rdquo;</button><br/>
-	    <button type="button" data-descr="Double guillemet-virgule inférieur">&bdquo;</button><!--
-	    --><button type="button" data-descr="Guillemet-apostrophe culbuté">&lsquo;</button><br/>
-	    <button type="button" data-descr="Guillemet-apostrophe">&rsquo;</button><!--
-	    --><button type="button" data-descr="Guillemet-virgule inférieur">&sbquo;</button><br/>
-	    <button type="button" data-descr="Point médian">&middot;</button><!--
-	    --><button type="button" data-descr="Points de suspension">&hellip;</button><br/>
-		<button type="button" data-descr="a-e entrelacés minuscule">&aelig;</button><!--
-	    --><button type="button" data-descr="o-e entrelacés minuscule">&oelig;</button><br/>
-		<button type="button" data-descr="A-E entrelacés majuscule">&AElig;</button><!--
-	    --><button type="button" data-descr="O-E entrelacés majuscule">&OElig;</button><br/>	
-		<button type="button" data-descr="E accent aigu majuscule">&Eacute;</button><!--
-	    --><button type="button" data-descr="E accent grave majuscule">&Egrave;</button><br/>	
-		<button type="button" data-descr="A accent grave majuscule">&Agrave;</button><!--
-		--><button type="button" data-descr="C cédille majuscule">&Ccedil;</button><br/>
-		<button type="button" data-descr="Triple astérisme">&#8258;</button><!--
-		--><button type="button" data-descr="Puce">&bull;</button>
-	</div>
+    <div class="draggable uno">
+      <div class="draggableheader"></div>
+      <button type="button" id="btnUndo" data-descr="Annuler action"><span class="fa fa-undo"></span></button><!--
+        --><button type="button" id="btnRedo" data-descr="Rétablir action"><span class="fa fa-redo"></span></button><br/>
+      <button type="button" id="btnBold" data-descr="Gras"><span class="fa fa-bold"></span></button><!--
+        --><button type="button" id="btnItalic" data-descr="Italique"><span class="fa fa-italic"></span></button><br/>
+      <button type="button" id="btnUnderline" data-descr="Souligner"><span class="fa fa-underline"></span></button><!--
+        --><button type="button" id="btnStrike" data-descr="Barer"><span class="fa fa-strikethrough"></span></button><br/>
+      <button type="button" id="btnSubscript" data-descr="Indice"><span class="fa fa-subscript"></span></button><!--
+        --><button type="button" id="btnSuperscript" data-descr="Exposant"><span class="fa fa-superscript"></span></button><br/>				
+      <button type="button" id="btnRemoveFormat" data-descr="Supprimer formatage"><span class="fa fa-eraser"></span></button><!--
+        --><button type="button" id="btnHR" data-descr="Ligne horizontale"><span class="fa fa-hr"></span></button><br/>
+      <button type="button" id="btnAlignRight" data-descr="Aligner paragraphe à droite"><span class="fa fa-align-right"></span></button><!--
+        --><button type="button" id="btnAlignLeft" data-descr="Aligner paragraphe à gauche"><span class="fa fa-align-left"></span></button><br/>
+      <button type="button" id="btnAlignCenter" data-descr="Centrer le paragraphe"><span class="fa fa-align-center"></span></button><!--
+        --><button type="button" id="btnAlignJustify" data-descr="Justifier le paragraphe"><span class="fa fa-align-justify"></span></button>
+    </div>
+    <div class="draggable dos">
+      <div class="draggableheader"></div>
+      <button type="button" data-descr="Tiret demi-quadratin" value="&nbsp;&ndash;&nbsp;">&ndash;</button><!--
+        --><button type="button" data-descr="Tiret quadratin" value="&nbsp;&mdash;&nbsp;">&mdash;</button><br/>
+      <button type="button" data-descr="Point d'ironie" value="&nbsp;&#11822;">&#11822;</button><!--
+        --><button type="button" data-descr="Point exclarogatif" value="&nbsp;&#8253;">&#8253;</button><br/>
+      <button type="button" data-descr="Guillemet ouvrant" value="&laquo;&nbsp;">&laquo;</button><!--
+        --><button type="button" data-descr="Guillemet fermant" value="&nbsp;&raquo;">&raquo;</button><br/>
+      <button type="button" data-descr="Double guillemet-apostrophe culbuté" value="&ldquo;">&ldquo;</button><!--
+        --><button type="button" data-descr="Double guillemet-apostrophe" value="&rdquo;">&rdquo;</button><br/>
+      <button type="button" data-descr="Double guillemet-virgule inférieur" value="&bdquo;">&bdquo;</button><!--
+        --><button type="button" data-descr="Guillemet-apostrophe culbuté" value="&lsquo;">&lsquo;</button><br/>
+      <button type="button" data-descr="Guillemet-apostrophe" value="&rsquo;">&rsquo;</button><!--
+        --><button type="button" data-descr="Guillemet-virgule inférieur" value="&sbquo;">&sbquo;</button><br/>
+      <button type="button" data-descr="Point médian" value="&middot;">&middot;</button><!--
+        --><button type="button" data-descr="Points de suspension" value="&hellip;">&hellip;</button><br/>
+      <button type="button" data-descr="a-e entrelacés minuscule" value="&aelig;">&aelig;</button><!--
+        --><button type="button" data-descr="o-e entrelacés minuscule" value="&oelig;">&oelig;</button><br/>
+      <button type="button" data-descr="A-E entrelacés majuscule" value="&AElig;">&AElig;</button><!--
+        --><button type="button" data-descr="O-E entrelacés majuscule" value="&OElig;">&OElig;</button><br/>	
+      <button type="button" data-descr="E accent aigu majuscule" value="&Eacute;">&Eacute;</button><!--
+        --><button type="button" data-descr="E accent grave majuscule" value="&Egrave;">&Egrave;</button><br/>	
+      <button type="button" data-descr="A accent grave majuscule" value="&Agrave;">&Agrave;</button><!--
+        --><button type="button" data-descr="C cédille majuscule" value="&Ccedil;">&Ccedil;</button><br/>
+      <button type="button" data-descr="Triple astérisme" value="&#8258;">&#8258;</button><!--
+        --><button type="button" data-descr="Puce" value="&bull;&nbsp;">&bull;</button>
+    </div>
     <script src="js/format-my-play.js"></script>
   </body>
 </html>
-
 <!-- liste  des persos : choix inline ou list  -->
