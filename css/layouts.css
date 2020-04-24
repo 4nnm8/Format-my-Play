@@ -1,0 +1,138 @@
+.line span:not([class]) {
+  display: none;
+}
+body .classic_layout, body .inline_layout, body .screenplay_layout {
+  overflow: auto;
+  margin: initial;
+  padding: initial;
+}
+.classic_layout, .inline_layout {
+  font-family: "Times New Roman", "Palatino Linotype", "Book Antiqua", Georgia, Palatino, Times, serif;
+  font-size: 16pt;
+  padding: 10%;
+}
+.screenplay_layout {
+  font-family: "Courier Prime", "Courier", "Courier Final Draft", "Courier New";
+  font-size: 14pt;
+  padding: 10%;
+}
+.classic_layout .title, 
+.classic_layout .act, 
+.classic_layout .scene, 
+.classic_layout .charlist, 
+.classic_layout .line,
+.inline_layout .title, 
+.inline_layout .act, 
+.inline_layout .scene, 
+.inline_layout .charlist,
+.screenplay_layout .title { 
+  text-align: center 
+}
+
+.inline_layout .perso, 
+.inline_layout .charlist,
+.classic_layout .charlist {
+  font-variant: small-caps;
+}
+.inline_layout .line:first-letter,
+.classic_layout .line .perso,
+.screenplay_layout .perso,
+.screenplay_layout .didas,
+.screenplay_layout .title, 
+.screenplay_layout .act, 
+.screenplay_layout .scene, 
+.screenplay_layout .perso, 
+.screenplay_layout .charlist,
+.screenplay_layout .didas {
+  text-transform: uppercase;
+}
+.inline_layout .didas, 
+.classic_layout .didas,
+.inline_layout .didas-bl, 
+.classic_layout .didas-bl {
+  font-style: italic;
+  color: #333;
+}
+.classic_layout .line, 
+.classic_layout .didas-bl,
+.inline_layout .didas-bl,
+.screenplay_layout .line,
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act,
+.charlist { 
+  margin: 1em 0 1em 0;
+}
+.classic_layout .didas span:first-child,
+.inline_layout .didas span:first-child,
+.inline_layout .didas + span + span,
+.inline_layout .perso + span:not([class]),
+.inline_layout .perso + span:not([class]) + span,
+.screenplay_layout .line .didas span:nth-last-child(-n+2) {
+  display: inline;
+}
+.charlist,
+.classic_layout .line, 
+.classic_layout .didas-bl,
+.classic_layout .repliq,
+.inline_layout .didas-bl,
+.screenplay_layout .line,
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act,
+.screenplay_layout .didas, 
+.screenplay_layout .repliq {
+  display: block;
+}
+.inline_layout .line { line-height: 1.1em }
+.inline_layout .line { text-indent: 20pt }
+.classic_layout .repliq {
+  text-align: left;
+  white-space: pre-wrap;
+  padding: 0 0 0 80pt;
+}
+.screenplay_layout .title, 
+.screenplay_layout .scene, 
+.screenplay_layout .act {
+  font-weight: inherit;
+  font-size: inherit;
+}
+.screenplay_layout .title { text-decoration: underline }
+.screenplay_layout .line {
+  width: 75%;
+  margin-left: 17%;
+  margin-right: 17%;
+  clear: both;
+}
+.screenplay_layout .perso {
+  margin: 0 1in 0 25%;
+}
+.screenplay_layout .perso + .didas {
+  margin: 0 0 0 20%
+}
+.screenplay_layout .repliq {
+  max-width: 70%;
+  margin: 0 0 0 15%;
+  white-space: pre-wrap
+}
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+}
+@media print {
+  html, body {
+    width: 21cm;
+    height: 29.7cm;       
+  }
+  body {
+    margin: 0;
+    border: 0;
+	padding: 10%;
+	overflow: hidden;
+	box-sizing: border-box;
+    width: initial;
+    min-height: initial;
+    background: #fff;
+    page-break-after: always;
+  }
+}
