@@ -4,7 +4,7 @@ const inputReplique = document.getElementById("replik"),
       inputAuthor = document.getElementById("input_author"),
       inputTitle = document.getElementById("input_title"),
       inputDidas = document.getElementById("didasc"),
-      inputCheckDidas = document.getElementById("input_check_didas"),
+      inputCheckDidas = document.getElementById("input_chkdidas"),
       fieldPage = document.getElementById("page"),
       fieldInfos = document.getElementById("field_infos"),
       fieldDate = document.getElementById("field_date");
@@ -13,7 +13,8 @@ var SELECTIONRANGE,
 	SHOWFRAMES = false, 
 	SHOWCHARMAP = false, 
 	LINECOUNT = false,
-	SCALE = 1, 
+	SCALE = 1,
+	CURRENTPAGE = 1,
 	LAYOUT = "inline_layout";
 
 /*****************************************************************************/
@@ -226,7 +227,6 @@ clipboard.init(fieldPage, 10);
 /************************ SELECTION / RANGE FUNCTIONS ************************/
 /*****************************************************************************/
 
-
 /*****************************************************************************/
 /************************* ADD THEATER LINE FUNCTIONS ************************/
 const insertText = function(txt) {
@@ -294,11 +294,13 @@ addLine = function() {
 const insertDidasMenu = function() {
   if (inputCheckDidas.checked) {
     inputCheckDidas.checked = true;
+	document.getElementById("input_chkdidas_lab").textContent = "Insertion réplique";
     inputDidas.style.visibility = "hidden";
     inputReplique.placeholder = "Texte de didascalie";
     info("Prêt. Tapez votre texte dans le menu de gauche et validez.")
   } else {
 	inputCheckDidas.checked = false;
+	document.getElementById("input_chkdidas_lab").textContent = "Insertion bloc de didascalie";
 	inputDidas.style.visibility = "visible";
 	inputReplique.placeholder = "Texte de réplique";
   }
@@ -358,51 +360,6 @@ insertTitle = function() {
 
 /*****************************************************************************/
 /******************************* FILE FUNCTIONS ******************************/
-/*	
-(function (global, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["module"], factory);
-  } else if (typeof exports !== "undefined") {
-    factory(module);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod);
-    global.computedStyleToInlineStyle = mod.exports;
-  }
-})(this, function (module) {
-  "use strict";
-
-  var each = Array.prototype.forEach;
-
-
-  function computedStyleToInlineStyle(element) {
-    var _context2;
-
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-    if (!element) {
-      throw new Error("No element specified.");
-    }
-
-    if (options.recursive) {
-      var _context;
-
-      (_context = element.children, each).call(_context, function (child) {
-        computedStyleToInlineStyle(child, options);
-      });
-    }
-    var computedStyle = getComputedStyle(element);
-    (_context2 = options.properties || computedStyle, each).call(_context2, function (property) {
-      element.style[property] = computedStyle.getPropertyValue(property);
-    });
-  }
-
-  module.exports = computedStyleToInlineStyle;
-});*/
-
-
 const isItEmpty = function() {
   var a = fieldPage.textContent.trim(),
       b = inputPersos.length > 0,
@@ -511,25 +468,24 @@ printFile = function() {
     info("Document vide : rien à imprimer.");
     return false
   }
-
-	var contents = document.getElementById("page").innerHTML;
-	var frame1 = document.createElement('iframe');
-	frame1.name = "frame1";
-	frame1.style.position = "absolute";
-	frame1.style.top = "0";
-	frame1.style.witdh = "21cm";
-	frame1.style.height = "29.7cm";
-	document.body.appendChild(frame1);
-	var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
-	frameDoc.document.open();
-	frameDoc.document.write("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + inputTitle.value + "</title><link rel=\"stylesheet\" href=\"css/style.css\" type=\"text/css\" /></head><body class=\""+LAYOUT+".css\">" + fieldPage.innerHTML + "</body></html>");
-	frameDoc.document.close();
-	setTimeout(function () {
-		window.frames["frame1"].focus();
-		window.frames["frame1"].print();
-		//document.body.removeChild(frame1);
-	}, 500);
-	return false;
+  var contents = document.getElementById("page").innerHTML,
+      frame1 = document.createElement('iframe');
+  frame1.name = "frame1";
+  frame1.style.position = "absolute";
+  frame1.style.top = "9999px";
+  frame1.style.width = "21cm";
+  frame1.style.height = "29.7cm";
+  document.body.appendChild(frame1);
+  var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
+  frameDoc.document.open();
+  frameDoc.document.write("<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>" + inputTitle.value + "</title><link rel=\"stylesheet\" href=\"css/layouts.css\" type=\"text/css\" /></head><body class=\""+LAYOUT+".css\">" + fieldPage.innerHTML + "</body></html>");
+  frameDoc.document.close();
+  setTimeout(function () {
+    window.frames["frame1"].focus();
+    window.frames["frame1"].print();
+    document.body.removeChild(frame1);
+  }, 500);
+  return false;
 },
 toInlineStyle = function(element) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -564,16 +520,18 @@ handleCopy = function(e) {
       allSpans[j].innerHTML = "";
     }
   }
-
-  //selectAll(cloned)
+  selectAll(cloned)
   var selected = getHTMLOfSelection();
-  e.clipboardData.setData("text/html", selected);
-  //document.execCommand("copy");
-  //cloned.remove();
+  //e.clipboardData.setData("text/html", selected); 
+  document.execCommand("copy");
+  cloned.remove();
 },
 handlePaste = function(e) {
+  var html = e.clipboardData.getData('text/html');
+  if (/class="(title|scene|act|repliq|line|perso|didas(-bl)?)"/g.test(html)) {
+	return false
+  }
   var value = (window.clipboardData) ? window.clipboardData.getData('text') : e.clipboardData.getData('text/plain');
-  
   if (!value) {
     window.setTimeout(function() {
       var el = e.target,
@@ -595,7 +553,7 @@ handlePaste = function(e) {
     }
     document.selection.createRange().pasteHTML(value);
   } else {
-    document.execCommand("insertText", false, value);
+	insertText(value)
   }
   clipboard.update();
 }
@@ -682,7 +640,6 @@ inputPersos.addEventListener("change", function(){ CURRENTCHARACTER = 0 },false)
 /*****************************************************************************/
 /************************** NOT CLASSIFIED FUNCTIONS *************************/
 
-
 const command = function(a,b){
   document.execCommand(a, false, b);
 },
@@ -734,7 +691,6 @@ switchLayout = function(a) {
 },
 defineSelected = function(clas,tag) {
   var par = caretParent();
-
   if ((!par.closest(".act,.scene,.title,.didas-bl,.line,.charlist") && par.closest("#page") && /act|scene|title|didas-bl|line|charlist/i.test(clas)) || (!par.closest(".perso, .repliq, .didas") && par.closest(".line") && /perso|repliq/i.test(clas)) || (!par.closest(".didas") & par.closest(".repliq") && "didas" == clas)) {
 	var newPar = document.createElement(tag);
     newPar.className = clas;
@@ -767,7 +723,7 @@ didasSetInt = function(a,b) {
 /*****************************************************************************/
 /************************** GLOBAL EVENT LISTENERS ***************************/
 window.addEventListener("load", function() {
-  /*clearAllInputs();*/ fieldPage.focus(); setSelection();
+  clearAllInputs(); fieldPage.focus(); setSelection();
 }, false);
 
 window.addEventListener("beforeunload", function(e) {
@@ -787,8 +743,7 @@ document.getElementById("btnFileOpen").addEventListener("click", openFile, false
 fieldPage.addEventListener("keyup", function(){
   var par = caretParent(),
       reg = /\s\(([a-zà-öù-ÿœ\s',.:!?-]+)\)$/gi,
-	  reg2 = /\{([a-zà-öù-ÿœ\s',.:!?-]+)\}/gi;
-	  
+	  reg2 = /\{([a-zà-öù-ÿœ\s',.:!?-]+)\}/gi;	  
   if (par.className == "perso" && reg.test(par.innerHTML)) didasSetFunc(par,reg);
   if (par.className == "repliq" && reg2.test(par.innerHTML)) didasSetInt(par,reg2);
   setSelection();
@@ -883,7 +838,7 @@ document.addEventListener("click", function(e) {
   //case "btnFileOpen" : openFile(); break;
     case "btnFileSave" : saveFile(); break;
     case "btnFileClose" : closeFile(); break;
-	case "btnFileCopy" : copyAll(e); break;
+	case "btnFileCopy" : handleCopy(e); break;
     case "btnFilePrint" : printFile(); break;
 	case "btnFilePDF" : saveDiv(); break;
     case "btnCharAdd" : characterAdd(); break;
@@ -901,7 +856,7 @@ document.addEventListener("click", function(e) {
 	case "btnShowFrames" : switchFrames(); break;
 	case "btnShowLinenum" : switchLinenum(); break;
     case "btnAddText" : addLine(); break;
-    case "input_check_didas" : insertDidasMenu(); break;
+    case "input_chkdidas" : insertDidasMenu(); break;
     case "field_infos" : fieldInfos.style.opacity = 0; fieldInfos.style.pointerEvents = "none"; break;
     case "btnBold" : command("bold"); break;
     case "btnItalic" : command("italic"); break;
@@ -931,13 +886,13 @@ document.addEventListener("click", function(e) {
 	case "btnZoomOut" : doZoom(-1);break;
     default : void(0);
   }
-  if (f.closest(".draggable.dos")) command("insertHTML",f.innerText);
+  if (f.closest(".draggable.dos")) command("insertHTML",f.value), fieldPage.focus();
   ("perso" == f.className && 0 < characterGetSel().length) && selectAll(f);
   (f.closest("#page")) && setSelection();
   e.stopPropagation();
 },false);
 
-//fieldPage.addEventListener("copy", function(e) { handleCopy(e) },false);
+//fieldPage.addEventListener("copy", function(e) {  },false);
 fieldPage.addEventListener("paste", function(e){handlePaste(e)},false);
 /****************************** EVENT LISTENERS ******************************/
 /*****************************************************************************/
